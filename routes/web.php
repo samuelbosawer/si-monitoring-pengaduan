@@ -10,6 +10,8 @@ Route::get('/', function () {
 
 
 
+Route::get('/daftar', [HomeController::class, 'daftar'])->name('daftar');
+Route::post('daftar/store', [HomeController::class, 'daftarStore'])->name('daftar.store');
 
 Auth::routes();
 

@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
             // 'user' => 'Admin',
             'name' => 'Pelapor 1',
             'email' => 'pelapor1@gmail.com',
+            'no_hp' => '0821981232',
             'password' =>  bcrypt('pelapor1@gmail.com')
         ]);
         $admin->assignRole('pelapor');
@@ -25,6 +26,7 @@ class UserSeeder extends Seeder
             // 'user' => 'Admin',
             'name' => 'Pelapor 2',
             'email' => 'pelapor2@gmail.com',
+            'no_hp' => '0821981231',
             'password' =>  bcrypt('pelapor2@gmail.com')
         ]);
         $admin->assignRole('pelapor');

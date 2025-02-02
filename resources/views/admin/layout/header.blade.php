@@ -10,7 +10,7 @@
 
     <meta content=" Sistem Pemetaan Stunting Di Kabupaten Jayapura" name="description" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="">
+    <link rel="shortcut icon" href="{{asset('assets/images/logo.png')}}">
 
     <!-- plugin css -->
     <link href="/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet"

@@ -3,11 +3,10 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Login</title>
+    <title>Daftar</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="{{ asset($pengaturan->desk_web ?? '') }}" name="description" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{asset('assets/images/logo.png')}}">
 
@@ -26,7 +25,6 @@
 
 <body class="loading authentication-bg authentication-bg-pattern">
     @include('sweetalert::alert')
-
     <div class="account-pages mt-5 mb-5">
         <div class="container">
             <div class="row justify-content-center">
@@ -37,13 +35,27 @@
 
                             <div class="row m-auto d-flex align-items-center  ">
                                 <div class="col-md-6  order-2">
-                                    <form class="text-center" method="POST" action="{{ route('login') }}">
+                                    <form class="" method="POST" action="{{ route('daftar.store') }}">
                                         @csrf
-                                        <h4 class=" mb-4 mt-3 font-weight-bold">LOGIN </h4>
+                                        <h4 class=" mb-4 mt-3 text-center font-weight-bold ">DAFTAR AKUN </h4>
 
                                         <div class="form-group mb-3">
-                                            <input class="form-control" type="email" name="email"
-                                                value="{{ old('email') }}" id="emailaddress" required=""
+                                            <label for="name">Nama Lengkap</label>
+                                            <input class="form-control" type="" name="name"
+                                                value="{{ old('name') }}" id="name" required=""
+                                                placeholder="">
+
+                                            @error('name')
+                                                <span class="text-danger">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label for="email">Email</label>
+                                            <input type="email" class="form-control" type="" name="email"
+                                                value="{{ old('email') }}" id="email" required=""
                                                 placeholder="">
 
                                             @error('email')
@@ -54,15 +66,25 @@
                                         </div>
 
                                         <div class="form-group mb-3">
-                                            <div class="input-group input-group-merge">
-                                                <input type="password" id="password" name="password" class="form-control"
-                                                    placeholder="Enter your password">
-                                                <div class="input-group-append" data-password="false">
-                                                    <div class="input-group-text">
-                                                        <span class="password-eye"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <label for="no_hp">No HP</label>
+                                            <input class="form-control" type="" name="no_hp"
+                                                value="{{ old('no_hp') }}" id="no_hp" required=""
+                                                placeholder="">
+
+                                            @error('no_hp')
+                                                <span class="text-danger">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+
+
+                                        <div class="form-group mb-3">
+                                            <label for="password">Password</label>
+                                            <input class="form-control" type="password" name="password"
+                                                value="{{ old('password') }}" id="password" required=""
+                                                placeholder="">
 
                                             @error('password')
                                                 <span class="text-danger">
@@ -71,12 +93,27 @@
                                             @enderror
                                         </div>
 
+                                        <div class="form-group mb-3">
+                                            <label for="password_confirmation">Konfirmasi Password</label>
+                                            <input class="form-control" type="password" name="password_confirmation"
+                                                value="{{ old('password_confirmation') }}" id="password_confirmation" required=""
+                                                placeholder="">
+
+                                            @error('password_confirmation')
+                                                <span class="text-danger">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+
+
+
                                         <div class="form-group mb-0 text-center">
-                                            <button class="btn btn-warning btn-block" type="submit"> LOGIN </button>
+                                            <button class="btn btn-warning btn-block" type="submit"> DAFTAR </button>
                                         </div>
 
                                     </form>
-                                    <p class="mt-2">Belum Punya Akun ? <a href="{{route('daftar')}}">Daftar</a></p>
                                 </div>
                                 <div class="col-md-6 text-center order-1 ">
 

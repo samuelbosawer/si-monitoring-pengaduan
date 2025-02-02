@@ -9,6 +9,7 @@ class PengaduanController extends Controller
     public function index(Request $request)
     {
 
+        return view('admin.pengaduan.index');
 
     }
 

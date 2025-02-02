@@ -1,6 +1,6 @@
 @extends('admin.layout.tamplate')
 @section('title')
-    Dashboard - Admin
+    Dashboard
 @endsection
 @section('content')
     <!-- ============================================================== -->

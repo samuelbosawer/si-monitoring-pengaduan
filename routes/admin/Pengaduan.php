@@ -3,7 +3,7 @@
 use App\Http\Controllers\PengaduanController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => ['role:']], function () {
+Route::group(['middleware' => ['auth']], function () {
 
     Route::controller(PengaduanController::class)->group(function(){
         Route::get('pengaduan', [PengaduanController::class, 'index'])->name('pengaduan');
