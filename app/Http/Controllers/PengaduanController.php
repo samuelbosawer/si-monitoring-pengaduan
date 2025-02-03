@@ -2,14 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pengaduan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PengaduanController extends Controller
 {
     public function index(Request $request)
     {
 
-        return view('admin.pengaduan.index');
+        $datas = null;
+        if(Auth::user()->hasRole('pelapor'))
+
+        {
+            $datas = Pengaduan::where('user_id',Auth::user()->id)->where([
+                ['nama_pelapor', '!=', Null],
+                [function ($query) use ($request) {
+                    if (($s = $request->s)) {
+                        $query->orWhere('nama_pelapor', 'LIKE', '%' . $s . '%')
+                            ->orWhere('nama_lengkap_korban', 'LIKE', '%' . $s . '%')
+                            ->orWhere('nama_panggilan_korban', 'LIKE', '%' . $s . '%')
+                            ->orWhere('nama_lengkap_pelaku', 'LIKE', '%' . $s . '%')
+                            ->orWhere('created_at', 'LIKE', '%' . $s . '%')
+                            ->orWhere('keterangan', 'LIKE', '%' . $s . '%')
+                            ->get();
+                    }
+                }]
+            ])->orderBy('id', 'desc')->paginate(10);
+        }
+
+
+        return view('admin.pengaduan.index',compact('datas'))->with('i',(request()->input('page', 1) - 1) * 10);
 
     }
 
@@ -18,6 +41,7 @@ class PengaduanController extends Controller
      */
     public function create()
     {
+        return view('admin.pengaduan.create');
 
     }
 

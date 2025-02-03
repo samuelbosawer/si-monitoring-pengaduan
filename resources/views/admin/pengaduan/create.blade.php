@@ -19,15 +19,15 @@ Data Puskesmas
                     <div class="col-12 ">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="header-title"> {{ $caption ?? 'Tambah Data Puskesmas' }} </h4>
+                                <h3  class="header-title"> {{ $caption ?? 'Buat Pengaduan' }} </h3>
 
 
-                                @if (Request::segment(4) == 'ubah')
-                                    <form action="{{ route('admin.puskesmas.update', $data->id) }}" method="post"
+                                @if (Request::segment(3) == 'ubah')
+                                    <form action="{{ route('dashboard.pengaduan.update', $data->id) }}" method="post"
                                         enctype="multipart/form-data">
                                         @method('PUT')
                                     @else
-                                        <form action="{{ route('admin.puskesmas.store') }}" method="post"
+                                        <form action="{{ route('dashboard.pengaduan.store') }}" method="post"
                                             enctype="multipart/form-data">
                                 @endif
                                 @csrf
@@ -35,17 +35,20 @@ Data Puskesmas
                                     <div class="col-12">
                                         <div class="card-box">
                                             <div class="row">
+                                                <div class="col-md-12">
+                                                    <h3></h3>
+                                                </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-3">
-                                                        <label for="nama_puskesmas"> Nama Puskesmas <span
-                                                                class="text-danger">*</span> </label>
-                                                        <input type="text" id="nama_puskesmas"
+                                                        <label for="tempat"> Tempat <span
+                                                                class="text-danger"> </span> * </label>
+                                                        <input type="text" id="tempat"
                                                             @if (Request::segment(3) == 'detail') {{ 'disabled' }} @endif
-                                                            value="{{ old('nama_puskesmas') ?? ($data->nama_puskesmas ?? '') }}"
-                                                            name="nama_puskesmas" placeholder="" class="form-control">
-                                                        @if ($errors->has('nama_puskesmas'))
+                                                            value="{{ old('tempat') ?? ($data->tempat ?? '') }}"
+                                                            name="tempat" placeholder="" class="form-control">
+                                                        @if ($errors->has('tempat'))
                                                             <label class="text-danger">
-                                                                {{ $errors->first('nama_puskesmas') }}
+                                                                {{ $errors->first('tempat') }}
                                                             </label>
                                                         @endif
                                                     </div>
@@ -55,52 +58,41 @@ Data Puskesmas
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-3">
 
-                                                        <label for="latitude"> Distrik <span class="text-danger">*</span>
+                                                        <label for="latitude"> Yang Melapor <span class="text-danger"> * </span>
                                                         </label>
                                                         <select class="form-control" aria-label="Default select example"
-                                                            name="distrik_id"
-                                                            @if (Request::segment(3) == 'detail') {{ 'disabled' }} @endif>
-                                                            <option value="">Pilih Distrik</option>
-                                                            @foreach ($distrik as $k)
-                                                                <option @if ($k->id == ($data->distrik_id ?? '')) selected @endif
-                                                                    value="{{ $k->id }}">
-                                                                    {{ $k->nama_distrik }}
-                                                                </option>
-                                                            @endforeach
+                                                            name="melapor" @if (Request::segment(3) == 'detail') {{ 'disabled' }} @endif>
+                                                            <option value="" hidden>Pilih Status Pelapor</option>
+
+
+
                                                         </select>
                                                         @if ($errors->has('distrik_id'))
-                                                            <label class="text-danger">
-                                                                {{ $errors->first('distrik_id') }}
-                                                            </label>
+                                                        <label class="text-danger">
+                                                            {{ $errors->first('distrik_id') }}
+                                                        </label>
                                                         @endif
                                                     </div>
                                                 </div>
+
+
+
                                             </div>
 
 
 
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group mb-3">
-                                                        <label for="keterangan"> Keterangan </label>
-                                                        <textarea id="keterangan" @if (Request::segment(3) == 'detail') disabled @endif name="keterangan"
-                                                            placeholder="Masukan keterangan" rows="5" class="form-control">{{ old('keterangan') ?? ($data->keterangan ?? '') }} </textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
 
                                             @if (Request::segment(3) == 'detail')
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <a class="btn btn-primary"
-                                                            href="{{ route('admin.puskesmas') }}">Kembali</a>
+                                                            href="{{ route('dashboard.pengaduan') }}">Kembali</a>
 
-                                                            @if(Auth::user()->hasRole('admindinas'))
+
                                                         <a class="btn btn-primary"
-                                                            href="{{ route('admin.puskesmas.ubah', $data->id) }}">Ubah <i
+                                                            href="{{ route('dashboard.pengaduan.ubah', $data->id) }}">Ubah <i
                                                                 class="fas fa-edit"></i> </a>
 
-                                                            @endif
                                                     </div>
                                                 </div>
                                             @else

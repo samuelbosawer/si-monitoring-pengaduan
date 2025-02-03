@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Pengaduan;
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -72,9 +74,12 @@ class PengaduanSeeder extends Seeder
                 'akte_nikah_kua' => null,
                 'akte_cerai_kua' => null,
                 'akte_kelahiran_anak' => null,
+                'user_id' => ['1', '2'][rand(0, 1)],
+                'created_at' =>Carbon::now(),
+                'updated_at' =>Carbon::now(),
             ];
         }
 
-        DB::table('pengaduans')->insert($data);
+        Pengaduan::insert($data);
     }
 }
