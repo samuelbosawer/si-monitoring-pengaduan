@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('pengaduans', function (Blueprint $table) {
             $table->id();
+            $table->text('judul_pengaduan')->nullable();
 
             // Dinas
             $table->bigInteger('id_penerima')->nullable();
@@ -36,7 +37,7 @@ return new class extends Migration
             $table->string('tempat_lahir_korban')->nullable();
             $table->string('tanggal_lahir_korban')->nullable();
             $table->text('alamat_korban')->nullable();
-            $table->string('pekerjaan_korban')->nullable();
+            $table->text('pekerjaan_korban')->nullable();
             $table->string('agama_korban')->nullable();
             $table->string('pendidikan_korban')->nullable();
             $table->string('nik_korban')->nullable();
@@ -44,6 +45,7 @@ return new class extends Migration
             $table->string('jumlah_anak_pria')->nullable();
             $table->string('jumlah_anak_wanita')->nullable();
             $table->string('no_hp_korban')->nullable();
+            $table->string('status_pernikahan')->nullable();
 
             // Pelaku
             $table->string('nama_lengkap_pelaku')->nullable();
@@ -52,17 +54,17 @@ return new class extends Migration
             $table->string('tempat_lahir_pelaku')->nullable();
             $table->string('tanggal_lahir_pelaku')->nullable();
             $table->text('alamat_pelaku')->nullable();
-            $table->string('pekerjaan_pelaku')->nullable();
+            $table->text('pekerjaan_pelaku')->nullable();
             $table->string('agama_pelaku')->nullable();
             $table->string('pendidikan_pelaku')->nullable();
             $table->string('nik_pelaku')->nullable();
             $table->string('no_hp_pelaku')->nullable();
 
             // kondisi
-            $table->text('kondisi_fisik')->nullable();
-            $table->text('kondisi_psikis')->nullable();
-            $table->text('kondisi_sexual')->nullable();
-            $table->text('kondisi_lain-lain')->nullable();
+            $table->string('kondisi_fisik')->nullable();
+            $table->string('kondisi_psikis')->nullable();
+            $table->string('kondisi_sexual')->nullable();
+            $table->string('kondisi_lain-lain')->nullable();
 
             // dampak
             $table->text('dampak_fisik')->nullable();
@@ -70,21 +72,21 @@ return new class extends Migration
             $table->text('dampak_sex')->nullable();
             $table->text('dampak_ekonomi')->nullable();
             $table->text('dampak_kesehatan')->nullable();
-            $table->text('dampah_lainnya')->nullable();
+            $table->text('dampak_lainnya')->nullable();
 
             // Kasus
             $table->text('kasus_domestik')->nullable();
-            $table->text('kasus_publick')->nullable();
+            $table->text('kasus_publik')->nullable();
             $table->text('kasus_lainnya')->nullable();
             $table->text('uraian_kejadian')->nullable();
 
             // surat
             $table->string('surat_nikah_gereja')->nullable();
-            $table->string('aket_nikah_sipil')->nullable();
-            $table->string('aket_cerai_sipil')->nullable();
+            $table->string('akte_nikah_sipil')->nullable();
+            $table->string('akte_cerai_sipil')->nullable();
             $table->string('akte_nikah_kua')->nullable();
             $table->string('akte_cerai_kua')->nullable();
-            $table->string('akte_kelahiran_anak')->nullable();
+            // $table->string('akte_kelahiran_anak')->nullable();
 
             $table->bigInteger('user_id')->nullable();
 

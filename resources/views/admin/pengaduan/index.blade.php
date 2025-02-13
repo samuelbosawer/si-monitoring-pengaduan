@@ -19,7 +19,7 @@
                     <div class="col-12 ">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="header-title"> Data Pengaduan</h4>
+                                <h4 class="header-title"> Data Pendampingan</h4>
                                 <div class="row mt-3 d-flex justify-content-between">
                                     <div class="col-8">
                                         @include('admin.layout.search')
@@ -27,25 +27,21 @@
 
                                     <div class="">
 
-                                        @if (Auth::user()->hasRole('pelapor'))
-                                            <a class="btn btn-dark rounded" href="{{ route('dashboard.pengaduan.tambah') }}"> Tambah
-                                                Data <i data-feather="plus"></i></a>
 
 
 
 
-                                        @endif
+
                                     </div>
                                 </div>
 
 
                         <div class="mt-3 table-responsive">
                             <table class="table table-bordered ">
-                                <tr class="bg-warning text-white">
-                                    <th width="1%">No</th>
-                                    <th>Tanggal</th>
-                                    <th>Pelapor</th>
-                                    <th>Penerima</th>
+                                <tr class="bg-warning text-white text-center">
+                                    <th class="text-center" width="1%">No</th>
+                                    <th class="text-center">Tanggal</th>
+                                    <th class="text-center">Pengaduan</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -53,16 +49,58 @@
                                 <tr>
                                     <td>{{++$i}}</td>
                                     <td>{{$data->created_at }}</td>
-                                    <td> {{$data->user->name ?? ''}} </td>
-                                    <td> {{$data->penerima->name ?? ''}} </td>
-                                    <td> {{$data->status}} </td>
-                                    <td>
+                                    <td>{{$data->judul_pengaduan }}</td>
+                                    {{-- <td> {{$data->user->name ?? ''}} </td> --}}
+                                    {{-- <td> {{$data->penerima->name ?? ''}} </td> --}}
+                                    <td class="text-center">
+                                        @if($data->status == null)
+                                            <div class="bg-secondary text-white col-6 rounded text-center mx-auto">
+                                                Belum diterima
+                                            </div>
+                                        @else
+                                        <div class="bg-success text-white col-6 rounded text-center mx-auto">
+                                            Sudah diterima
+                                        </div>
+                                        @endif
+                                    </td>
+                                    <td class="text-center">
+                                        @if(Auth::user()->hasRole('pelapor'))
+                                            <a href="{{ route('dashboard.pengaduan.detail', $data->id) }}"
+                                                class="btn btn-sm btn-warning border-0  waves-effect waves-light fs-4">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            @if($data->status == null)
+
+                                            <a href="{{ route('dashboard.pengaduan.ubah', $data->id) }}"
+                                                class="btn btn-sm btn-primary border-0 waves-effect waves-light fs-4">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <form class="d-inline"
+                                                action="{{ route('dashboard.pengaduan.hapus', $data->id) }}"
+                                                method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button
+                                                    class="btn btn-sm btn-danger border-0 waves-effect waves-light fs-4"
+                                                    onclick="return confirm('Apakah anda yakin ingin menghapus data ini ?')"
+                                                    type="submit">
+
+                                                    <i class="fas fa-trash"></i>
+
+                                                </button>
+                                            @endif
+                                        @endif
+
+
+                                        @if(Auth::user()->hasRole('pelapor'))
                                         <a href="{{ route('dashboard.pengaduan.detail', $data->id) }}"
-                                            class="btn btn-sm btn-outline-warning border-0  waves-effect waves-light fs-4">
+                                            class="btn btn-sm btn-warning border-0  waves-effect waves-light fs-4">
                                             <i class="fas fa-eye"></i>
                                         </a>
+                                        @if($data->status == null)
+
                                         <a href="{{ route('dashboard.pengaduan.ubah', $data->id) }}"
-                                            class="btn btn-sm btn-outline-primary border-0 waves-effect waves-light fs-4">
+                                            class="btn btn-sm btn-primary border-0 waves-effect waves-light fs-4">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <form class="d-inline"
@@ -71,13 +109,25 @@
                                             @csrf
                                             @method('DELETE')
                                             <button
-                                                class="btn btn-sm btn-outline-danger border-0 waves-effect waves-light fs-4"
+                                                class="btn btn-sm btn-danger border-0 waves-effect waves-light fs-4"
                                                 onclick="return confirm('Apakah anda yakin ingin menghapus data ini ?')"
                                                 type="submit">
 
                                                 <i class="fas fa-trash"></i>
 
                                             </button>
+                                        @endif
+                                    @else
+
+                                    <a href="{{ route('dashboard.pengaduan.detail', $data->id) }}"
+                                        class="btn btn-sm btn-warning border-0  waves-effect waves-light fs-4">
+                                       Lihat & Verifikasi <i class="fas fa-eye"></i>
+                                    </a>
+                                    @endif
+
+
+
+
                                     </td>
                                 </tr>
                                 @endforeach

@@ -21,8 +21,8 @@
                             <div class="card-body">
                                 <h3 class="header-title"> {{ $caption ?? 'Buat Pengaduan' }} </h3>
 
-                                @if(Auth::user()->hasRole('pelapor'))
-                                    @if (Request::segment(4) == 'ubah')
+
+                                @if (Request::segment(4) == 'ubah')
                                     <form action="{{ route('dashboard.pengaduan.update', $data->id) }}" method="post"
                                         enctype="multipart/form-data">
                                         @method('PUT')
@@ -30,16 +30,7 @@
                                         <form action="{{ route('dashboard.pengaduan.store') }}" method="post"
                                             enctype="multipart/form-data">
                                 @endif
-                            @csrf
-                                @else
-                                <form action="{{ route('dashboard.pengaduan.update.status', $data->id) }}" method="post"
-                                    enctype="multipart/form-data">
-                                    @method('PUT')
-                                    @csrf
-
-
-                                @endif
-
+                                @csrf
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="card-box">
@@ -1174,90 +1165,43 @@
                                             </div>
 
 
-                                            @if(Auth::user()->hasRole('pelapor'))
-
-                                            @if (Request::segment(3) == 'detail')
-                                            <div class="row ">
-                                                <div class="col-md-12 text-center">
-                                                    <a class="btn btn-primary rounded"
-                                                        href="{{ route('dashboard.pengaduan') }}">Kembali</a>
-
-                                                @if ( $data->status == null)
-
-                                                    <a class="btn btn-primary rounded"
-                                                        href="{{ route('dashboard.pengaduan.ubah', $data->id) }}">Ubah
-                                                        <i class="fas fa-edit"></i> </a>
-
-                                                        <form class="d-inline"
-                                                        action="{{ route('dashboard.pengaduan.hapus', $data->id) }}"
-                                                        method="POST" enctype="multipart/form-data">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button
-                                                            class="btn btn-danger rounded  waves-effect waves-light "
-                                                            onclick="return confirm('Apakah anda yakin ingin menghapus data ini ?')"
-                                                            type="submit">
-
-                                                            <i class="fas fa-trash"></i>
-
-                                                        </button>
-
-                                                        @endif
 
 
+                                            @if (Request::segment(3) == 'detail' AND $data->status == null)
+                                                <div class="row ">
+                                                    <div class="col-md-12 text-center">
+                                                        <a class="btn btn-primary"
+                                                            href="{{ route('dashboard.pengaduan') }}">Kembali</a>
+
+
+                                                        <a class="btn btn-primary"
+                                                            href="{{ route('dashboard.pengaduan.ubah', $data->id) }}">Ubah
+                                                            <i class="fas fa-edit"></i> </a>
+
+                                                            <form class="d-inline"
+                                                            action="{{ route('dashboard.pengaduan.hapus', $data->id) }}"
+                                                            method="POST" enctype="multipart/form-data">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button
+                                                                class="btn btn-sm btn-danger border-0 waves-effect waves-light fs-4"
+                                                                onclick="return confirm('Apakah anda yakin ingin menghapus data ini ?')"
+                                                                type="submit">
+
+                                                                <i class="fas fa-trash"></i>
+
+                                                            </button>
+
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        @else
-
-
-                                            <div class="row">
-
-
-                                                <div class="col-md-12 text-center">
-                                                    <button type="submit" class="btn btn-warning">Simpan  <i
-                                                            data-feather="save"></i></button>
-                                                </div>
-                                            </div>
-                                        @endif
-
                                             @else
-                                            <div class="row">
-                                                <div class="col-md-12 bg-warning  rounded mb-3">
-                                                    <h5 class="text-white"> Status Pengaduan </h5>
+                                                <div class="row">
+                                                    <div class="col-md-12 text-center">
+                                                        <button type="submit" class="btn btn-warning">Simpan  <i
+                                                                data-feather="save"></i></button>
+                                                    </div>
                                                 </div>
-                                                     <!-- Kasus Publik -->
-                                                     <div class="col-md-6">
-                                                        <div class="form-group mb-3">
-                                                            <label for="status"> Status <span class="text-danger">
-                                                                     </span></label>
-                                                            <select class="form-control" name="status">
-                                                                <option value="" hidden>Pilih Status</option>
-                                                                <option value="Diterima"
-                                                                    {{ (old('status') ?? ($data->status ?? '')) == 'Diterima' ? 'selected' : '' }}>
-                                                                    Diterima</option>
-                                                                <option value="Tidak diterima"
-                                                                    {{ (old('status') ?? ($data->status ?? '')) == 'Tidak diterima' ? 'selected' : '' }}>
-                                                                    Tidak diterima</option>
-
-                                                                    <option value="Selesai"
-                                                                    {{ (old('status') ?? ($data->status ?? '')) == 'Selesai' ? 'selected' : '' }}>
-                                                                    Selesai</option>
-
-                                                            </select>
-                                                            @error('status')
-                                                                <label class="text-danger"> {{ $errors->first('status') }}</label>
-                                                            @enderror
-                                                        </div>
-
-                                                        <div class="col-md-6">
-                                                            <button type="submit" class="btn btn-warning rounded">Ubah
-                                                                <i class="fas fa-edit"></i> </button>
-                                                    </div>
-
-                                                    </div>
-
                                             @endif
-
 
 
 

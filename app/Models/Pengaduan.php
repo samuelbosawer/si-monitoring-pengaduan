@@ -19,4 +19,11 @@ class Pengaduan extends Model
     {
         return $this->belongsTo(User::class,'penerima_id', 'id');
     }
+
+     public function pendampingan()
+     {
+         return $this->hasMany(Pendampingan::class,'pengaduan_id', 'id');
+     }
+
+
 }

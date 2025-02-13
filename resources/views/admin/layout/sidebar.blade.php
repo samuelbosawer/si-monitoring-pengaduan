@@ -31,12 +31,12 @@
                         </a>
                     </li>
 
-                    <li>
-                        <a href="{{ route('dashboard.pendampingan') }}">
+                    {{-- <li>
+                        <a href="">
                             <i data-feather="archive"></i>
                             <span> Riwayat Pendampingan  </span>
                         </a>
-                    </li>
+                    </li> --}}
 
 
 
