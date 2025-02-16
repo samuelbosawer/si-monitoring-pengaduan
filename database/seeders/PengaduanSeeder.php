@@ -21,7 +21,6 @@ class PengaduanSeeder extends Seeder
             $data[] = [
                 'id_penerima' => rand(1, 5),
                 'judul_pengaduan' => "Pengaduan $i",
-                'tempat' => "Lokasi $i",
                 'melapor' => "2025-02-11",
                 'nama_pelapor' => "Pelapor $i",
                 'jk_pelapor' => ["Laki-laki", "Perempuan"][rand(0, 1)],

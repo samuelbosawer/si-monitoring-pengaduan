@@ -52,8 +52,7 @@ class PendampinganController extends Controller
 
     public function show(string $id, Request $request)
     {
-        if(Auth::user()->hasRole('pelapor'))
-        {
+
             $datas = Pendampingan::where('pengaduan_id',$id)->where([
                 [function ($query) use ($request) {
                     if (($s = $request->s)) {
@@ -67,9 +66,10 @@ class PendampinganController extends Controller
                     }
                 }]
             ])->orderBy('id', 'desc')->get();
-        }
+
         $pengaduan = Pengaduan::where('id',$id)->first();
-        return view('admin.pendampingan.detail',compact('datas','pengaduan'));
+        $id_pengaduan = $id;
+        return view('admin.pendampingan.detail',compact('datas','pengaduan','id_pengaduan'));
     }
 
 
@@ -79,7 +79,15 @@ class PendampinganController extends Controller
     public function pendampinganDetail($id)
     {
         $data = Pendampingan::where('id',$id)->first();
-        return view('admin.pendampingan.detail-sub',compact('data'));
+        $id_pengaduan = $id;
+        return view('admin.pendampingan.detail-sub',compact('data','id_pengaduan'));
+    }
+
+    public function create($id)
+    {
+        $data = null;
+        $caption = 'Tamba Data Pendampingan';
+        return view('admin.pendampingan.detail-sub',compact('data','caption'));
     }
 
     /**
@@ -87,7 +95,7 @@ class PendampinganController extends Controller
      */
     public function store(Request $request)
     {
-
+        dd($request);
     }
 
 

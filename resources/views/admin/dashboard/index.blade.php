@@ -37,7 +37,7 @@
                                     <div class="text-right">
                                         <h4 class="text-dark mb-1">Pengaduan</h4>
                                         <h3 class="text-dark my-1"> <span data-plugin="counterup">
-                                        3  </span></h3>
+                                        {{$pengaduan}}  </span></h3>
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                                     <div class="text-right">
                                         <h4 class="text-dark mb-1">Pendampingan</h4>
                                         <h3 class="text-dark my-1"> <span data-plugin="counterup">
-                                        3  </span></h3>
+                                            {{$pendampingan}} </span></h3>
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
                     </div> <!-- end col -->
 
 
-                    <div class="col-md-4">
+                    {{-- <div class="col-md-4">
                         <div class="card-box">
                             <div class="row">
                                 <div class="col-6">
@@ -84,13 +84,13 @@
                             </div>
 
                         </div> <!-- end card-box-->
-                    </div> <!-- end col -->
+                    </div> <!-- end col --> --}}
 
 
 
                 </div>
 
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-12">
                         <div class="col-md-12">
                             <div class="card-box">
@@ -112,7 +112,7 @@
                         </div> <!-- end col -->
 
                     </div>
-                </div>
+                </div> --}}
 
             </div> <!-- container -->
 

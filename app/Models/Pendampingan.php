@@ -10,9 +10,9 @@ class Pendampingan extends Model
     use HasFactory;
 
 
-//      // Relasi ke Pengaduan
-//      public function pengaduan()
-//      {
-//          return $this->belongsTo(Pengaduan::class, 'pengaduan_id');
-//      }
+     // Relasi ke Pengaduan
+     public function pengaduan()
+     {
+         return $this->belongsTo(Pengaduan::class, 'pengaduan_id');
+     }
 }

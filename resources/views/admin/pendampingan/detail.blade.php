@@ -22,6 +22,12 @@
                                 <h4 class="header-title"> Detail Data Pendampingan</h4>
                                 <p> Pengaduan Kasus <span class=""></span> {{$pengaduan->judul_pengaduan}} </p>
 
+                                <div class="">
+                                    @if(!Auth::user()->hasRole('pelapor|kepalabidang'))
+                                    {{-- <a class="btn btn-sm btn-dark rouded" href="{{route('dashboard.pendampingan.tambah',$id_pendampingan)}}"> Tambah Data Pendampingan <i data-feather="plus"></i></a> --}}
+                                    @endif
+                                </div>
+
                                 <div class="row mt-3 d-flex justify-content-between">
                                     <div class="col-8">
                                         {{-- @include('admin.layout.search') --}}
@@ -36,7 +42,7 @@
                                             <div class="card-body">
                                                     <h4 class="header-title "> {{$data->judul_pendampingan}} </h4>
                                                     <p> {{$data->created_at}} </p>
-                                                    <a href="{{ route('dashboard.pendampingan.detail.subx', $data->id) }}"
+                                                    <a href="{{ route('dashboard.pendampingan.detail.sub', $data->id) }}"
                                                         class="btn btn-sm btn-primary border-0  waves-effect waves-light fs-4">
                                                         Detail <i class="fas fa-eye"></i>
                                                     </a>

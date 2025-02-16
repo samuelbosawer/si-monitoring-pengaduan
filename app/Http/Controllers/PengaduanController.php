@@ -65,6 +65,7 @@ class PengaduanController extends Controller
     {
         $data =  Pengaduan::find($id);
         $data->status   = $request->status;
+        $data->id_penerima   = Auth::user()->id;
         $data->update();
         alert()->success('Berhasil', 'Ubah Status berhasil')->autoclose(3000);
         return redirect()->route('dashboard.pengaduan');

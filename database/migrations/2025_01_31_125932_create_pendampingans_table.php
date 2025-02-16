@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('judul_pendampingan')->nullable();
             $table->string('foto_pendampingan')->nullable();
             $table->text('catatan_pendampingan')->nullable();
-            $table->text('catatan_pelapor')->nullable();
+            // $table->text('catatan_pelapor')->nullable();
             $table->string('status_pendampingan')->nullable();
             $table->bigInteger('pengaduan_id')->nullable();
             $table->timestamps();

@@ -27,130 +27,128 @@
 
                                     <div class="">
 
-
-
-
-
-
-                                    </div>
-                                </div>
-
-
-                        <div class="mt-3 table-responsive">
-                            <table class="table table-bordered ">
-                                <tr class="bg-warning text-white text-center">
-                                    <th class="text-center" width="1%">No</th>
-                                    <th class="text-center">Tanggal</th>
-                                    <th class="text-center">Pengaduan</th>
-                                    <th>Status</th>
-                                    <th>Aksi</th>
-                                </tr>
-                                @foreach ($datas as $data )
-                                <tr>
-                                    <td>{{++$i}}</td>
-                                    <td>{{$data->created_at }}</td>
-                                    <td>{{$data->judul_pengaduan }}</td>
-                                    {{-- <td> {{$data->user->name ?? ''}} </td> --}}
-                                    {{-- <td> {{$data->penerima->name ?? ''}} </td> --}}
-                                    <td class="text-center">
-                                        @if($data->status == null)
-                                            <div class="bg-secondary text-white col-6 rounded text-center mx-auto">
-                                                Belum diterima
-                                            </div>
-                                        @else
-                                        <div class="bg-success text-white col-6 rounded text-center mx-auto">
-                                            Sudah diterima
-                                        </div>
-                                        @endif
-                                    </td>
-                                    <td class="text-center">
-                                        @if(Auth::user()->hasRole('pelapor'))
-                                            <a href="{{ route('dashboard.pengaduan.detail', $data->id) }}"
-                                                class="btn btn-sm btn-warning border-0  waves-effect waves-light fs-4">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                            @if($data->status == null)
-
-                                            <a href="{{ route('dashboard.pengaduan.ubah', $data->id) }}"
-                                                class="btn btn-sm btn-primary border-0 waves-effect waves-light fs-4">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <form class="d-inline"
-                                                action="{{ route('dashboard.pengaduan.hapus', $data->id) }}"
-                                                method="POST" enctype="multipart/form-data">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button
-                                                    class="btn btn-sm btn-danger border-0 waves-effect waves-light fs-4"
-                                                    onclick="return confirm('Apakah anda yakin ingin menghapus data ini ?')"
-                                                    type="submit">
-
-                                                    <i class="fas fa-trash"></i>
-
-                                                </button>
+                                        <div class="">
+                                            @if (Auth::user()->hasRole('pelapor'))
+                                                <a class="btn btn-dark" href="{{ route('dashboard.pengaduan.tambah') }}">
+                                                    Tambah Data <i data-feather="plus"></i></a>
                                             @endif
-                                        @endif
+                                        </div>
 
-
-                                        @if(Auth::user()->hasRole('pelapor'))
-                                        <a href="{{ route('dashboard.pengaduan.detail', $data->id) }}"
-                                            class="btn btn-sm btn-warning border-0  waves-effect waves-light fs-4">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        @if($data->status == null)
-
-                                        <a href="{{ route('dashboard.pengaduan.ubah', $data->id) }}"
-                                            class="btn btn-sm btn-primary border-0 waves-effect waves-light fs-4">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <form class="d-inline"
-                                            action="{{ route('dashboard.pengaduan.hapus', $data->id) }}"
-                                            method="POST" enctype="multipart/form-data">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button
-                                                class="btn btn-sm btn-danger border-0 waves-effect waves-light fs-4"
-                                                onclick="return confirm('Apakah anda yakin ingin menghapus data ini ?')"
-                                                type="submit">
-
-                                                <i class="fas fa-trash"></i>
-
-                                            </button>
-                                        @endif
-                                    @else
-
-                                    <a href="{{ route('dashboard.pengaduan.detail', $data->id) }}"
-                                        class="btn btn-sm btn-warning border-0  waves-effect waves-light fs-4">
-                                       Lihat & Verifikasi <i class="fas fa-eye"></i>
-                                    </a>
-                                    @endif
+                                        <!-- <a class="btn btn-success" href="">Cetak Excel <i data-feather="printer"></i></a> -->
+                                    </div>
 
 
 
 
-                                    </td>
-                                </tr>
-                                @endforeach
+                                </div>
+                            </div>
 
 
+                            <div class="mt-3 table-responsive">
+                                <table class="table table-bordered ">
+                                    <tr class="bg-warning text-white text-center">
+                                        <th class="text-center" width="1%">No</th>
+                                        <th class="text-center">Tanggal</th>
+                                        <th class="text-center">Pengaduan</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                    @foreach ($datas as $data)
+                                        <tr>
+                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $data->created_at }}</td>
+                                            <td>{{ $data->judul_pengaduan }}</td>
+                                            {{-- <td> {{$data->user->name ?? ''}} </td> --}}
+                                            {{-- <td> {{$data->penerima->name ?? ''}} </td> --}}
+                                            <td class="text-center">
+                                                @if ($data->status == null)
+                                                    <div class="bg-secondary text-white col-6 rounded text-center mx-auto">
+                                                        Belum diterima
+                                                    </div>
+                                                @endif
 
-                            </table>
-                        </div>
-                        <!-- end .mt-4 -->
-                        {!! $datas->links() !!}
+                                                @if ($data->status == 'Diterima')
+                                                    <div class="bg-success text-white col-6 rounded text-center mx-auto">
+                                                        Sudah diterima
+                                                    </div>
+                                                @endif
 
+                                                @if ($data->status == 'Tidak diterima')
+                                                    <div class="bg-danger text-white col-6 rounded text-center mx-auto">
+                                                        Tidak diterima
+                                                    </div>
+                                                @endif
 
-                    </div> <!-- end card-body-->
-                </div> <!-- end card-->
-            </div> <!-- end col -->
-        </div>
-        {{-- end row --}}
+                                                @if ($data->status == 'Selesai')
+                                                    <div class="bg-success text-white col-6 rounded text-center mx-auto">
+                                                        Selesai
+                                                    </div>
+                                                @endif
 
 
 
 
 
-    </div> <!-- container -->
+                                            </td>
+                                            <td class="text-center">
+
+
+
+                                                @if (Auth::user()->hasRole('pelapor'))
+                                                    <a href="{{ route('dashboard.pengaduan.detail', $data->id) }}"
+                                                        class="btn btn-sm btn-warning border-0  waves-effect waves-light fs-4">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                    @if ($data->status == null)
+                                                        <a href="{{ route('dashboard.pengaduan.ubah', $data->id) }}"
+                                                            class="btn btn-sm btn-primary border-0 waves-effect waves-light fs-4">
+                                                            <i class="fas fa-edit"></i>
+                                                        </a>
+                                                        <form class="d-inline"
+                                                            action="{{ route('dashboard.pengaduan.hapus', $data->id) }}"
+                                                            method="POST" enctype="multipart/form-data">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button
+                                                                class="btn btn-sm btn-danger border-0 waves-effect waves-light fs-4"
+                                                                onclick="return confirm('Apakah anda yakin ingin menghapus data ini ?')"
+                                                                type="submit">
+
+                                                                <i class="fas fa-trash"></i>
+
+                                                            </button>
+                                                    @endif
+                                                @else
+                                                    <a href="{{ route('dashboard.pengaduan.detail', $data->id) }}"
+                                                        class="btn btn-sm btn-warning border-0  waves-effect waves-light fs-4">
+                                                        Lihat & Validasi <i class="fas fa-eye"></i>
+                                                    </a>
+                                                @endif
+
+
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
+
+
+                                </table>
+                            </div>
+                            <!-- end .mt-4 -->
+                            {!! $datas->links() !!}
+
+
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div> <!-- end col -->
+            </div>
+            {{-- end row --}}
+
+
+
+
+
+        </div> <!-- container -->
 
     </div> <!-- content -->
 @endsection

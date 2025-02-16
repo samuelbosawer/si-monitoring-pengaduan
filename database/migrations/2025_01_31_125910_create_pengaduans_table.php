@@ -17,7 +17,6 @@ return new class extends Migration
 
             // Dinas
             $table->bigInteger('id_penerima')->nullable();
-            $table->string('tempat')->nullable();
             $table->string('melapor')->nullable();
             $table->string('status')->nullable();
 

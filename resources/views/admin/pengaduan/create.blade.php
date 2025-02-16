@@ -1,6 +1,6 @@
 @extends('admin.layout.tamplate')
 @section('title')
-   {{$caption ?? 'Data Pengaduan' }}
+    {{ $caption ?? 'Data Pengaduan' }}
 @endsection
 @section('content')
     <!-- ============================================================== -->
@@ -21,23 +21,21 @@
                             <div class="card-body">
                                 <h3 class="header-title"> {{ $caption ?? 'Buat Pengaduan' }} </h3>
 
-                                @if(Auth::user()->hasRole('pelapor'))
+                                @if (Auth::user()->hasRole('pelapor'))
                                     @if (Request::segment(4) == 'ubah')
-                                    <form action="{{ route('dashboard.pengaduan.update', $data->id) }}" method="post"
-                                        enctype="multipart/form-data">
-                                        @method('PUT')
-                                    @else
-                                        <form action="{{ route('dashboard.pengaduan.store') }}" method="post"
+                                        <form action="{{ route('dashboard.pengaduan.update', $data->id) }}" method="post"
                                             enctype="multipart/form-data">
-                                @endif
-                            @csrf
-                                @else
-                                <form action="{{ route('dashboard.pengaduan.update.status', $data->id) }}" method="post"
-                                    enctype="multipart/form-data">
-                                    @method('PUT')
+                                            @method('PUT')
+                                        @else
+                                            <form action="{{ route('dashboard.pengaduan.store') }}" method="post"
+                                                enctype="multipart/form-data">
+                                    @endif
                                     @csrf
-
-
+                                @else
+                                    <form action="{{ route('dashboard.pengaduan.update.status', $data->id) }}"
+                                        method="post" enctype="multipart/form-data">
+                                        @method('PUT')
+                                        @csrf
                                 @endif
 
                                 <div class="row">
@@ -64,21 +62,7 @@
                                                 <div class="col-md-12 bg-warning  rounded mb-3">
                                                     <h5 class="text-white">Pelapor</h5>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group mb-3">
-                                                        <label for="tempat"> Tempat Melapor <span class="text-danger"> *
-                                                            </span></label>
-                                                        <input type="text" id="tempat"
-                                                            @if (Request::segment(3) == 'detail') {{ 'disabled' }} @endif
-                                                            value="{{ old('tempat') ?? ($data->tempat ?? '') }}"
-                                                            name="tempat" placeholder="" class="form-control">
-                                                        @if ($errors->has('tempat'))
-                                                            <label class="text-danger">
-                                                                {{ $errors->first('tempat') }}
-                                                            </label>
-                                                        @endif
-                                                    </div>
-                                                </div>
+
 
 
                                                 <div class="col-md-6">
@@ -1080,7 +1064,7 @@
                                                             @disabled(Request::segment(3) == 'detail')>
 
                                                         @if (!empty($data->surat_nikah_gereja))
-                                                            <img src="{{ asset( $data->surat_nikah_gereja) }}"
+                                                            <img src="{{ asset($data->surat_nikah_gereja) }}"
                                                                 alt="Surat Nikah Gereja" class="img-fluid mt-2"
                                                                 style="max-height: 200px;">
                                                         @endif
@@ -1100,7 +1084,7 @@
                                                             @disabled(Request::segment(3) == 'detail')>
 
                                                         @if (!empty($data->aktet_nikah_sipil))
-                                                            <img src="{{ asset( $data->aktet_nikah_sipil) }}"
+                                                            <img src="{{ asset($data->aktet_nikah_sipil) }}"
                                                                 alt="Akte Nikah Catatan Sipil" class="img-fluid mt-2"
                                                                 style="max-height: 200px;">
                                                         @endif
@@ -1120,7 +1104,7 @@
                                                             @disabled(Request::segment(3) == 'detail')>
 
                                                         @if (!empty($data->akte_cerai_sipil))
-                                                            <img src="{{ asset( $data->akte_cerai_sipil) }}"
+                                                            <img src="{{ asset($data->akte_cerai_sipil) }}"
                                                                 alt="Akte Cerai Catatan Sipil" class="img-fluid mt-2"
                                                                 style="max-height: 200px;">
                                                         @endif
@@ -1139,7 +1123,7 @@
                                                             class="form-control" @disabled(Request::segment(3) == 'detail')>
 
                                                         @if (!empty($data->akte_nikah_kua))
-                                                            <img src="{{ asset( $data->akte_nikah_kua) }}"
+                                                            <img src="{{ asset($data->akte_nikah_kua) }}"
                                                                 alt="Akte Nikah KUA" class="img-fluid mt-2"
                                                                 style="max-height: 200px;">
                                                         @endif
@@ -1158,7 +1142,7 @@
                                                             class="form-control" @disabled(Request::segment(3) == 'detail')>
 
                                                         @if (!empty($data->akte_cerai_kua))
-                                                            <img src="{{ asset( $data->akte_cerai_kua) }}"
+                                                            <img src="{{ asset($data->akte_cerai_kua) }}"
                                                                 alt="Akte Cerai KUA" class="img-fluid mt-2"
                                                                 style="max-height: 200px;">
                                                         @endif
@@ -1174,63 +1158,59 @@
                                             </div>
 
 
-                                            @if(Auth::user()->hasRole('pelapor'))
+                                            @if (Auth::user()->hasRole('pelapor'))
 
-                                            @if (Request::segment(3) == 'detail')
-                                            <div class="row ">
-                                                <div class="col-md-12 text-center">
-                                                    <a class="btn btn-primary rounded"
-                                                        href="{{ route('dashboard.pengaduan') }}">Kembali</a>
+                                                @if (Request::segment(3) == 'detail')
+                                                    <div class="row ">
+                                                        <div class="col-md-12 text-center">
+                                                            <a class="btn btn-primary rounded"
+                                                                href="{{ route('dashboard.pengaduan') }}">Kembali</a>
 
-                                                @if ( $data->status == null)
+                                                            @if ($data->status == null)
+                                                                <a class="btn btn-primary rounded"
+                                                                    href="{{ route('dashboard.pengaduan.ubah', $data->id) }}">Ubah
+                                                                    <i class="fas fa-edit"></i> </a>
 
-                                                    <a class="btn btn-primary rounded"
-                                                        href="{{ route('dashboard.pengaduan.ubah', $data->id) }}">Ubah
-                                                        <i class="fas fa-edit"></i> </a>
+                                                                <form class="d-inline"
+                                                                    action="{{ route('dashboard.pengaduan.hapus', $data->id) }}"
+                                                                    method="POST" enctype="multipart/form-data">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button
+                                                                        class="btn btn-danger rounded  waves-effect waves-light "
+                                                                        onclick="return confirm('Apakah anda yakin ingin menghapus data ini ?')"
+                                                                        type="submit">
 
-                                                        <form class="d-inline"
-                                                        action="{{ route('dashboard.pengaduan.hapus', $data->id) }}"
-                                                        method="POST" enctype="multipart/form-data">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button
-                                                            class="btn btn-danger rounded  waves-effect waves-light "
-                                                            onclick="return confirm('Apakah anda yakin ingin menghapus data ini ?')"
-                                                            type="submit">
+                                                                        <i class="fas fa-trash"></i>
 
-                                                            <i class="fas fa-trash"></i>
-
-                                                        </button>
-
-                                                        @endif
+                                                                    </button>
+                                                            @endif
 
 
-                                                </div>
-                                            </div>
-                                        @else
+                                                        </div>
+                                                    </div>
+                                                @else
+                                                    <div class="row">
 
 
-                                            <div class="row">
-
-
-                                                <div class="col-md-12 text-center">
-                                                    <button type="submit" class="btn btn-warning">Simpan  <i
-                                                            data-feather="save"></i></button>
-                                                </div>
-                                            </div>
-                                        @endif
-
+                                                        <div class="col-md-12 text-center">
+                                                            <button type="submit" class="btn btn-warning">Simpan <i
+                                                                    data-feather="save"></i></button>
+                                                        </div>
+                                                    </div>
+                                                @endif
                                             @else
-                                            <div class="row">
-                                                <div class="col-md-12 bg-warning  rounded mb-3">
-                                                    <h5 class="text-white"> Status Pengaduan </h5>
-                                                </div>
-                                                     <!-- Kasus Publik -->
-                                                     <div class="col-md-6">
+
+                                                <div class="row">
+                                                    <div class="col-md-12 bg-warning  rounded mb-3">
+                                                        <h5 class="text-white"> Status Pengaduan </h5>
+                                                    </div>
+                                                    <!-- Kasus Publik -->
+                                                    <div class="col-md-6">
                                                         <div class="form-group mb-3">
                                                             <label for="status"> Status <span class="text-danger">
-                                                                     </span></label>
-                                                            <select class="form-control" name="status">
+                                                                </span></label>
+                                                            <select class="form-control" name="status"    @if (Auth::user()->hasRole('pendampingdinas|pelapor|kepaladinas')) disabled @endif>
                                                                 <option value="" hidden>Pilih Status</option>
                                                                 <option value="Diterima"
                                                                     {{ (old('status') ?? ($data->status ?? '')) == 'Diterima' ? 'selected' : '' }}>
@@ -1239,22 +1219,31 @@
                                                                     {{ (old('status') ?? ($data->status ?? '')) == 'Tidak diterima' ? 'selected' : '' }}>
                                                                     Tidak diterima</option>
 
-                                                                    <option value="Selesai"
+                                                                <option value="Selesai"
                                                                     {{ (old('status') ?? ($data->status ?? '')) == 'Selesai' ? 'selected' : '' }}>
                                                                     Selesai</option>
 
                                                             </select>
                                                             @error('status')
-                                                                <label class="text-danger"> {{ $errors->first('status') }}</label>
+                                                                <label class="text-danger">
+                                                                    {{ $errors->first('status') }}</label>
                                                             @enderror
                                                         </div>
 
-                                                        <div class="col-md-6">
-                                                            <button type="submit" class="btn btn-warning rounded">Ubah
-                                                                <i class="fas fa-edit"></i> </button>
-                                                    </div>
+
 
                                                     </div>
+
+
+                                                    @if (Auth::user()->hasRole('kepalabidang'))
+                                                        <div class="col-md-12 mx-auto">
+                                                            <div class="form-group mb-3">
+                                                                <button type="submit" class="btn btn-warning rounded">Ubah Status & Validasi
+                                                                    <i class="fas fa-edit"></i> </button>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+
 
                                             @endif
 

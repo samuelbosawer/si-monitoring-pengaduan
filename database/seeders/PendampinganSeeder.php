@@ -21,7 +21,7 @@ class PendampinganSeeder extends Seeder
                 'judul_pendampingan' => $faker->sentence(3),
                 'foto_pendampingan' => '',
                 'catatan_pendampingan' => $faker->paragraph(4),
-                'catatan_pelapor' => $faker->paragraph(3),
+                // 'catatan_pelapor' => $faker->paragraph(3),
                 'status_pendampingan' => $faker->randomElement(['Proses', 'Selesai', 'Dibatalkan']),
                 'pengaduan_id' => rand(1, 10),
                 'created_at' =>Carbon::now(),
