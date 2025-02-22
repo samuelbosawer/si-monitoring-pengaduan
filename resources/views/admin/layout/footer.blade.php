@@ -57,7 +57,8 @@
 
 
 <!-- Third Party js-->
-@stack('script-footer')
+        @stack('script-footer')
+
 
 
 

@@ -7,6 +7,7 @@
     <title>@yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <meta content=" Sistem Pemetaan Stunting Di Kabupaten Jayapura" name="description" />
     <!-- App favicon -->
@@ -29,7 +30,11 @@
     <!-- Data table -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
+       <!-- CK Editor -->
+       <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/42.0.1/ckeditor5.css" />
 
+
+    @stack('script-header')
 
 
 

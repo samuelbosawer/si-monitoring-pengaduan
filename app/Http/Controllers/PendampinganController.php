@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Pendampingan;
 use App\Models\Pengaduan;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 
 class PendampinganController extends Controller
 {
@@ -58,10 +60,8 @@ class PendampinganController extends Controller
                     if (($s = $request->s)) {
                         $query->orWhere('judul_pendampingan', 'LIKE', '%' . $s . '%')
                             ->orWhere('catatan_pendampingan', 'LIKE', '%' . $s . '%')
-                            ->orWhere('catatan_pelapor', 'LIKE', '%' . $s . '%')
-                            ->orWhere('nama_lengkap_pelaku', 'LIKE', '%' . $s . '%')
                             ->orWhere('status_pendampingan', 'LIKE', '%' . $s . '%')
-                            ->orWhere('keterangan', 'LIKE', '%' . $s . '%')
+                            ->orWhere('created_at', 'LIKE', '%' . $s . '%')
                             ->get();
                     }
                 }]
@@ -73,6 +73,40 @@ class PendampinganController extends Controller
     }
 
 
+    public function pdf_index()
+    {
+          // Data yang akan diteruskan ke view
+          $data = [
+            'title' => 'LAPORAN PENDAMPINGAN',
+            'datas' => Pengaduan::with('pendampingan')->orderBy('id', 'desc')->get(),
+        ];
+
+        // Buat PDF
+        $pdf = Pdf::loadView('admin.pendampingan.pdf_index', $data);
+        $doc = 'informasi-data-pendampingan.pdf';
+
+        // return $pdf->download($doc);
+        return $pdf->stream($doc); // Jika ingin menampilkan langsung di browser
+    }
+
+    public function pdf_detail($id)
+    {
+         $title = Pengaduan::where('id',$id)->first();
+          $data = [
+            'title' => 'LAPORAN PENDAMPINGAN YANG DILAKUKAN',
+            'datas' =>  Pendampingan::where('pengaduan_id',$id)->get(),
+            'judul' =>  $title
+          ];
+
+        // Buat PDF
+        $pdf = Pdf::loadView('admin.pendampingan.pdf_detail', $data);
+        $doc = 'informasi-data-pengaduan'.$title->judul_pengaduan.'.pdf';
+
+        // return $pdf->download($doc);
+        return $pdf->stream($doc); // Jika ingin menampilkan langsung di browser
+    }
+
+
     /**
      * Show the form for creating a new resource.
      */
@@ -80,13 +114,14 @@ class PendampinganController extends Controller
     {
         $data = Pendampingan::where('id',$id)->first();
         $id_pengaduan = $id;
-        return view('admin.pendampingan.detail-sub',compact('data','id_pengaduan'));
+        $caption = 'Detail Data Pendampingan';
+        return view('admin.pendampingan.detail-sub',compact('data','caption'));
     }
 
     public function create($id)
     {
         $data = null;
-        $caption = 'Tamba Data Pendampingan';
+        $caption = 'Tambah Data Pendampingan';
         return view('admin.pendampingan.detail-sub',compact('data','caption'));
     }
 
@@ -95,7 +130,26 @@ class PendampinganController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $this->validate($request, [
+            'judul_pendampingan' => 'required',
+        ],
+        [
+            'judul_pendampingan.required' => 'Wajib diisi !',
+        ]
+
+    );
+
+
+    $data = new Pendampingan;
+    $data->judul_pendampingan   = $request->judul_pendampingan;
+    $data->catatan_pendampingan = $request->catatan_pendampingan;
+    $data->status_pendampingan = $request->status_pendampingan;
+    $data->pengaduan_id = $request->id_p;
+
+    $data->save();
+
+    alert()->success('Berhasil', 'Tambah data berhasil')->autoclose(3000);
+    return redirect()->route('dashboard.pendampingan.detail',$request->id_p);
     }
 
 
@@ -112,6 +166,7 @@ class PendampinganController extends Controller
     public function edit(string $id)
     {
 
+
     }
 
     /**
@@ -119,7 +174,24 @@ class PendampinganController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $this->validate($request, [
+                'judul_pendampingan' => 'required',
+            ],
+            [
+                'judul_pendampingan.required' => 'Wajib diisi !',
+            ]
 
+        );
+
+
+    $data =  Pendampingan::find($id);
+    $data->judul_pendampingan   = $request->judul_pendampingan;
+    $data->catatan_pendampingan = $request->catatan_pendampingan;
+    $data->status_pendampingan = $request->status_pendampingan;
+    $data->update();
+
+    alert()->success('Berhasil', 'Ubah data berhasil')->autoclose(3000);
+    return redirect()->route('dashboard.pendampingan.detail',$request->id_p);
 
     }
 

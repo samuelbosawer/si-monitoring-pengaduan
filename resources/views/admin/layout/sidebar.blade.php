@@ -15,6 +15,8 @@
                          </a>
                      </li>
 
+
+                     @if(Auth::user()->hasRole('pelapor|kepalabidang|pendampingdinas'))
                      <li>
                         <a href="{{ route('dashboard.pengaduan') }}">
                             <i data-feather="box"></i>
@@ -31,12 +33,30 @@
                         </a>
                     </li>
 
-                    {{-- <li>
-                        <a href="">
-                            <i data-feather="archive"></i>
-                            <span> Riwayat Pendampingan  </span>
+                     @endif
+
+
+
+                     @if(Auth::user()->hasRole('kepaladinas'))
+                     <li>
+                        <a href="{{ route('dashboard.pengaduan') }}">
+                            <i data-feather="file-text"></i>
+                            <span> Laporan Pengaduan </span>
                         </a>
-                    </li> --}}
+                    </li>
+
+
+
+                    <li>
+                        <a href="{{ route('dashboard.pendampingan') }}">
+                            <i data-feather="file-text"></i>
+                            <span> Laporan Pendampingan  </span>
+                        </a>
+                    </li>
+
+                     @endif
+
+
 
 
 

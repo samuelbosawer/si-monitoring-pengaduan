@@ -16,7 +16,7 @@ return new class extends Migration
             $table->text('judul_pengaduan')->nullable();
 
             // Dinas
-            $table->bigInteger('id_penerima')->nullable();
+            // $table->bigInteger('id_penerima')->nullable();
             $table->string('melapor')->nullable();
             $table->string('status')->nullable();
 
@@ -85,7 +85,9 @@ return new class extends Migration
             $table->string('akte_cerai_sipil')->nullable();
             $table->string('akte_nikah_kua')->nullable();
             $table->string('akte_cerai_kua')->nullable();
-            // $table->string('akte_kelahiran_anak')->nullable();
+
+
+            $table->mediumText('catatan')->nullable();
 
             $table->bigInteger('user_id')->nullable();
 

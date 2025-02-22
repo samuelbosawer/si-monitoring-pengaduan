@@ -27,7 +27,10 @@
 
                                     <div class="">
 
-
+                                        @if (Auth::user()->hasRole('kepaladinas'))
+                                        <a class="btn btn-danger" target="_blank" href="{{ route('dashboard.pendampingan.pdf_index') }}">
+                                            Cetak PDF <i data-feather="file-text"></i></a>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -44,7 +47,7 @@
                                 @foreach ($datas as $data )
                                 <tr>
                                     <td>{{++$i}}</td>
-                                    <td class="text-center">{{$data->created_at }}</td>
+                                    <td class="text-center">{{ \Carbon\Carbon::parse($data->created_at)->locale('id')->translatedFormat('l, d F Y H:i') }}</td>
                                     <td>{{$data->judul_pengaduan }}</td>
                                     <td class="text-center">
                                         @if($data->pendampingan != null)

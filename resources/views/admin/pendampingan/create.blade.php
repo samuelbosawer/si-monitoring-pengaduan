@@ -1,6 +1,6 @@
 @extends('admin.layout.tamplate')
 @section('title')
-   {{$caption ?? 'Data Pengaduan' }}
+    {{ $caption ?? 'Data Pengaduan' }}
 @endsection
 @section('content')
     <!-- ============================================================== -->
@@ -214,7 +214,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-3">
                                                         <label for="alamat"> Alamat </label>
-                                                        <textarea id="summernote" @if (Request::segment(3) == 'detail') disabled @endif name="alamat_pelapor"
+                                                        <textarea id="ckeditor" @if (Request::segment(3) == 'detail') disabled @endif name="alamat_pelapor"
                                                             placeholder="Masukan alamat_pelapor" rows="5" class="form-control">{{ old('alamat_pelapor') ?? ($data->alamat_pelapor ?? '') }} </textarea>
                                                         @if ($errors->has('alamat_pelapor'))
                                                             <label class="text-danger">
@@ -1071,7 +1071,7 @@
                                                             @disabled(Request::segment(3) == 'detail')>
 
                                                         @if (!empty($data->surat_nikah_gereja))
-                                                            <img src="{{ asset( $data->surat_nikah_gereja) }}"
+                                                            <img src="{{ asset($data->surat_nikah_gereja) }}"
                                                                 alt="Surat Nikah Gereja" class="img-fluid mt-2"
                                                                 style="max-height: 200px;">
                                                         @endif
@@ -1091,7 +1091,7 @@
                                                             @disabled(Request::segment(3) == 'detail')>
 
                                                         @if (!empty($data->aktet_nikah_sipil))
-                                                            <img src="{{ asset( $data->aktet_nikah_sipil) }}"
+                                                            <img src="{{ asset($data->aktet_nikah_sipil) }}"
                                                                 alt="Akte Nikah Catatan Sipil" class="img-fluid mt-2"
                                                                 style="max-height: 200px;">
                                                         @endif
@@ -1111,7 +1111,7 @@
                                                             @disabled(Request::segment(3) == 'detail')>
 
                                                         @if (!empty($data->akte_cerai_sipil))
-                                                            <img src="{{ asset( $data->akte_cerai_sipil) }}"
+                                                            <img src="{{ asset($data->akte_cerai_sipil) }}"
                                                                 alt="Akte Cerai Catatan Sipil" class="img-fluid mt-2"
                                                                 style="max-height: 200px;">
                                                         @endif
@@ -1130,7 +1130,7 @@
                                                             class="form-control" @disabled(Request::segment(3) == 'detail')>
 
                                                         @if (!empty($data->akte_nikah_kua))
-                                                            <img src="{{ asset( $data->akte_nikah_kua) }}"
+                                                            <img src="{{ asset($data->akte_nikah_kua) }}"
                                                                 alt="Akte Nikah KUA" class="img-fluid mt-2"
                                                                 style="max-height: 200px;">
                                                         @endif
@@ -1149,7 +1149,7 @@
                                                             class="form-control" @disabled(Request::segment(3) == 'detail')>
 
                                                         @if (!empty($data->akte_cerai_kua))
-                                                            <img src="{{ asset( $data->akte_cerai_kua) }}"
+                                                            <img src="{{ asset($data->akte_cerai_kua) }}"
                                                                 alt="Akte Cerai KUA" class="img-fluid mt-2"
                                                                 style="max-height: 200px;">
                                                         @endif
@@ -1167,7 +1167,7 @@
 
 
 
-                                            @if (Request::segment(3) == 'detail' AND $data->status == null)
+                                            @if (Request::segment(3) == 'detail' and $data->status == null)
                                                 <div class="row ">
                                                     <div class="col-md-12 text-center">
                                                         <a class="btn btn-primary"
@@ -1178,7 +1178,7 @@
                                                             href="{{ route('dashboard.pengaduan.ubah', $data->id) }}">Ubah
                                                             <i class="fas fa-edit"></i> </a>
 
-                                                            <form class="d-inline"
+                                                        <form class="d-inline"
                                                             action="{{ route('dashboard.pengaduan.hapus', $data->id) }}"
                                                             method="POST" enctype="multipart/form-data">
                                                             @csrf
@@ -1197,7 +1197,7 @@
                                             @else
                                                 <div class="row">
                                                     <div class="col-md-12 text-center">
-                                                        <button type="submit" class="btn btn-warning">Simpan  <i
+                                                        <button type="submit" class="btn btn-warning">Simpan <i
                                                                 data-feather="save"></i></button>
                                                     </div>
                                                 </div>
@@ -1227,4 +1227,7 @@
             </div> <!-- container -->
 
         </div> <!-- content -->
+
+
+
     @endsection

@@ -16,10 +16,50 @@
                 @include('admin.layout.breadcump')
 
                 <div class="row">
+                    <div class="col-md-12">
+                        @if ($datas = null)
+                        @if ($data->status == 'Diterima')
+                        <div class="alert alert-success" role="alert">
+                            {{ $data->catatan}}
+                        </div>
+                        @endif
+
+                        @if ($data->status == 'Tidak diterima')
+                            <div class="alert alert-danger" role="alert">
+                               {{ $data->catatan}}
+                            </div>
+                        @endif
+
+                        @if ($data->status == 'Selesai')
+                            <div class="alert alert-success" role="alert">
+                                {{ $data->catatan}}
+                            </div>
+                        @endif
+
+
+                        @endif
+
+
+                    </div>
+
+                </div>
+
+                <div class="row">
                     <div class="col-12 ">
                         <div class="card">
                             <div class="card-body">
-                                <h3 class="header-title"> {{ $caption ?? 'Buat Pengaduan' }} </h3>
+
+                                <div class="row d-flex justify-content-between">
+                                    <div class="col-md-9 m-2">
+                                         <h3 class="header-title"> {{ $caption ?? 'Buat Pengaduan' }} </h3>
+                                    </div>
+                                    <div class="col-md-2 m-2">
+                                        @if (Auth::user()->hasRole('kepaladinas') && Request::segment(3) == 'detail')
+                                        <a class="btn btn-danger" target="_blank" href="{{ route('dashboard.pengaduan.pdf_detail',$data->id) }}">
+                                            Cetak PDF <i data-feather="file-text"></i></a>
+                                        @endif
+                                    </div>
+                                </div>
 
                                 @if (Auth::user()->hasRole('pelapor'))
                                     @if (Request::segment(4) == 'ubah')
@@ -31,7 +71,11 @@
                                                 enctype="multipart/form-data">
                                     @endif
                                     @csrf
-                                @else
+
+                                    @endif
+
+                                    @if (Auth::user()->hasRole('kepalabidang'))
+
                                     <form action="{{ route('dashboard.pengaduan.update.status', $data->id) }}"
                                         method="post" enctype="multipart/form-data">
                                         @method('PUT')
@@ -42,6 +86,8 @@
                                     <div class="col-12">
                                         <div class="card-box">
                                             <div class="row">
+
+
 
                                                 <div class="col-md-12">
                                                     <div class="form-group mb-3">
@@ -57,6 +103,9 @@
                                                             </label>
                                                         @endif
                                                     </div>
+
+
+
                                                 </div>
 
                                                 <div class="col-md-12 bg-warning  rounded mb-3">
@@ -149,7 +198,7 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-3">
-                                                        <label for="mengetahui_dari"> Mengetahui Dari <span
+                                                        <label for="mengetahui_dari"> Mengetahui Dari Mana <span
                                                                 class="text-danger"> * </span></label>
                                                         <input type="text" id="mengetahui_dari"
                                                             @if (Request::segment(3) == 'detail') {{ 'disabled' }} @endif
@@ -182,23 +231,26 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-3">
 
-                                                        <label for="mengetahui_dari"> Informasi UPTD PPA dari <span
+                                                        <label for="informasi_dari"> Dapat Informasi UPTD PPA dari <span
                                                                 class="text-danger"> * </span>
                                                         </label>
                                                         <select class="form-control" aria-label="Default select example"
-                                                            name="mengetahui_dari"
+                                                            name="informasi_dari"
                                                             @if (Request::segment(3) == 'detail') {{ 'disabled' }} @endif>
                                                             <option value="" hidden>Pilih </option>
                                                             <option value="Dari Iklan"
-                                                                {{ (old('mengetahui_dari') ?? ($data->mengetahui_dari ?? '')) == 'Dari Iklan' ? 'selected' : '' }}>
+                                                                {{ (old('informasi_dari') ?? ($data->informasi_dari ?? '')) == 'Dari Iklan' ? 'selected' : '' }}>
                                                                 Dari Iklan</option>
                                                             <option value="Teman/Saudara"
-                                                                {{ (old('mengetahui_dari') ?? ($data->mengetahui_dari ?? '')) == 'Teman/Saudara' ? 'selected' : '' }}>
+                                                                {{ (old('informasi_dari') ?? ($data->informasi_dari ?? '')) == 'Teman/Saudara' ? 'selected' : '' }}>
                                                                 Teman/Saudara</option>
+                                                                <option value="Lainnya"
+                                                                {{ (old('informasi_dari') ?? ($data->informasi_dari ?? '')) == 'Lainnya' ? 'selected' : '' }}>
+                                                                Lainnya</option>
                                                         </select>
-                                                        @if ($errors->has('mengetahui_dari'))
+                                                        @if ($errors->has('informasi_dari'))
                                                             <label class="text-danger">
-                                                                {{ $errors->first('mengetahui_dari') }}
+                                                                {{ $errors->first('informasi_dari') }}
                                                             </label>
                                                         @endif
                                                     </div>
@@ -206,7 +258,7 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-3">
-                                                        <label for="alamat"> Alamat </label>
+                                                        <label for="alamat"> Alamat Pelapor </label>
                                                         <textarea id="summernote" @if (Request::segment(3) == 'detail') disabled @endif name="alamat_pelapor"
                                                             placeholder="Masukan alamat_pelapor" rows="5" class="form-control">{{ old('alamat_pelapor') ?? ($data->alamat_pelapor ?? '') }} </textarea>
                                                         @if ($errors->has('alamat_pelapor'))
@@ -386,7 +438,7 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-3">
-                                                        <label for="pendidikan_korban"> Pendidikan Pelaku <span
+                                                        <label for="pendidikan_korban"> Pendidikan Korban <span
                                                                 class="text-danger"> * </span></label>
                                                         <select class="form-control" name="pendidikan_korban"
                                                             @disabled(Request::segment(3) == 'detail')>
@@ -882,7 +934,7 @@
 
 
                                                 <div class="col-md-12 bg-warning  rounded mb-3">
-                                                    <h5 class="text-white"> Dampak Yang Di Alami Korban</h5>
+                                                    <h5 class="text-white"> Dampak Yang Dialami Korban</h5>
                                                 </div>
 
                                                 <div class="col-md-6">
@@ -1069,9 +1121,11 @@
                                                                 style="max-height: 200px;">
                                                         @endif
 
-                                                        @error('surat_nikah_gereja')
-                                                            <label class="text-danger">{{ $message }}</label>
-                                                        @enderror
+                                                        @if ($errors->has('surat_nikah_gereja'))
+                                                            <label class="text-danger">
+                                                                {{ $errors->first('surat_nikah_gereja') }}
+                                                            </label>
+                                                        @endif
                                                     </div>
                                                 </div>
 
@@ -1089,9 +1143,11 @@
                                                                 style="max-height: 200px;">
                                                         @endif
 
-                                                        @error('aktet_nikah_sipil')
-                                                            <label class="text-danger">{{ $message }}</label>
-                                                        @enderror
+                                                        @if ($errors->has('aktet_nikah_sipil'))
+                                                            <label class="text-danger">
+                                                                {{ $errors->first('aktet_nikah_sipil') }}
+                                                            </label>
+                                                        @endif
                                                     </div>
                                                 </div>
 
@@ -1109,9 +1165,11 @@
                                                                 style="max-height: 200px;">
                                                         @endif
 
-                                                        @error('akte_cerai_sipil')
-                                                            <label class="text-danger">{{ $message }}</label>
-                                                        @enderror
+                                                        @if ($errors->has('akte_cerai_sipil'))
+                                                            <label class="text-danger">
+                                                                {{ $errors->first('akte_cerai_sipil') }}
+                                                            </label>
+                                                        @endif
                                                     </div>
                                                 </div>
 
@@ -1128,9 +1186,11 @@
                                                                 style="max-height: 200px;">
                                                         @endif
 
-                                                        @error('akte_nikah_kua')
-                                                            <label class="text-danger">{{ $message }}</label>
-                                                        @enderror
+                                                        @if ($errors->has('akte_nikah_kua'))
+                                                            <label class="text-danger">
+                                                                {{ $errors->first('akte_nikah_kua') }}
+                                                            </label>
+                                                        @endif
                                                     </div>
                                                 </div>
 
@@ -1147,9 +1207,11 @@
                                                                 style="max-height: 200px;">
                                                         @endif
 
-                                                        @error('akte_cerai_kua')
-                                                            <label class="text-danger">{{ $message }}</label>
-                                                        @enderror
+                                                        @if ($errors->has('akte_cerai_kua'))
+                                                            <label class="text-danger">
+                                                                {{ $errors->first('akte_cerai_kua') }}
+                                                            </label>
+                                                        @endif
                                                     </div>
                                                 </div>
 
@@ -1200,7 +1262,6 @@
                                                     </div>
                                                 @endif
                                             @else
-
                                                 <div class="row">
                                                     <div class="col-md-12 bg-warning  rounded mb-3">
                                                         <h5 class="text-white"> Status Pengaduan </h5>
@@ -1210,7 +1271,8 @@
                                                         <div class="form-group mb-3">
                                                             <label for="status"> Status <span class="text-danger">
                                                                 </span></label>
-                                                            <select class="form-control" name="status"    @if (Auth::user()->hasRole('pendampingdinas|pelapor|kepaladinas')) disabled @endif>
+                                                            <select class="form-control" name="status"
+                                                                @if (Auth::user()->hasRole('pendampingdinas|pelapor|kepaladinas')) disabled @endif>
                                                                 <option value="" hidden>Pilih Status</option>
                                                                 <option value="Diterima"
                                                                     {{ (old('status') ?? ($data->status ?? '')) == 'Diterima' ? 'selected' : '' }}>
@@ -1235,10 +1297,26 @@
                                                     </div>
 
 
+                                                    <div class="col-md-12">
+                                                        <div class="form-group mb-3">
+                                                            <label for="catatan"> Catatan Tambahan (Jika Ada) <span>
+                                                                </span> </label>
+                                                            <textarea @if (Auth::user()->hasRole('pendampingdinas|pelapor|kepaladinas')) disabled @endif id="summernote" name="catatan"
+                                                                placeholder="Masukan catatan" rows="7" class="form-control">{{ old('catatan') ?? ($data->catatan ?? '') }} </textarea>
+                                                            @if ($errors->has('catatan'))
+                                                                <label class="text-danger">
+                                                                    {{ $errors->first('catatan') }}
+                                                                </label>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+
+
                                                     @if (Auth::user()->hasRole('kepalabidang'))
                                                         <div class="col-md-12 mx-auto">
                                                             <div class="form-group mb-3">
-                                                                <button type="submit" class="btn btn-warning rounded">Ubah Status & Validasi
+                                                                <button type="submit"
+                                                                    class="btn btn-warning rounded">Ubah Status & Validasi
                                                                     <i class="fas fa-edit"></i> </button>
                                                             </div>
                                                         </div>

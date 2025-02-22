@@ -32,6 +32,11 @@
                                                 <a class="btn btn-dark" href="{{ route('dashboard.pengaduan.tambah') }}">
                                                     Tambah Data <i data-feather="plus"></i></a>
                                             @endif
+
+                                            @if (Auth::user()->hasRole('kepaladinas'))
+                                            <a class="btn btn-danger" target="_blank" href="{{ route('dashboard.pengaduan.pdf_index') }}">
+                                                Cetak PDF <i data-feather="file-text"></i></a>
+                                            @endif
                                         </div>
 
                                         <!-- <a class="btn btn-success" href="">Cetak Excel <i data-feather="printer"></i></a> -->
@@ -44,7 +49,7 @@
                             </div>
 
 
-                            <div class="mt-3 table-responsive">
+                            <div class="mt-3 table-responsive container">
                                 <table class="table table-bordered ">
                                     <tr class="bg-warning text-white text-center">
                                         <th class="text-center" width="1%">No</th>
@@ -56,7 +61,7 @@
                                     @foreach ($datas as $data)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $data->created_at }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($data->created_at)->locale('id')->translatedFormat('l, d F Y H:i') }}</td>
                                             <td>{{ $data->judul_pengaduan }}</td>
                                             {{-- <td> {{$data->user->name ?? ''}} </td> --}}
                                             {{-- <td> {{$data->penerima->name ?? ''}} </td> --}}
@@ -84,9 +89,6 @@
                                                         Selesai
                                                     </div>
                                                 @endif
-
-
-
 
 
                                             </td>

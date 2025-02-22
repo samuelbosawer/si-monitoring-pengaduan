@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pendampingans', function (Blueprint $table) {
             $table->id();
             $table->string('judul_pendampingan')->nullable();
-            $table->string('foto_pendampingan')->nullable();
+            // $table->string('foto_pendampingan')->nullable();
             $table->text('catatan_pendampingan')->nullable();
             // $table->text('catatan_pelapor')->nullable();
             $table->string('status_pendampingan')->nullable();

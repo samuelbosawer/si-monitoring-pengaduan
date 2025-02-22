@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pengaduan;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use File;
@@ -54,6 +55,41 @@ class PengaduanController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
+    public function pdf_index()
+    {
+          // Data yang akan diteruskan ke view
+          $data = [
+            'title' => 'LAPORAN PENGADUAN',
+            'datas' => Pengaduan::orderBy('id', 'desc')->get(),
+        ];
+
+        // Buat PDF
+        $pdf = Pdf::loadView('admin.pengaduan.pdf_index', $data);
+        $doc = 'informasi-data-pengaduan.pdf';
+
+        // return $pdf->download($doc);
+        return $pdf->stream($doc); // Jika ingin menampilkan langsung di browser
+    }
+
+    public function pdf_detail($id)
+    {
+         $title = Pengaduan::where('id',$id)->first();
+          $data = [
+            'title' => 'LAPORAN PENGADUAN',
+            'data' =>  Pengaduan::where('id',$id)->first()
+        ];
+
+        // Buat PDF
+        $pdf = Pdf::loadView('admin.pengaduan.pdf_detail', $data);
+        $doc = 'informasi-data-pengaduan'.$title->judul_pengaduan.'.pdf';
+
+        // return $pdf->download($doc);
+        return $pdf->stream($doc); // Jika ingin menampilkan langsung di browser
+    }
+
+
+
     public function create()
     {
         $caption = 'Tambah Pengaduan';
@@ -65,7 +101,8 @@ class PengaduanController extends Controller
     {
         $data =  Pengaduan::find($id);
         $data->status   = $request->status;
-        $data->id_penerima   = Auth::user()->id;
+        $data->catatan   = $request->catatan;
+        // $data->id_penerima   = Auth::user()->id;
         $data->update();
         alert()->success('Berhasil', 'Ubah Status berhasil')->autoclose(3000);
         return redirect()->route('dashboard.pengaduan');
@@ -150,7 +187,6 @@ class PengaduanController extends Controller
         ],
         [
             'judul_pengaduan.required' => 'Tidak boleh kosong',
-            'tempat.required' => 'Tidak boleh kosong',
             'tempat_lahir.required' => 'Tidak boleh kosong',
             'nama_pelapor.required' => 'Tidak boleh kosong',
             'no_hp_pelapor.required' => 'Tidak boleh kosong',
@@ -210,7 +246,6 @@ class PengaduanController extends Controller
         $data = new Pengaduan();
 
         $data->judul_pengaduan   = $request->judul_pengaduan;
-        $data->tempat   = $request->tempat;
         $data->melapor   = $request->melapor;
         $data->nama_pelapor   = $request->nama_pelapor;
         $data->jk_pelapor   = $request->jk_pelapor;
@@ -359,7 +394,6 @@ class PengaduanController extends Controller
     {
         $this->validate($request, [
             'judul_pengaduan' => 'required',
-            // 'tempat' => 'required',
             // 'melapor' => 'required',
             // 'nama_pelapor' => 'required',
             // 'no_hp_pelapor' => 'required',
@@ -428,7 +462,7 @@ class PengaduanController extends Controller
         ],
         [
             'judul_pengaduan.required' => 'Tidak boleh kosong',
-            'tempat.required' => 'Tidak boleh kosong',
+            // 'tempat.required' => 'Tidak boleh kosong',
             'tempat_lahir.required' => 'Tidak boleh kosong',
             'nama_pelapor.required' => 'Tidak boleh kosong',
             'no_hp_pelapor.required' => 'Tidak boleh kosong',
@@ -488,7 +522,7 @@ class PengaduanController extends Controller
         $data =  Pengaduan::find($id);
 
         $data->judul_pengaduan   = $request->judul_pengaduan;
-        $data->tempat   = $request->tempat;
+        // $data->tempat   = $request->tempat;
         $data->melapor   = $request->melapor;
         $data->nama_pelapor   = $request->nama_pelapor;
         $data->jk_pelapor   = $request->jk_pelapor;
