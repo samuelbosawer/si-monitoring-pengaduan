@@ -20,19 +20,27 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="header-title"> {{$caption ?? 'Detail Data Pendampingan'}} </h4>
+                                <div class=" ">
+                                    @if (Auth::user()->hasRole('kepaladinas|pendampingdinas') && Request::segment(3) == 'detail')
+                                    <a class="btn btn-danger" target="_blank" href="{{ route('dashboard.pendampingan.pdf_detail_sub',$data->id) }}">
+                                        Cetak PDF <i data-feather="file-text"></i></a>
+                                    @endif
+                                </div>
 
-
-                                @if (Request::segment(4) == 'ubah')
+                                @if (Request::segment(3) == 'detail')
                                     <form action="{{ route('dashboard.pendampingan.update', $data->id) }}" method="post"
                                         enctype="multipart/form-data">
+                                        @csrf
                                         @method('PUT')
                                     @else
                                         <form action="{{ route('dashboard.pendampingan.store') }}" method="post"
                                             enctype="multipart/form-data">
                                             @csrf
 
-                                            <input type="hidden" name="id_p" value="{{Request::segment(4)}}">
+
                                 @endif
+
+                                 <input type="hidden" name="id_p" value="{{Request::segment(5)}}">
 
 
                                         <div class="row mt-3">

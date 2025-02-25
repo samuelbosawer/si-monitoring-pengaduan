@@ -54,7 +54,7 @@
                                          <h3 class="header-title"> {{ $caption ?? 'Buat Pengaduan' }} </h3>
                                     </div>
                                     <div class="col-md-2 m-2">
-                                        @if (Auth::user()->hasRole('kepaladinas') && Request::segment(3) == 'detail')
+                                        @if (Auth::user()->hasRole('kepaladinas|pendampingdinas') && Request::segment(3) == 'detail')
                                         <a class="btn btn-danger" target="_blank" href="{{ route('dashboard.pengaduan.pdf_detail',$data->id) }}">
                                             Cetak PDF <i data-feather="file-text"></i></a>
                                         @endif
@@ -196,37 +196,9 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-6">
-                                                    <div class="form-group mb-3">
-                                                        <label for="mengetahui_dari"> Mengetahui Dari Mana <span
-                                                                class="text-danger"> * </span></label>
-                                                        <input type="text" id="mengetahui_dari"
-                                                            @if (Request::segment(3) == 'detail') {{ 'disabled' }} @endif
-                                                            value="{{ old('mengetahui_dari') ?? ($data->mengetahui_dari ?? '') }}"
-                                                            name="mengetahui_dari" placeholder="" class="form-control">
-                                                        @if ($errors->has('mengetahui_dari'))
-                                                            <label class="text-danger">
-                                                                {{ $errors->first('mengetahui_dari') }}
-                                                            </label>
-                                                        @endif
-                                                    </div>
-                                                </div>
 
-                                                <div class="col-md-6">
-                                                    <div class="form-group mb-3">
-                                                        <label for="rujukan_dari"> Rujukan Dari <span class="text-danger">
-                                                                * </span></label>
-                                                        <input type="text" id="rujukan_dari"
-                                                            @if (Request::segment(3) == 'detail') {{ 'disabled' }} @endif
-                                                            value="{{ old('rujukan_dari') ?? ($data->rujukan_dari ?? '') }}"
-                                                            name="rujukan_dari" placeholder="" class="form-control">
-                                                        @if ($errors->has('rujukan_dari'))
-                                                            <label class="text-danger">
-                                                                {{ $errors->first('rujukan_dari') }}
-                                                            </label>
-                                                        @endif
-                                                    </div>
-                                                </div>
+
+
 
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-3">
@@ -293,22 +265,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-6">
-                                                    <div class="form-group mb-3">
-                                                        <label for="nama_panggilan_pelaku"> Nama Panggilan Korban <span
-                                                                class="text-danger"> * </span></label>
-                                                        <input type="text" id="nama_panggilan_korban"
-                                                            @if (Request::segment(3) == 'detail') {{ 'disabled' }} @endif
-                                                            value="{{ old('nama_panggilan_korban') ?? ($data->nama_panggilan_korban ?? '') }}"
-                                                            name="nama_panggilan_korban" placeholder=""
-                                                            class="form-control">
-                                                        @if ($errors->has('nama_panggilan_korban'))
-                                                            <label class="text-danger">
-                                                                {{ $errors->first('nama_panggilan_korban') }}
-                                                            </label>
-                                                        @endif
-                                                    </div>
-                                                </div>
+
 
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-3">
@@ -370,38 +327,6 @@
                                                     </div>
                                                 </div>
 
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group mb-3">
-                                                        <label for="pekerjaan_korban"> Pekerjaan Korban (Dijelaskan)
-                                                        </label>
-                                                        <textarea id="summernote" @if (Request::segment(3) == 'detail') disabled @endif name="pekerjaan_korban"
-                                                            placeholder="Masukan pekerjaan korban" rows="5" class="form-control">{{ old('pekerjaan_korban') ?? ($data->pekerjaan_korban ?? '') }} </textarea>
-
-                                                        @if ($errors->has('pekerjaan_korban'))
-                                                            <label class="text-danger">
-                                                                {{ $errors->first('pekerjaan_korban') }}
-                                                            </label>
-                                                        @endif
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group mb-3">
-                                                        <label for="alamat_korban"> Alamat Korban <span
-                                                                class="text-danger">*</span> </label>
-                                                        <textarea id="summernote" @if (Request::segment(3) == 'detail') disabled @endif name="alamat_korban"
-                                                            placeholder="Masukan alamat korban" rows="5" class="form-control">{{ old('alamat_korban') ?? ($data->alamat_korban ?? '') }} </textarea>
-                                                        @if ($errors->has('alamat_korban'))
-                                                            <label class="text-danger">
-                                                                {{ $errors->first('alamat_korban') }}
-                                                            </label>
-                                                        @endif
-                                                    </div>
-                                                </div>
-
-
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-3">
 
@@ -435,6 +360,41 @@
                                                         @endif
                                                     </div>
                                                 </div>
+
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group mb-3">
+                                                        <label for="pekerjaan_korban"> Pekerjaan Korban (Dijelaskan)
+                                                        </label>
+                                                        <textarea id="summernote" @if (Request::segment(3) == 'detail') disabled @endif name="pekerjaan_korban"
+                                                            placeholder="Masukan pekerjaan korban" rows="5" class="form-control">{{ old('pekerjaan_korban') ?? ($data->pekerjaan_korban ?? '') }} </textarea>
+
+                                                        @if ($errors->has('pekerjaan_korban'))
+                                                            <label class="text-danger">
+                                                                {{ $errors->first('pekerjaan_korban') }}
+                                                            </label>
+                                                        @endif
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group mb-3">
+                                                        <label for="alamat_korban"> Alamat Korban <span
+                                                                class="text-danger">*</span> </label>
+                                                        <textarea id="summernote" @if (Request::segment(3) == 'detail') disabled @endif name="alamat_korban"
+                                                            placeholder="Masukan alamat korban" rows="5" class="form-control">{{ old('alamat_korban') ?? ($data->alamat_korban ?? '') }} </textarea>
+                                                        @if ($errors->has('alamat_korban'))
+                                                            <label class="text-danger">
+                                                                {{ $errors->first('alamat_korban') }}
+                                                            </label>
+                                                        @endif
+                                                    </div>
+                                                </div>
+
+
+
 
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-3">
@@ -533,12 +493,12 @@
                                                             <option value="Tanta"
                                                                 {{ (old('hubungan') ?? ($data->hubungan ?? '')) == 'Tanta' ? 'selected' : '' }}>
                                                                 Tanta</option>
-                                                            <option value="Paman"
+                                                            {{-- <option value="Paman"
                                                                 {{ (old('hubungan') ?? ($data->hubungan ?? '')) == 'Paman' ? 'selected' : '' }}>
                                                                 Paman</option>
                                                             <option value="Bibi"
                                                                 {{ (old('hubungan') ?? ($data->hubungan ?? '')) == 'Bibi' ? 'selected' : '' }}>
-                                                                Bibi</option>
+                                                                Bibi</option> --}}
                                                         </select>
                                                         @if ($errors->has('hubungan'))
                                                             <label class="text-danger">
@@ -595,7 +555,21 @@
                                                             name="status_pernikahan"
                                                             @if (Request::segment(3) == 'detail') {{ 'disabled' }} @endif>
                                                             <option value="" hidden>Pilih Status Pernikahan</option>
-                                                            <option value="Nikah Adat"
+
+                                                            <option value="Sudah Menikah"
+                                                                {{ (old('status_pernikahan') ?? ($data->status_pernikahan ?? '')) == 'Sudah Menikah' ? 'selected' : '' }}>
+                                                                Sudah Menikah</option>
+
+                                                                <option value="Belum Menikah"
+                                                                {{ (old('status_pernikahan') ?? ($data->status_pernikahan ?? '')) == 'Belum Menikah' ? 'selected' : '' }}>
+                                                                Belum Menikah</option>
+
+                                                                <option value="Pisah/Percerai"
+                                                                {{ (old('status_pernikahan') ?? ($data->status_pernikahan ?? '')) == 'Pisah/Percerai' ? 'selected' : '' }}>
+                                                                Pisah/Percerai</option>
+
+
+                                                            {{-- <option value="Nikah Adat"
                                                                 {{ (old('status_pernikahan') ?? ($data->status_pernikahan ?? '')) == 'Nikah Adat' ? 'selected' : '' }}>
                                                                 Nikah Adat</option>
                                                             <option value="Nikah Gereja(KUA)"
@@ -612,7 +586,7 @@
                                                                 Akte Cerai</option>
                                                             <option value="Belum Menikah"
                                                                 {{ (old('status_pernikahan') ?? ($data->status_pernikahan ?? '')) == 'Belum Menikah' ? 'selected' : '' }}>
-                                                                Belum Menikah</option>
+                                                                Belum Menikah</option> --}}
                                                         </select>
                                                         @if ($errors->has('status_pernikahan'))
                                                             <label class="text-danger">
@@ -645,22 +619,6 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-6">
-                                                    <div class="form-group mb-3">
-                                                        <label for="nama_panggilan_pelaku"> Nama Panggilan Pelaku <span
-                                                                class="text-danger"> * </span></label>
-                                                        <input type="text" id="nama_panggilan_pelaku"
-                                                            @if (Request::segment(3) == 'detail') {{ 'disabled' }} @endif
-                                                            value="{{ old('nama_panggilan_pelaku') ?? ($data->nama_panggilan_pelaku ?? '') }}"
-                                                            name="nama_panggilan_pelaku" placeholder=""
-                                                            class="form-control">
-                                                        @if ($errors->has('nama_panggilan_pelaku'))
-                                                            <label class="text-danger">
-                                                                {{ $errors->first('nama_panggilan_pelaku') }}
-                                                            </label>
-                                                        @endif
-                                                    </div>
-                                                </div>
 
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-3">
@@ -937,74 +895,218 @@
                                                     <h5 class="text-white"> Dampak Yang Dialami Korban</h5>
                                                 </div>
 
+
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-3">
-                                                        <label for="dampak_fisik"> Dampak Fisik <span>*</span> </label>
-                                                        <textarea id="summernote" @if (Request::segment(3) == 'detail') disabled @endif name="dampak_fisik"
-                                                            placeholder="Masukan dampak_fisik" rows="5" class="form-control">{{ old('dampak_fisik') ?? ($data->dampak_fisik ?? '') }} </textarea>
+                                                        <label for="dampak_fisik"> Dampak Fisik <span class="text-danger"> *
+                                                            </span></label>
+                                                        <select class="form-control" name="dampak_fisik"
+                                                            @disabled(Request::segment(3) == 'detail')>
+                                                            <option value="" hidden>Pilih Dampak Fisik</option>
+                                                            <option value="Luka Ringan"
+                                                                {{ (old('dampak_fisik') ?? ($data->dampak_fisik ?? '')) == 'Luka Ringan' ? 'selected' : '' }}>
+                                                                Luka Ringan</option>
 
+                                                                <option value="Memar-Memar"
+                                                                {{ (old('dampak_fisik') ?? ($data->dampak_fisik ?? '')) == 'Memar-Memar' ? 'selected' : '' }}>
+                                                                Memar-Memar</option>
+
+                                                                <option value="Patah Tulang"
+                                                                {{ (old('dampak_fisik') ?? ($data->dampak_fisik ?? '')) == 'Patah Tulang' ? 'selected' : '' }}>
+                                                                Patah Tulang</option>
+
+                                                                <option value="Cedera Kepala"
+                                                                {{ (old('dampak_fisik') ?? ($data->dampak_fisik ?? '')) == 'Cedera Kepala' ? 'selected' : '' }}>
+                                                                Cedera Kepala</option>
+
+
+                                                                <option value="Rasa Sakit Kronis"
+                                                                {{ (old('dampak_fisik') ?? ($data->dampak_fisik ?? '')) == 'Rasa Sakit Kronis' ? 'selected' : '' }}>
+                                                                Rasa Sakit Kronis</option>
+
+
+
+                                                            <option value="Lain-lain"
+                                                                {{ (old('dampak_fisik') ?? ($data->dampak_fisik ?? '')) == 'Lain-lain' ? 'selected' : '' }}>
+                                                                Lain-lain</option>
+                                                        </select>
                                                         @if ($errors->has('dampak_fisik'))
                                                             <label class="text-danger">
                                                                 {{ $errors->first('dampak_fisik') }}
                                                             </label>
-                                                        @endif
+                                                         @endif
                                                     </div>
                                                 </div>
 
+
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-3">
-                                                        <label for="dampak_psikis"> Dampak Psikis <span>*</span> </label>
-                                                        <textarea id="summernote" @if (Request::segment(3) == 'detail') disabled @endif name="dampak_psikis"
-                                                            placeholder="Masukan dampak_psikis" rows="5" class="form-control">{{ old('dampak_psikis') ?? ($data->dampak_psikis ?? '') }} </textarea>
+                                                        <label for="dampak_psikis"> Dampak Psikis <span class="text-danger"> *
+                                                            </span></label>
+                                                        <select class="form-control" name="dampak_psikis"
+                                                            @disabled(Request::segment(3) == 'detail')>
+                                                            <option value="" hidden>Pilih Dampak Psikis</option>
+                                                            <option value="Trauma"
+                                                                {{ (old('dampak_psikis') ?? ($data->dampak_psikis ?? '')) == 'Trauma' ? 'selected' : '' }}>
+                                                                Trauma</option>
+
+                                                                <option value="Kecemasan "
+                                                                {{ (old('dampak_psikis') ?? ($data->dampak_psikis ?? '')) == 'Kecemasan ' ? 'selected' : '' }}>
+                                                                Kecemasan </option>
+
+                                                                <option value="Sulit Tidur"
+                                                                {{ (old('dampak_psikis') ?? ($data->dampak_psikis ?? '')) == 'Sulit Tidur' ? 'selected' : '' }}>
+                                                                Sulit Tidur</option>
+
+                                                                <option value="Ketakutan"
+                                                                {{ (old('dampak_psikis') ?? ($data->dampak_psikis ?? '')) == 'Ketakutan' ? 'selected' : '' }}>
+                                                                Ketakutan</option>
+
+
+                                                                <option value="Depresi"
+                                                                {{ (old('dampak_psikis') ?? ($data->dampak_psikis ?? '')) == 'Depresi' ? 'selected' : '' }}>
+                                                                Depresi</option>
+
+                                                                <option value="Rasa Bersalah"
+                                                                {{ (old('dampak_psikis') ?? ($data->dampak_psikis ?? '')) == 'Rasa Bersalah' ? 'selected' : '' }}>
+                                                                Rasa Bersalah</option>
+
+                                                                <option value="Rasa Malu"
+                                                                {{ (old('dampak_psikis') ?? ($data->dampak_psikis ?? '')) == 'Rasa Malu' ? 'selected' : '' }}>
+                                                                Rasa Malu</option>
+
+                                                                <option value="Mudah Marah "
+                                                                {{ (old('dampak_psikis') ?? ($data->dampak_psikis ?? '')) == 'Mudah Marah ' ? 'selected' : '' }}>
+                                                                Mudah Marah </option>
+
+
+                                                            <option value="Lain-lain"
+                                                                {{ (old('dampak_psikis') ?? ($data->dampak_psikis ?? '')) == 'Lain-lain' ? 'selected' : '' }}>
+                                                                Lain-lain</option>
+                                                        </select>
                                                         @if ($errors->has('dampak_psikis'))
-                                                            <label class="text-danger">
-                                                                {{ $errors->first('dampak_psikis') }}
-                                                            </label>
-                                                        @endif
+                                                        <label class="text-danger">
+                                                            {{ $errors->first('dampak_psikis') }}
+                                                        </label>
+                                                     @endif
                                                     </div>
                                                 </div>
 
 
+
+
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-3">
-                                                        <label for="dampak_sex"> Dampak Sexual <span>*</span> </label>
-                                                        <textarea id="summernote" @if (Request::segment(3) == 'detail') disabled @endif name="dampak_sex"
-                                                            placeholder="Masukan dampak_sex" rows="5" class="form-control">{{ old('dampak_sex') ?? ($data->dampak_sex ?? '') }} </textarea>
+                                                        <label for="dampak_sex"> Dampak Sexual <span class="text-danger"> *
+                                                            </span></label>
+                                                        <select class="form-control" name="dampak_sex"
+                                                            @disabled(Request::segment(3) == 'detail')>
+                                                            <option value="" hidden>Pilih Dampak Sexual</option>
+                                                            <option value="Disfungsi Seksual"
+                                                                {{ (old('dampak_sex') ?? ($data->dampak_sex ?? '')) == 'Disfungsi Seksual' ? 'selected' : '' }}>
+                                                                Disfungsi Seksual</option>
+
+                                                                <option value="Fobia/Trauma Seksual"
+                                                                {{ (old('dampak_sex') ?? ($data->dampak_sex ?? '')) == 'Fobia/Trauma Seksual' ? 'selected' : '' }}>
+                                                                Fobia/Trauma Seksual</option>
+
+                                                                <option value="Fobia/ Trauma Seksual"
+                                                                {{ (old('dampak_sex') ?? ($data->dampak_sex ?? '')) == 'Fobia/ Trauma Seksual' ? 'selected' : '' }}>
+                                                                Fobia/ Trauma Seksual</option>
+
+                                                                <option value="Penyakit Menular Seksual"
+                                                                {{ (old('dampak_sex') ?? ($data->dampak_sex ?? '')) == 'Penyakit Menular Seksual' ? 'selected' : '' }}>
+                                                                Penyakit Menular Seksual</option>
+
+
+                                                            <option value="Lain-lain"
+                                                                {{ (old('dampak_sex') ?? ($data->dampak_sex ?? '')) == 'Lain-lain' ? 'selected' : '' }}>
+                                                                Lain-lain</option>
+                                                        </select>
                                                         @if ($errors->has('dampak_sex'))
                                                             <label class="text-danger">
                                                                 {{ $errors->first('dampak_sex') }}
                                                             </label>
-                                                        @endif
+                                                         @endif
                                                     </div>
                                                 </div>
 
+
+
+
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-3">
-                                                        <label for="dampak_ekonomi"> Dampak Ekonomi <span>*</span> </label>
-                                                        <textarea id="summernote" @if (Request::segment(3) == 'detail') disabled @endif name="dampak_ekonomi"
-                                                            placeholder="Masukan dampak_ekonomi" rows="5" class="form-control">{{ old('dampak_ekonomi') ?? ($data->dampak_ekonomi ?? '') }} </textarea>
+                                                        <label for="dampak_ekonomi"> Dampak Ekonomi <span class="text-danger"> *
+                                                            </span></label>
+                                                        <select class="form-control" name="dampak_ekonomi"
+                                                            @disabled(Request::segment(3) == 'detail')>
+                                                            <option value="" hidden>Pilih Dampak Ekonomi</option>
+                                                            <option value="Kehilangan Pendapatan"
+                                                                {{ (old('dampak_ekonomi') ?? ($data->dampak_ekonomi ?? '')) == 'Kehilangan Pendapatan' ? 'selected' : '' }}>
+                                                                Kehilangan Pendapatan</option>
+
+                                                                <option value="Kerusakan Aset/Properti"
+                                                                {{ (old('dampak_ekonomi') ?? ($data->dampak_ekonomi ?? '')) == 'Kerusakan Aset/Properti' ? 'selected' : '' }}>
+                                                                Kerusakan Aset/Properti</option>
+
+                                                                <option value="Beban Hutang Bertambah"
+                                                                {{ (old('dampak_ekonomi') ?? ($data->dampak_ekonomi ?? '')) == 'Beban Hutang Bertambah' ? 'selected' : '' }}>
+                                                                Beban Hutang Bertambah</option>
+
+
+                                                            <option value="Lain-lain"
+                                                                {{ (old('dampak_ekonomi') ?? ($data->dampak_ekonomi ?? '')) == 'Lain-lain' ? 'selected' : '' }}>
+                                                                Lain-lain</option>
+                                                        </select>
                                                         @if ($errors->has('dampak_ekonomi'))
                                                             <label class="text-danger">
                                                                 {{ $errors->first('dampak_ekonomi') }}
                                                             </label>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group mb-3">
-                                                        <label for="dampak_kesehatan"> Dampak Kesehatan <span>*</span>
-                                                        </label>
-                                                        <textarea id="summernote" @if (Request::segment(3) == 'detail') disabled @endif name="dampak_kesehatan"
-                                                            placeholder="Masukan dampak_kesehatan" rows="5" class="form-control">{{ old('dampak_kesehatan') ?? ($data->dampak_kesehatan ?? '') }} </textarea>
-                                                        @if ($errors->has('dampak_kesehatan'))
-                                                            <label class="text-danger">
-                                                                {{ $errors->first('dampak_kesehatan') }}
-                                                            </label>
-                                                        @endif
+                                                         @endif
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
+                                                    <div class="form-group mb-3">
+                                                        <label for="dampak_kesehatan"> Dampak Kesehatan <span class="text-danger"> *
+                                                            </span></label>
+                                                        <select class="form-control" name="dampak_kesehatan"
+                                                            @disabled(Request::segment(3) == 'detail')>
+                                                            <option value="" hidden>Pilih Dampak Kesehatan</option>
+                                                            <option value="Luka dan Cedera"
+                                                                {{ (old('dampak_kesehatan') ?? ($data->dampak_kesehatan ?? '')) == 'Luka dan Cedera' ? 'selected' : '' }}>
+                                                                Luka dan Cedera</option>
+
+                                                                <option value="Infeksi "
+                                                                {{ (old('dampak_kesehatan') ?? ($data->dampak_kesehatan ?? '')) == 'Infeksi ' ? 'selected' : '' }}>
+                                                                Infeksi </option>
+
+                                                                <option value="Gangguan Mental"
+                                                                {{ (old('dampak_kesehatan') ?? ($data->dampak_kesehatan ?? '')) == 'Gangguan Mental' ? 'selected' : '' }}>
+                                                                Gangguan Mental</option>
+
+                                                                <option value="Disabilitas Fisik"
+                                                                {{ (old('dampak_kesehatan') ?? ($data->dampak_kesehatan ?? '')) == 'Disabilitas Fisik' ? 'selected' : '' }}>
+                                                                Disabilitas Fisik</option>
+
+
+                                                            <option value="Lain-lain"
+                                                                {{ (old('dampak_kesehatan') ?? ($data->dampak_kesehatan ?? '')) == 'Lain-lain' ? 'selected' : '' }}>
+                                                                Lain-lain</option>
+                                                        </select>
+                                                        @if ($errors->has('dampak_kesehatan'))
+                                                            <label class="text-danger">
+                                                                {{ $errors->first('dampak_kesehatan') }}
+                                                            </label>
+                                                         @endif
+                                                    </div>
+                                                </div>
+
+
+
+
+
+                                                <div class="col-md-7">
                                                     <div class="form-group mb-3">
                                                         <label for="dampak_lainnya"> Dampak Lainnya <span> </span> </label>
                                                         <textarea id="summernote" @if (Request::segment(3) == 'detail') disabled @endif name="dampak_lainnya"
@@ -1091,7 +1193,8 @@
 
                                                 <div class="col-md-12">
                                                     <div class="form-group mb-3">
-                                                        <label for="uraian_kejadian"> Uraian Singkat kejadian <br> (Siapa,
+                                                        <label for="uraian_kejadian"> Uraian Singkat kejadian <span
+                                                            class="text-danger"> * </span> <br> (Siapa,
                                                             Dimana, Kapan dan Bagaimana Terjadi) <span> </span> </label>
                                                         <textarea id="summernote" @if (Request::segment(3) == 'detail') disabled @endif name="uraian_kejadian"
                                                             placeholder="Masukan uraian_kejadian" rows="7" class="form-control">{{ old('uraian_kejadian') ?? ($data->uraian_kejadian ?? '') }} </textarea>
@@ -1132,20 +1235,20 @@
                                                 <!-- Akte Nikah Catatan Sipil -->
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-3">
-                                                        <label for="aktet_nikah_sipil"> Akte Nikah Catatan Sipil </label>
-                                                        <input type="file" id="aktet_nikah_sipil"
-                                                            name="aktet_nikah_sipil" class="form-control"
+                                                        <label for="akte_nikah_sipil"> Akte Nikah Catatan Sipil </label>
+                                                        <input type="file" id="akte_nikah_sipil"
+                                                            name="akte_nikah_sipil" class="form-control"
                                                             @disabled(Request::segment(3) == 'detail')>
 
-                                                        @if (!empty($data->aktet_nikah_sipil))
-                                                            <img src="{{ asset($data->aktet_nikah_sipil) }}"
+                                                        @if (!empty($data->akte_nikah_sipil))
+                                                            <img src="{{ asset($data->akte_nikah_sipil) }}"
                                                                 alt="Akte Nikah Catatan Sipil" class="img-fluid mt-2"
                                                                 style="max-height: 200px;">
                                                         @endif
 
-                                                        @if ($errors->has('aktet_nikah_sipil'))
+                                                        @if ($errors->has('akte_nikah_sipil'))
                                                             <label class="text-danger">
-                                                                {{ $errors->first('aktet_nikah_sipil') }}
+                                                                {{ $errors->first('akte_nikah_sipil') }}
                                                             </label>
                                                         @endif
                                                     </div>
@@ -1173,47 +1276,7 @@
                                                     </div>
                                                 </div>
 
-                                                <!-- Akte Nikah KUA -->
-                                                <div class="col-md-6">
-                                                    <div class="form-group mb-3">
-                                                        <label for="akte_nikah_kua"> Akte Nikah KUA </label>
-                                                        <input type="file" id="akte_nikah_kua" name="akte_nikah_kua"
-                                                            class="form-control" @disabled(Request::segment(3) == 'detail')>
 
-                                                        @if (!empty($data->akte_nikah_kua))
-                                                            <img src="{{ asset($data->akte_nikah_kua) }}"
-                                                                alt="Akte Nikah KUA" class="img-fluid mt-2"
-                                                                style="max-height: 200px;">
-                                                        @endif
-
-                                                        @if ($errors->has('akte_nikah_kua'))
-                                                            <label class="text-danger">
-                                                                {{ $errors->first('akte_nikah_kua') }}
-                                                            </label>
-                                                        @endif
-                                                    </div>
-                                                </div>
-
-                                                <!-- Akte Cerai KUA -->
-                                                <div class="col-md-6">
-                                                    <div class="form-group mb-3">
-                                                        <label for="akte_cerai_kua"> Akte Cerai KUA </label>
-                                                        <input type="file" id="akte_cerai_kua" name="akte_cerai_kua"
-                                                            class="form-control" @disabled(Request::segment(3) == 'detail')>
-
-                                                        @if (!empty($data->akte_cerai_kua))
-                                                            <img src="{{ asset($data->akte_cerai_kua) }}"
-                                                                alt="Akte Cerai KUA" class="img-fluid mt-2"
-                                                                style="max-height: 200px;">
-                                                        @endif
-
-                                                        @if ($errors->has('akte_cerai_kua'))
-                                                            <label class="text-danger">
-                                                                {{ $errors->first('akte_cerai_kua') }}
-                                                            </label>
-                                                        @endif
-                                                    </div>
-                                                </div>
 
 
 

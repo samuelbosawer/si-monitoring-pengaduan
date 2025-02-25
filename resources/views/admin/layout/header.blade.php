@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <meta content=" Sistem Pemetaan Stunting Di Kabupaten Jayapura" name="description" />
+    <meta content=" SI Monitoring Dan Evaluasi Pengaduan Tindak Kekerasan Terhadap Perempuan & Anak" name="description" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{asset('assets/images/logo.png')}}">
 

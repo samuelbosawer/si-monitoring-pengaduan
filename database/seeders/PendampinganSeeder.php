@@ -19,9 +19,7 @@ class PendampinganSeeder extends Seeder
         for ($i = 0; $i < 20; $i++) {
             Pendampingan::create([
                 'judul_pendampingan' => 'Pendampingan dari Pengaduan',
-                'foto_pendampingan' => '',
                 'catatan_pendampingan' => 'Dalam Proses Pengaduan',
-                // 'catatan_pelapor' => $faker->paragraph(3),
                 'status_pendampingan' => 'Selesai',
                 'pengaduan_id' => rand(1, 10),
                 'created_at' =>Carbon::now(),

@@ -69,7 +69,7 @@
                         </tr>
 
                         <tr>
-                            <td> Status Pangaduan </td>
+                        <td> Status Pangaduan </td>
                             <td>:</td>
                             <td> {{ $data->status }} </td>
                         </tr>
@@ -111,17 +111,6 @@
                             <td> {{ $data->no_hp_pelapor }} </td>
                         </tr>
 
-                        <tr>
-                            <td> Yang Mengetahui Dari Mana </td>
-                            <td>:</td>
-                            <td> {{ $data->mengetahui_dari }} </td>
-                        </tr>
-
-                        <tr>
-                            <td>Rujukan Dari </td>
-                            <td>:</td>
-                            <td> {{ $data->rujukan_dari }} </td>
-                        </tr>
 
 
                         <tr>
@@ -138,12 +127,6 @@
 
                         <tr>
                             <td class="title-col" colspan="3"> IDENTITAS KORBAN</td>
-                        </tr>
-
-                        <tr>
-                            <td> Nama Panggilan Korban </td>
-                            <td>:</td>
-                            <td> {{ $data->nama_panggilan_korban }} </td>
                         </tr>
 
                         <tr>
@@ -247,12 +230,6 @@
                             <td>Nama Lengkap Pelaku</td>
                             <td>:</td>
                             <td> {{ $data->nama_lengkap_pelaku }} </td>
-                        </tr>
-
-                        <tr>
-                            <td>Nama Panggilan Pelaku </td>
-                            <td>:</td>
-                            <td> {{ $data->nama_panggilan_pelaku }} </td>
                         </tr>
 
 
@@ -442,28 +419,6 @@
                                 </td>
                             </tr>
 
-                            <tr>
-                                <td>  Akte Nikah KUA </td>
-                                <td>:</td>
-                                <td>  @if (!empty($data->akte_nikah_kua))
-                                        <img src="{{ public_path($data->akte_nikah_kua) }}"
-                                            alt="Surat akte_nikah_kua" class="img-fluid mt-2"
-                                            style="max-height: 200px;">
-                                    @endif
-                                </td>
-                            </tr>
-
-
-                            <tr>
-                                <td>  Akte Cerai KUA </td>
-                                <td>:</td>
-                                <td>  @if (!empty($data->akte_cerai_kua))
-                                        <img src="{{ public_path($data->akte_cerai_kua) }}"
-                                            alt="Surat akte_cerai_kua" class="img-fluid mt-2"
-                                            style="max-height: 200px;">
-                                @endif
-                            </td>
-                            </tr>
 
 
                         </tr>

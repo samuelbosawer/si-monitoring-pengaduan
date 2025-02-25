@@ -55,6 +55,7 @@ class PendampinganController extends Controller
     public function show(string $id, Request $request)
     {
 
+
             $datas = Pendampingan::where('pengaduan_id',$id)->where([
                 [function ($query) use ($request) {
                     if (($s = $request->s)) {
@@ -106,6 +107,21 @@ class PendampinganController extends Controller
         return $pdf->stream($doc); // Jika ingin menampilkan langsung di browser
     }
 
+    public function pdf_detail_sub($id)
+    {
+        $data = [
+            'title' => 'LAPORAN PENDAMPINGAN YANG DILAKUKAN',
+            'data' =>  Pendampingan::where('id',$id)->first(),
+          ];
+
+        // Buat PDF
+        $pdf = Pdf::loadView('admin.pendampingan.pdf_detail_sub', $data);
+        $doc = 'informasi-data-pengaduan'.'.pdf';
+
+        // return $pdf->download($doc);
+        return $pdf->stream($doc); // Jika ingin menampilkan langsung di browser
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -149,6 +165,8 @@ class PendampinganController extends Controller
     $data->save();
 
     alert()->success('Berhasil', 'Tambah data berhasil')->autoclose(3000);
+
+
     return redirect()->route('dashboard.pendampingan.detail',$request->id_p);
     }
 
@@ -188,11 +206,12 @@ class PendampinganController extends Controller
     $data->judul_pendampingan   = $request->judul_pendampingan;
     $data->catatan_pendampingan = $request->catatan_pendampingan;
     $data->status_pendampingan = $request->status_pendampingan;
+    $data->pengaduan_id = $request->id_p;
     $data->update();
 
     alert()->success('Berhasil', 'Ubah data berhasil')->autoclose(3000);
     return redirect()->route('dashboard.pendampingan.detail',$request->id_p);
-
+    // pendampingan.detail
     }
 
     /**

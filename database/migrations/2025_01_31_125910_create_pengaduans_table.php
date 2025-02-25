@@ -27,12 +27,11 @@ return new class extends Migration
             $table->string('no_hp_pelapor')->nullable();
             $table->string('informasi_dari')->nullable();
             $table->string('mengetahui_dari')->nullable();
-            $table->string('rujukan_dari')->nullable();
 
             // korban
             $table->string('nama_lengkap_korban')->nullable();
             $table->string('jenis_kelamin_korban')->nullable();
-            $table->string('nama_panggilan_korban')->nullable();
+            // $table->string('nama_panggilan_korban')->nullable();
             $table->string('tempat_lahir_korban')->nullable();
             $table->string('tanggal_lahir_korban')->nullable();
             $table->text('alamat_korban')->nullable();
@@ -49,7 +48,7 @@ return new class extends Migration
             // Pelaku
             $table->string('nama_lengkap_pelaku')->nullable();
             $table->string('jenis_kelamin_pelaku')->nullable();
-            $table->string('nama_panggilan_pelaku')->nullable();
+            // $table->string('nama_panggilan_pelaku')->nullable();
             $table->string('tempat_lahir_pelaku')->nullable();
             $table->string('tanggal_lahir_pelaku')->nullable();
             $table->text('alamat_pelaku')->nullable();
@@ -83,8 +82,7 @@ return new class extends Migration
             $table->string('surat_nikah_gereja')->nullable();
             $table->string('akte_nikah_sipil')->nullable();
             $table->string('akte_cerai_sipil')->nullable();
-            $table->string('akte_nikah_kua')->nullable();
-            $table->string('akte_cerai_kua')->nullable();
+         ;
 
 
             $table->mediumText('catatan')->nullable();

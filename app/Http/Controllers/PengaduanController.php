@@ -22,7 +22,6 @@ class PengaduanController extends Controller
                     if (($s = $request->s)) {
                         $query->orWhere('nama_pelapor', 'LIKE', '%' . $s . '%')
                             ->orWhere('nama_lengkap_korban', 'LIKE', '%' . $s . '%')
-                            ->orWhere('nama_panggilan_korban', 'LIKE', '%' . $s . '%')
                             ->orWhere('nama_lengkap_pelaku', 'LIKE', '%' . $s . '%')
                             ->orWhere('created_at', 'LIKE', '%' . $s . '%')
                             ->orWhere('keterangan', 'LIKE', '%' . $s . '%')
@@ -38,7 +37,6 @@ class PengaduanController extends Controller
                     if (($s = $request->s)) {
                         $query->orWhere('nama_pelapor', 'LIKE', '%' . $s . '%')
                             ->orWhere('nama_lengkap_korban', 'LIKE', '%' . $s . '%')
-                            ->orWhere('nama_panggilan_korban', 'LIKE', '%' . $s . '%')
                             ->orWhere('nama_lengkap_pelaku', 'LIKE', '%' . $s . '%')
                             ->orWhere('created_at', 'LIKE', '%' . $s . '%')
                             ->orWhere('keterangan', 'LIKE', '%' . $s . '%')
@@ -116,73 +114,61 @@ class PengaduanController extends Controller
     {
 
 
+
         $this->validate($request, [
             'judul_pengaduan' => 'required',
-            // 'tempat' => 'required',
-            // 'melapor' => 'required',
-            // 'nama_pelapor' => 'required',
-            // 'no_hp_pelapor' => 'required',
-            // 'mengetahui_dari' => 'required',
-            // 'rujukan_dari' => 'required',
-            // 'alamat_pelapor' => 'required',
-            // 'jk_pelapor' => 'required',
+            'melapor' => 'required',
+            'nama_pelapor' => 'required',
+            'jk_pelapor' => 'required',
+            'no_hp_pelapor' => 'required',
+            'informasi_dari' => 'required',
+            'alamat_pelapor' => 'required',
 
-
-            // 'nama_lengkap_korban' => 'required',
-            // 'nama_panggilan_korban' => 'required',
-            // 'jenis_kelamin_korban' => 'required',
-            // 'tempat_lahir_korban' => 'required',
-            // 'tanggal_lahir_korban' => 'required',
-            // 'alamat_korban' => 'required',
-            // 'pekerjaan_korban' => 'required',
-            // 'agama_korban' => 'required',
-            // 'pendidikan_korban' => 'required',
-            // 'nik_korban' => 'required',
-            // 'hubungan' => 'required',
-            // 'jumlah_anak_pria' => 'required',
-            // 'jumlah_anak_wanita' => 'required',
-            // 'status_pernikahan' => 'required',
+            'nama_lengkap_korban' => 'required',
+            'jenis_kelamin_korban' => 'required',
+            'tempat_lahir_korban' => 'required',
+            'tanggal_lahir_korban' => 'required',
+            'pekerjaan_korban' => 'required',
+            'alamat_korban' => 'required',
+            'agama_korban' => 'required',
+            'pendidikan_korban' => 'required',
+            'nik_korban' => 'required',
+            'hubungan' => 'required',
 
 
 
-            // 'nama_lengkap_pelaku' => 'required',
-            // 'nama_panggilan_pelaku' => 'required',
-            // 'jenis_kelamin_pelaku' => 'required',
-            // 'tempat_lahir_pelaku' => 'required',
-            // 'tanggal_lahir_pelaku' => 'required',
-            // 'agama_pelaku' => 'required',
-            // 'pendidikan_pelaku' => 'required',
-            // 'nik_pelaku' => 'required',
-            // 'no_hp_pelaku' => 'required',
-            // 'pekerjaan_pelaku' => 'required',
 
-            // 'kondisi_fisik' => 'required',
-            // 'kondisi_psikis' => 'required',
-            // 'kondisi_sexual' => 'required',
+            'nama_lengkap_pelaku' => 'required',
+            'jenis_kelamin_pelaku' => 'required',
+            'tempat_lahir_pelaku' => 'required',
+            'tanggal_lahir_pelaku' => 'required',
+            'agama_pelaku' => 'required',
+            'pendidikan_pelaku' => 'required',
+            'nik_pelaku' => 'required',
+            'no_hp_pelaku' => 'required',
+            'pekerjaan_pelaku' => 'required',
 
-            // 'dampak_fisik' => 'required',
-            // 'dampak_psikis' => 'required',
-            // 'dampak_sex' => 'required',
-            // 'dampak_ekonomi' => 'required',
-            // 'dampak_kesehatan' => 'required',
-            // 'dampak_lainnya' => 'required',
+            'kondisi_fisik' => 'required',
+            'kondisi_psikis' => 'required',
+            'kondisi_sexual' => 'required',
 
-            // 'kasus_domestik' => 'required',
-            // 'kasus_publik' => 'required',
-            // 'kasus_lainnya' => 'required',
+            'dampak_fisik' => 'required',
+            'dampak_psikis' => 'required',
+            'dampak_sex' => 'required',
+            'dampak_ekonomi' => 'required',
+            'dampak_kesehatan' => 'required',
+            'dampak_lainnya' => 'required',
 
-            // 'uraian_kejadian' => 'required',
+            'kasus_domestik' => 'required',
+            'kasus_publik' => 'required',
+            'kasus_lainnya' => 'required',
 
+            'uraian_kejadian' => 'required',
 
-            // 'nim' => 'required|unique:mahasiswas,nim',
-            // 'email' => 'required|email|unique:mahasiswas,email',
-            // 'no_hp' => 'required|unique:mahasiswas,no_hp',
 
             'surat_nikah_gereja' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'akte_nikah_sipil' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'akte_cerai_sipil' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'akte_nikah_kua' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'akte_cerai_kua' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
         ],
         [
@@ -190,15 +176,13 @@ class PengaduanController extends Controller
             'tempat_lahir.required' => 'Tidak boleh kosong',
             'nama_pelapor.required' => 'Tidak boleh kosong',
             'no_hp_pelapor.required' => 'Tidak boleh kosong',
-            'mengetahui_dari.required' => 'Tidak boleh kosong',
-            'rujukan_dari.required' => 'Tidak boleh kosong',
             'alamat_pelapor.required' => 'Tidak boleh kosong',
             'melapor.required' => 'Tidak boleh kosong',
             'jk_pelapor.required' => 'Tidak boleh kosong',
+            'informasi_dari.required' => 'Tidak boleh kosong',
 
 
             'nama_lengkap_korban.required' => 'Tidak boleh kosong',
-            'nama_panggilan_korban.required' => 'Tidak boleh kosong',
             'jenis_kelamin_korban.required' => 'Tidak boleh kosong',
             'tempat_lahir_korban.required' => 'Tidak boleh kosong',
             'tanggal_lahir_korban.required' => 'Tidak boleh kosong',
@@ -208,12 +192,9 @@ class PengaduanController extends Controller
             'pendidikan_korban.required' => 'Tidak boleh kosong',
             'nik_korban.required' => 'Tidak boleh kosong',
             'hubungan.required' => 'Tidak boleh kosong',
-            'jumlah_anak_pria.required' => 'Tidak boleh kosong',
-            'jumlah_anak_wanita.required' => 'Tidak boleh kosong',
             'status_pernikahan.required' => 'Tidak boleh kosong',
 
             'nama_lengkap_pelaku.required' => 'Tidak boleh kosong',
-            'nama_panggilan_pelaku.required' => 'Tidak boleh kosong',
             'jenis_kelamin_pelaku.required' => 'Tidak boleh kosong',
             'tempat_lahir_pelaku.required' => 'Tidak boleh kosong',
             'tanggal_lahir_pelaku.required' => 'Tidak boleh kosong',
@@ -250,12 +231,10 @@ class PengaduanController extends Controller
         $data->nama_pelapor   = $request->nama_pelapor;
         $data->jk_pelapor   = $request->jk_pelapor;
         $data->no_hp_pelapor   = $request->no_hp_pelapor;
-        $data->mengetahui_dari   = $request->mengetahui_dari;
-        $data->rujukan_dari   = $request->rujukan_dari;
         $data->alamat_pelapor   = $request->alamat_pelapor;
+        $data->informasi_dari   = $request->informasi_dari;
 
         $data->nama_lengkap_korban   = $request->nama_lengkap_korban;
-        $data->nama_panggilan_korban   = $request->nama_panggilan_korban;
         $data->jenis_kelamin_korban   = $request->jenis_kelamin_korban;
         $data->tempat_lahir_korban   = $request->tempat_lahir_korban;
         $data->tanggal_lahir_korban   = $request->tanggal_lahir_korban;
@@ -270,7 +249,6 @@ class PengaduanController extends Controller
         $data->status_pernikahan   = $request->status_pernikahan;
 
         $data->nama_lengkap_pelaku   = $request->nama_lengkap_pelaku;
-        $data->nama_panggilan_pelaku   = $request->nama_panggilan_pelaku;
         $data->jenis_kelamin_pelaku   = $request->jenis_kelamin_pelaku;
         $data->tempat_lahir_pelaku   = $request->tempat_lahir_pelaku;
         $data->tanggal_lahir_pelaku   = $request->tanggal_lahir_pelaku;
@@ -330,27 +308,7 @@ class PengaduanController extends Controller
             $request->akte_cerai_sipil->move(public_path('gambar/pengaduan/').Auth::User()->id. '/', $timestamp.'-'.$fileName);
         }
 
-        if (isset($request->akte_nikah_kua)) {
-            $fileName = $request->akte_nikah_kua->getClientOriginalName();
-            $path = public_path('gambar/pengaduan/'.Auth::User()->id.'/'. $data->akte_nikah_kua);
-            if (file_exists($path)) {
-                File::delete($path);
-            }
-            $timestamp = now()->timestamp;
-            $data->akte_nikah_kua = 'gambar/pengaduan/'.Auth::User()->id.'/'.$timestamp.'-'.$fileName;
-            $request->akte_nikah_kua->move(public_path('gambar/pengaduan/').Auth::User()->id. '/', $timestamp.'-'.$fileName);
-        }
 
-        if (isset($request->akte_cerai_kua)) {
-            $fileName = $request->akte_cerai_kua->getClientOriginalName();
-            $path = public_path('gambar/pengaduan/'.Auth::User()->id.'/'. $data->akte_cerai_kua);
-            if (file_exists($path)) {
-                File::delete($path);
-            }
-            $timestamp = now()->timestamp;
-            $data->akte_cerai_kua = 'gambar/pengaduan/'.Auth::User()->id.'/'.$timestamp.'-'.$fileName;
-            $request->akte_cerai_kua->move(public_path('gambar/pengaduan/').Auth::User()->id. '/', $timestamp.'-'.$fileName);
-        }
 
 
 
@@ -394,87 +352,76 @@ class PengaduanController extends Controller
     {
         $this->validate($request, [
             'judul_pengaduan' => 'required',
-            // 'melapor' => 'required',
-            // 'nama_pelapor' => 'required',
-            // 'no_hp_pelapor' => 'required',
-            // 'mengetahui_dari' => 'required',
-            // 'rujukan_dari' => 'required',
-            // 'alamat_pelapor' => 'required',
-            // 'jk_pelapor' => 'required',
+            'melapor' => 'required',
+            'nama_pelapor' => 'required',
+            'no_hp_pelapor' => 'required',
+            'alamat_pelapor' => 'required',
+            'jk_pelapor' => 'required',
+            'informasi_dari' => 'required',
 
 
-            // 'nama_lengkap_korban' => 'required',
-            // 'nama_panggilan_korban' => 'required',
-            // 'jenis_kelamin_korban' => 'required',
-            // 'tempat_lahir_korban' => 'required',
-            // 'tanggal_lahir_korban' => 'required',
-            // 'alamat_korban' => 'required',
-            // 'pekerjaan_korban' => 'required',
-            // 'agama_korban' => 'required',
-            // 'pendidikan_korban' => 'required',
-            // 'nik_korban' => 'required',
-            // 'hubungan' => 'required',
-            // 'jumlah_anak_pria' => 'required',
-            // 'jumlah_anak_wanita' => 'required',
-            // 'status_pernikahan' => 'required',
+            'nama_lengkap_korban' => 'required',
+            'jenis_kelamin_korban' => 'required',
+            'tempat_lahir_korban' => 'required',
+            'tanggal_lahir_korban' => 'required',
+            'alamat_korban' => 'required',
+            'pekerjaan_korban' => 'required',
+            'agama_korban' => 'required',
+            'pendidikan_korban' => 'required',
+            'nik_korban' => 'required',
+            'hubungan' => 'required',
+            'jumlah_anak_pria' => 'required',
+            'jumlah_anak_wanita' => 'required',
+            'status_pernikahan' => 'required',
 
 
 
-            // 'nama_lengkap_pelaku' => 'required',
-            // 'nama_panggilan_pelaku' => 'required',
-            // 'jenis_kelamin_pelaku' => 'required',
-            // 'tempat_lahir_pelaku' => 'required',
-            // 'tanggal_lahir_pelaku' => 'required',
-            // 'agama_pelaku' => 'required',
-            // 'pendidikan_pelaku' => 'required',
-            // 'nik_pelaku' => 'required',
-            // 'no_hp_pelaku' => 'required',
-            // 'pekerjaan_pelaku' => 'required',
+            'nama_lengkap_pelaku' => 'required',
+            'jenis_kelamin_pelaku' => 'required',
+            'tempat_lahir_pelaku' => 'required',
+            'tanggal_lahir_pelaku' => 'required',
+            'agama_pelaku' => 'required',
+            'pendidikan_pelaku' => 'required',
+            'nik_pelaku' => 'required',
+            'no_hp_pelaku' => 'required',
+            'pekerjaan_pelaku' => 'required',
 
-            // 'kondisi_fisik' => 'required',
-            // 'kondisi_psikis' => 'required',
-            // 'kondisi_sexual' => 'required',
+            'kondisi_fisik' => 'required',
+            'kondisi_psikis' => 'required',
+            'kondisi_sexual' => 'required',
 
-            // 'dampak_fisik' => 'required',
-            // 'dampak_psikis' => 'required',
-            // 'dampak_sex' => 'required',
-            // 'dampak_ekonomi' => 'required',
-            // 'dampak_kesehatan' => 'required',
-            // 'dampak_lainnya' => 'required',
+            'dampak_fisik' => 'required',
+            'dampak_psikis' => 'required',
+            'dampak_sex' => 'required',
+            'dampak_ekonomi' => 'required',
+            'dampak_kesehatan' => 'required',
+            'dampak_lainnya' => 'required',
 
-            // 'kasus_domestik' => 'required',
-            // 'kasus_publik' => 'required',
-            // 'kasus_lainnya' => 'required',
+            'kasus_domestik' => 'required',
+            'kasus_publik' => 'required',
+            'kasus_lainnya' => 'required',
 
-            // 'uraian_kejadian' => 'required',
+            'uraian_kejadian' => 'required',
 
-
-            // 'nim' => 'required|unique:mahasiswas,nim',
-            // 'email' => 'required|email|unique:mahasiswas,email',
-            // 'no_hp' => 'required|unique:mahasiswas,no_hp',
 
             'surat_nikah_gereja' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'akte_nikah_sipil' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'akte_cerai_sipil' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'akte_nikah_kua' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'akte_cerai_kua' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
 
         ],
         [
             'judul_pengaduan.required' => 'Tidak boleh kosong',
-            // 'tempat.required' => 'Tidak boleh kosong',
             'tempat_lahir.required' => 'Tidak boleh kosong',
             'nama_pelapor.required' => 'Tidak boleh kosong',
             'no_hp_pelapor.required' => 'Tidak boleh kosong',
-            'mengetahui_dari.required' => 'Tidak boleh kosong',
-            'rujukan_dari.required' => 'Tidak boleh kosong',
             'alamat_pelapor.required' => 'Tidak boleh kosong',
             'melapor.required' => 'Tidak boleh kosong',
             'jk_pelapor.required' => 'Tidak boleh kosong',
+            'informasi_dari.required' => 'Tidak boleh kosong',
 
 
             'nama_lengkap_korban.required' => 'Tidak boleh kosong',
-            'nama_panggilan_korban.required' => 'Tidak boleh kosong',
             'jenis_kelamin_korban.required' => 'Tidak boleh kosong',
             'tempat_lahir_korban.required' => 'Tidak boleh kosong',
             'tanggal_lahir_korban.required' => 'Tidak boleh kosong',
@@ -489,7 +436,6 @@ class PengaduanController extends Controller
             'status_pernikahan.required' => 'Tidak boleh kosong',
 
             'nama_lengkap_pelaku.required' => 'Tidak boleh kosong',
-            'nama_panggilan_pelaku.required' => 'Tidak boleh kosong',
             'jenis_kelamin_pelaku.required' => 'Tidak boleh kosong',
             'tempat_lahir_pelaku.required' => 'Tidak boleh kosong',
             'tanggal_lahir_pelaku.required' => 'Tidak boleh kosong',
@@ -527,12 +473,10 @@ class PengaduanController extends Controller
         $data->nama_pelapor   = $request->nama_pelapor;
         $data->jk_pelapor   = $request->jk_pelapor;
         $data->no_hp_pelapor   = $request->no_hp_pelapor;
-        $data->mengetahui_dari   = $request->mengetahui_dari;
-        $data->rujukan_dari   = $request->rujukan_dari;
         $data->alamat_pelapor   = $request->alamat_pelapor;
+        $data->informasi_dari   = $request->informasi_dari;
 
         $data->nama_lengkap_korban   = $request->nama_lengkap_korban;
-        $data->nama_panggilan_korban   = $request->nama_panggilan_korban;
         $data->jenis_kelamin_korban   = $request->jenis_kelamin_korban;
         $data->tempat_lahir_korban   = $request->tempat_lahir_korban;
         $data->tanggal_lahir_korban   = $request->tanggal_lahir_korban;
@@ -547,7 +491,6 @@ class PengaduanController extends Controller
         $data->status_pernikahan   = $request->status_pernikahan;
 
         $data->nama_lengkap_pelaku   = $request->nama_lengkap_pelaku;
-        $data->nama_panggilan_pelaku   = $request->nama_panggilan_pelaku;
         $data->jenis_kelamin_pelaku   = $request->jenis_kelamin_pelaku;
         $data->tempat_lahir_pelaku   = $request->tempat_lahir_pelaku;
         $data->tanggal_lahir_pelaku   = $request->tanggal_lahir_pelaku;
@@ -607,27 +550,9 @@ class PengaduanController extends Controller
             $request->akte_cerai_sipil->move(public_path('gambar/pengaduan/').Auth::User()->id. '/', $timestamp.'-'.$fileName);
         }
 
-        if (isset($request->akte_nikah_kua)) {
-            $fileName = $request->akte_nikah_kua->getClientOriginalName();
-            $path = public_path('gambar/pengaduan/'.Auth::User()->id.'/'. $data->akte_nikah_kua);
-            if (file_exists($path)) {
-                File::delete($path);
-            }
-            $timestamp = now()->timestamp;
-            $data->akte_nikah_kua = 'gambar/pengaduan/'.Auth::User()->id.'/'.$timestamp.'-'.$fileName;
-            $request->akte_nikah_kua->move(public_path('gambar/pengaduan/').Auth::User()->id. '/', $timestamp.'-'.$fileName);
-        }
 
-        if (isset($request->akte_cerai_kua)) {
-            $fileName = $request->akte_cerai_kua->getClientOriginalName();
-            $path = public_path('gambar/pengaduan/'.Auth::User()->id.'/'. $data->akte_cerai_kua);
-            if (file_exists($path)) {
-                File::delete($path);
-            }
-            $timestamp = now()->timestamp;
-            $data->akte_cerai_kua = 'gambar/pengaduan/'.Auth::User()->id.'/'.$timestamp.'-'.$fileName;
-            $request->akte_cerai_kua->move(public_path('gambar/pengaduan/').Auth::User()->id. '/', $timestamp.'-'.$fileName);
-        }
+
+
 
 
 
@@ -654,12 +579,7 @@ class PengaduanController extends Controller
         if ($data->akte_cerai_sipil) {
             File::delete($data->akte_cerai_sipil);
         }
-        if ($data->akte_nikah_kua) {
-            File::delete($data->akte_nikah_kua);
-        }
-        if ($data->akte_cerai_kua) {
-            File::delete($data->akte_cerai_kua);
-        }
+
         $data->delete();
         return redirect()->back();
     }

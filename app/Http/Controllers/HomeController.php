@@ -14,11 +14,7 @@ class HomeController extends Controller
     {
 
 
-        // $datas = Stunting::orderBy('id', 'desc')->get();
-
-        // $pus = Puskesmas::with('distrik.stunting')->get();
-
-        // return view('home.index',compact('datas','pus'));
+        return view('home.index');
 
     }
 

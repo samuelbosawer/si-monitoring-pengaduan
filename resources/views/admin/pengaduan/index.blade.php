@@ -33,7 +33,7 @@
                                                     Tambah Data <i data-feather="plus"></i></a>
                                             @endif
 
-                                            @if (Auth::user()->hasRole('kepaladinas'))
+                                            @if (Auth::user()->hasRole('kepaladinas|pendampingdinas'))
                                             <a class="btn btn-danger" target="_blank" href="{{ route('dashboard.pengaduan.pdf_index') }}">
                                                 Cetak PDF <i data-feather="file-text"></i></a>
                                             @endif
@@ -49,11 +49,11 @@
                             </div>
 
 
-                            <div class="mt-3 table-responsive container">
+                            <div class="mt-3 table-responsive p-2">
                                 <table class="table table-bordered ">
                                     <tr class="bg-warning text-white text-center">
                                         <th class="text-center" width="1%">No</th>
-                                        <th class="text-center">Tanggal</th>
+                                        <th class="text-center" width="20%">Tanggal</th>
                                         <th class="text-center">Pengaduan</th>
                                         <th>Status</th>
                                         <th>Aksi</th>
