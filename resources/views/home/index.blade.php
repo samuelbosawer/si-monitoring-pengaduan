@@ -79,7 +79,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-7 col-lg-7 col-md-9 col-sm-9">
+                    <div class="col-xl-9 col-lg-9 col-md-11 col-sm-11">
                         <div class="menu-area">
                             <div class="limit-box">
                                 <nav class="main-menu">
@@ -91,22 +91,28 @@
                                         <li> <a href="#kontak">Kontak</a> </li>
 
                                         @if (!Auth::user())
-                                        <li class="mean-last"> <a href="{{ route('daftar') }}"> Daftar</a> </li>
+                                        <li class=""> <a href="{{ route('daftar') }}"> Daftar</a> </li>
+                                        <li class=""> <a class="" href="{{ route('login') }}"> Login</a> </li>
+                                        @else
+                                        <li class=""> <a class="" href="{{ route('dashboard.home') }}"> Dashboard</a> </li>
+
                                         @endif
+                                        <li> <a href="#kontak"></a> </li>
+
 
                                     </ul>
                                 </nav>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2">
+                    {{-- <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2">
                         @if (Auth::user())
                         <li><a class="buy font-weight-bold" href="{{route('dashboard.home')}}">DASHBOARD</a></li>
                         @else
                             <li><a class="buy font-weight-bold" href="/login">LOGIN</a></li>
 
                         @endif
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <!-- end header inner -->
