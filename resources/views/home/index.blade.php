@@ -118,7 +118,7 @@
             <!-- end header inner -->
     </header>
     <!-- end header -->
-    <section class="slider_section">
+    <section class="slider_section d-none d-md-block d-md-none">
         <div id="main_slider" class="carousel slide banner-main" data-ride="carousel">
 
             <div class="carousel-inner">
