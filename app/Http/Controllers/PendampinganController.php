@@ -8,6 +8,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Http;
 
 class PendampinganController extends Controller
 {
@@ -160,9 +161,45 @@ class PendampinganController extends Controller
     $data->status_pendampingan = $request->status_pendampingan;
     $data->pengaduan_id = $request->id_p;
 
+
+    $pelapor = Pengaduan::where('id',$request->id_p)->first();
+    $no_hp = $pelapor->no_hp_pelapor;
+    $message = "Judul Pendampingan :*".$data->judul_pendampingan."*\n"."Status pendampingan : *". $data->status_pendampingan."*\n \n _Sistem Monitoring Dan Evaluasi Pengaduan Tindak Kekerasan Terhadap Perempuan & Anak_ \n Terimakasih 🙏🏽😊";
+
+
+
+
+
     $data->save();
 
+
+
     alert()->success('Berhasil', 'Tambah data berhasil')->autoclose(3000);
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://api.fonnte.com/send',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'POST',
+    CURLOPT_POSTFIELDS => array(
+    'target' => $no_hp,
+    'message' => $message,
+    'countryCode' => '62', //optional
+    ),
+    CURLOPT_HTTPHEADER => array(
+        'Authorization:'.  env('FONNTE_TOKEN') //change TOKEN to your actual token
+    ),
+    ));
+
+    $response = curl_exec($curl);
+
+curl_close($curl);
 
 
     return redirect()->route('dashboard.pendampingan.detail',$request->id_p);
@@ -207,7 +244,41 @@ class PendampinganController extends Controller
     // $data->pengaduan_id = $request->id_p;
     $data->update();
 
+    $pelapor = Pengaduan::where('id',$request->id_p)->first();
+    $no_hp = $pelapor->no_hp_pelapor;
+    $message = "Judul Pendampingan :*".$data->judul_pendampingan."*\n"."Status pendampingan : *". $data->status_pendampingan."*\n \n _Sistem Monitoring Dan Evaluasi Pengaduan Tindak Kekerasan Terhadap Perempuan & Anak_ \n Terimakasih 🙏🏽😊";
+
+
+
+
     alert()->success('Berhasil', 'Ubah data berhasil')->autoclose(3000);
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://api.fonnte.com/send',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'POST',
+    CURLOPT_POSTFIELDS => array(
+    'target' => $no_hp,
+    'message' => $message,
+    'countryCode' => '62', //optional
+    ),
+    CURLOPT_HTTPHEADER => array(
+        'Authorization:'.  env('FONNTE_TOKEN') //change TOKEN to your actual token
+    ),
+    ));
+
+    $response = curl_exec($curl);
+
+curl_close($curl);
+
+
     return redirect()->route('dashboard.pendampingan.detail',$request->id_p);
     // pendampingan.detail
     }

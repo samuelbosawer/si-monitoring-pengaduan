@@ -60,9 +60,13 @@ class UserController extends Controller
         $data->email   = $request->email;
         $data->password   = $request->password;
         $data->name   = $request->name;
+        $data->no_hp   = $request->no_hp;
         $data->assignRole($request->role);
 
         $data->save();
+
+
+
         alert()->success('Berhasil', 'Tambah data berhasil')->autoclose(3000);
         return redirect()->route('admin.user');
     }

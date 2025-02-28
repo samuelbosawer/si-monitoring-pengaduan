@@ -7,6 +7,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use File;
+use Illuminate\Support\Facades\Http;
 
 class PengaduanController extends Controller
 {
@@ -99,10 +100,39 @@ class PengaduanController extends Controller
     {
         $data =  Pengaduan::find($id);
         $data->status   = $request->status;
-        $data->catatan   = $request->catatan;
+        $data->catatan   = $request->catatan ?? '-';
         // $data->id_penerima   = Auth::user()->id;
         $data->update();
+
         alert()->success('Berhasil', 'Ubah Status berhasil')->autoclose(3000);
+
+        $message = "Judul Pengaduan :*".$data->judul_pengaduan."*\n"."Status Pengaduan : *". $data->status."*\n Catatan : *". $data->catatan."*\n \n _Sistem Monitoring Dan Evaluasi Pengaduan Tindak Kekerasan Terhadap Perempuan & Anak_ \n Terimakasih 🙏🏽😊";
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.fonnte.com/send',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => array(
+        'target' => $data->no_hp_pelapor,
+        'message' => $message,
+        'countryCode' => '62', //optional
+        ),
+        CURLOPT_HTTPHEADER => array(
+            'Authorization:'.  env('FONNTE_TOKEN') //change TOKEN to your actual token
+        ),
+        ));
+
+        $response = curl_exec($curl);
+
+
+curl_close($curl);
         return redirect()->route('dashboard.pengaduan');
 
     }
@@ -120,7 +150,7 @@ class PengaduanController extends Controller
             'melapor' => 'required',
             'nama_pelapor' => 'required',
             'jk_pelapor' => 'required',
-            'no_hp_pelapor' => 'required',
+            'no_hp_pelapor' => 'required|unique:users,no_hp|min:12|numeric',
             'informasi_dari' => 'required',
             'alamat_pelapor' => 'required',
 
@@ -134,9 +164,6 @@ class PengaduanController extends Controller
             'pendidikan_korban' => 'required',
             'nik_korban' => 'required',
             'hubungan' => 'required',
-
-
-
 
             'nama_lengkap_pelaku' => 'required',
             'jenis_kelamin_pelaku' => 'required',
@@ -316,6 +343,36 @@ class PengaduanController extends Controller
 
         $data->save();
         alert()->success('Berhasil', 'Tambah data berhasil')->autoclose(3000);
+
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.fonnte.com/send',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => array(
+        'target' => $request->no_hp_pelapor,
+        'message' => 'Pengaduan sudah dibuat, harap menunggu untuk dikonfirmasi
+
+_Sistem Monitoring Dan Evaluasi Pengaduan Tindak Kekerasan Terhadap Perempuan & Anak_
+Terimakasih 🙏🏽😊',
+        'countryCode' => '62', //optional
+        ),
+        CURLOPT_HTTPHEADER => array(
+            'Authorization:'.  env('FONNTE_TOKEN') //change TOKEN to your actual token
+        ),
+        ));
+
+        $response = curl_exec($curl);
+        curl_close($curl);
+
+
         return redirect()->route('dashboard.pengaduan');
     }
 
@@ -559,6 +616,9 @@ class PengaduanController extends Controller
         $data->user_id   = Auth::user()->id;
 
         $data->update();
+
+
+
         alert()->success('Berhasil', 'Tambah data berhasil')->autoclose(3000);
         return redirect()->route('dashboard.pengaduan');
 

@@ -182,7 +182,7 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-3">
-                                                        <label for="no_hp_pelapor"> Nomor Hp Pelapor <span
+                                                        <label for="no_hp_pelapor"> Nomor Hp Pelapor  <span class="text-sm">(contoh : 082198159721)</span> <span
                                                                 class="text-danger"> * </span></label>
                                                         <input type="text" id="no_hp_pelapor"
                                                             @if (Request::segment(3) == 'detail') {{ 'disabled' }} @endif

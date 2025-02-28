@@ -66,7 +66,7 @@
                                         </div>
 
                                         <div class="form-group mb-3">
-                                            <label for="no_hp">No HP</label>
+                                            <label for="no_hp">No HP <span class="text-sm">(contoh : 082198159721)</span> </label>
                                             <input class="form-control" type="" name="no_hp"
                                                 value="{{ old('no_hp') }}" id="no_hp" required=""
                                                 placeholder="">
