@@ -54,8 +54,6 @@ class PendampinganController extends Controller
 
     public function show(string $id, Request $request)
     {
-
-
             $datas = Pendampingan::where('pengaduan_id',$id)->where([
                 [function ($query) use ($request) {
                     if (($s = $request->s)) {
@@ -129,7 +127,6 @@ class PendampinganController extends Controller
     public function pendampinganDetail($id)
     {
         $data = Pendampingan::where('id',$id)->first();
-        $id_pengaduan = $id;
         $caption = 'Detail Data Pendampingan';
         return view('admin.pendampingan.detail-sub',compact('data','caption'));
     }
@@ -146,6 +143,7 @@ class PendampinganController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request, [
             'judul_pendampingan' => 'required',
         ],
@@ -206,7 +204,7 @@ class PendampinganController extends Controller
     $data->judul_pendampingan   = $request->judul_pendampingan;
     $data->catatan_pendampingan = $request->catatan_pendampingan;
     $data->status_pendampingan = $request->status_pendampingan;
-    $data->pengaduan_id = $request->id_p;
+    // $data->pengaduan_id = $request->id_p;
     $data->update();
 
     alert()->success('Berhasil', 'Ubah data berhasil')->autoclose(3000);

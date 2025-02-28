@@ -80,8 +80,6 @@
                             <td class="data" width="30%" class="text-center">
                                 {{$data->status_pendampingan}}
                             </td>
-
-
                         </tr>
                     @endforeach
 
