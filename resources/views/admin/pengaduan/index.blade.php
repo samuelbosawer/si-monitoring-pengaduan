@@ -101,11 +101,12 @@
                                                         class="btn btn-sm btn-warning border-0  waves-effect waves-light fs-4">
                                                         <i class="fas fa-eye"></i>
                                                     </a>
+                                                    <a href="{{ route('dashboard.pengaduan.ubah', $data->id) }}"
+                                                        class="btn btn-sm btn-primary border-0 waves-effect waves-light fs-4">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
                                                     @if ($data->status == null)
-                                                        <a href="{{ route('dashboard.pengaduan.ubah', $data->id) }}"
-                                                            class="btn btn-sm btn-primary border-0 waves-effect waves-light fs-4">
-                                                            <i class="fas fa-edit"></i>
-                                                        </a>
+
                                                         <form class="d-inline"
                                                             action="{{ route('dashboard.pengaduan.hapus', $data->id) }}"
                                                             method="POST" enctype="multipart/form-data">

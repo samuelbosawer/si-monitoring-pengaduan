@@ -17,7 +17,8 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        @if ($datas = null)
+
+                        @if ($data != null)
                         @if ($data->status == 'Diterima')
                         <div class="alert alert-success" role="alert">
                             {{ $data->catatan}}
@@ -144,7 +145,7 @@
                                                             </span></label>
                                                         <input type="text" id="nama_pelapor"
                                                             @if (Request::segment(3) == 'detail') {{ 'disabled' }} @endif
-                                                            value="{{ old('nama_pelapor') ?? ($data->nama_pelapor ?? '') }}"
+                                                            value="{{ old('nama_pelapor') ?? ($data->nama_pelapor ?? Auth::user()->name ?? '') }}"
                                                             name="nama_pelapor" placeholder="" class="form-control">
                                                         @if ($errors->has('nama_pelapor'))
                                                             <label class="text-danger">
@@ -186,7 +187,7 @@
                                                                 class="text-danger"> * </span></label>
                                                         <input type="text" id="no_hp_pelapor"
                                                             @if (Request::segment(3) == 'detail') {{ 'disabled' }} @endif
-                                                            value="{{ old('no_hp_pelapor') ?? ($data->no_hp_pelapor ?? '') }}"
+                                                            value="{{ old('no_hp_pelapor') ?? $data->no_hp_pelapor ?? Auth::user()->no_hp ?? '' }}"
                                                             name="no_hp_pelapor" placeholder="" class="form-control">
                                                         @if ($errors->has('no_hp_pelapor'))
                                                             <label class="text-danger">
@@ -1291,7 +1292,7 @@
                                                             <a class="btn btn-primary rounded"
                                                                 href="{{ route('dashboard.pengaduan') }}">Kembali</a>
 
-                                                            @if ($data->status == null)
+                                                            @if ($data && $data->status == null)
                                                                 <a class="btn btn-primary rounded"
                                                                     href="{{ route('dashboard.pengaduan.ubah', $data->id) }}">Ubah
                                                                     <i class="fas fa-edit"></i> </a>

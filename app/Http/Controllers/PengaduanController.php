@@ -150,7 +150,7 @@ curl_close($curl);
             'melapor' => 'required',
             'nama_pelapor' => 'required',
             'jk_pelapor' => 'required',
-            'no_hp_pelapor' => 'required|unique:users,no_hp|min:12|numeric',
+            'no_hp_pelapor' => 'required|min:12|numeric',
             'informasi_dari' => 'required',
             'alamat_pelapor' => 'required',
 
