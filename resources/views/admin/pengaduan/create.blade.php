@@ -1144,6 +1144,10 @@
                                                             <option value="Kekerasan Sexual"
                                                                 {{ (old('kasus_domestik') ?? ($data->kasus_domestik ?? '')) == 'Kekerasan Sexual' ? 'selected' : '' }}>
                                                                 Kekerasan Sexual</option>
+
+                                                                <option value="Tidak Ada"
+                                                                {{ (old('kasus_domestik') ?? ($data->kasus_domestik ?? '')) == 'Tidak Ada' ? 'selected' : '' }}>
+                                                                Tidak Ada</option>
                                                         </select>
                                                         @error('kasus_domestik')
                                                             <label class="text-danger">{{ $message }}</label>
@@ -1171,6 +1175,10 @@
                                                             <option value="Trafiking"
                                                                 {{ (old('kasus_publik') ?? ($data->kasus_publik ?? '')) == 'Trafiking' ? 'selected' : '' }}>
                                                                 Trafiking</option>
+
+                                                                <option value="Tidak Ada"
+                                                                {{ (old('kasus_publik') ?? ($data->kasus_publik ?? '')) == 'Tidak Ada' ? 'selected' : '' }}>
+                                                                Tidak Ada</option>
                                                         </select>
                                                         @error('kasus_publik')
                                                             <label class="text-danger">{{ $message }}</label>
