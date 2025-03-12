@@ -26,12 +26,12 @@
 
 
 
-                    <li>
+                    {{-- <li>
                         <a href="{{ route('dashboard.pendampingan') }}">
                             <i data-feather="package"></i>
                             <span> Data Pendampingan  </span>
                         </a>
-                    </li>
+                    </li> --}}
 
                      @endif
 
@@ -47,12 +47,12 @@
 
 
 
-                    <li>
+                    {{-- <li>
                         <a href="{{ route('dashboard.pendampingan') }}">
                             <i data-feather="file-text"></i>
                             <span> Laporan Pendampingan  </span>
                         </a>
-                    </li>
+                    </li> --}}
 
                      @endif
 

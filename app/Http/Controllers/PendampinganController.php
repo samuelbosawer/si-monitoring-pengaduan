@@ -129,7 +129,8 @@ class PendampinganController extends Controller
     {
         $data = Pendampingan::where('id',$id)->first();
         $caption = 'Detail Data Pendampingan';
-        return view('admin.pendampingan.detail-sub',compact('data','caption'));
+        $pengaduan = Pengaduan::where('id',$data->pengaduan_id)->first();
+        return view('admin.pendampingan.detail-sub',compact('data','caption','pengaduan'));
     }
 
     public function create($id)
@@ -167,12 +168,11 @@ class PendampinganController extends Controller
     $message = "Judul Pendampingan :*".$data->judul_pendampingan."*\n"."Status pendampingan : *". $data->status_pendampingan."*\n \n _Sistem Monitoring Dan Evaluasi Pengaduan Tindak Kekerasan Terhadap Perempuan & Anak_ \n Terimakasih 🙏🏽😊";
 
 
-
-
-
     $data->save();
 
-
+    $pengaduan =  Pengaduan::find($request->id_p);
+    $pengaduan->catatan =  $request->catatan;
+    $pengaduan->update();
 
     alert()->success('Berhasil', 'Tambah data berhasil')->autoclose(3000);
 
@@ -243,6 +243,10 @@ curl_close($curl);
     $data->status_pendampingan = $request->status_pendampingan;
     // $data->pengaduan_id = $request->id_p;
     $data->update();
+
+    $pengaduan =  Pengaduan::find($request->id_p);
+    $pengaduan->catatan =  $request->catatan;
+    $pengaduan->update();
 
     $pelapor = Pengaduan::where('id',$request->id_p)->first();
     $no_hp = $pelapor->no_hp_pelapor;

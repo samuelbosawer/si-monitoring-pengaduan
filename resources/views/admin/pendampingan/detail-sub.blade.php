@@ -104,7 +104,22 @@
 
                                 </div>
 
-                                <div id="summernote"></div>
+                                {{-- <div id="summernote"></div> --}}
+
+                                <div class="col-md-12">
+                                    <div class="form-group mb-3">
+                                        <label for="catatan"> Catatan Tambahan (Jika Ada) <span>
+                                            </span> </label>
+                                        <textarea @if (Auth::user()->hasRole('kepalabidang|pelapor|kepaladinas')) disabled @endif id="summernote" name="catatan"
+                                            placeholder="Masukan catatan" rows="7" class="form-control">{{ old('catatan') ?? ($pengaduan->catatan ?? '') }} </textarea>
+                                        @if ($errors->has('catatan'))
+                                            <label class="text-danger">
+                                                {{ $errors->first('catatan') }}
+                                            </label>
+                                        @endif
+                                    </div>
+                                </div>
+
 
 
 

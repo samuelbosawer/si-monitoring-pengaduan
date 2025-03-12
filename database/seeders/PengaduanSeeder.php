@@ -65,6 +65,7 @@ class PengaduanSeeder extends Seeder
                 'kasus_lainnya' => false,
                 'uraian_kejadian' => "Kejadian $i terjadi pada waktu dan tempat tertentu.",
                 'user_id' => rand(1, 2),
+                'status' => 'Dalam proses',
                 'created_at' =>Carbon::now(),
                 'updated_at' =>Carbon::now(),
             ];

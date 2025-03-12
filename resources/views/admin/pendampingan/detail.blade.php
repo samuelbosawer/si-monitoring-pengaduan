@@ -21,6 +21,11 @@
                             <div class="card-body">
                                 <h4 class="header-title"> Detail Data Pendampingan</h4>
                                 <p> Pengaduan Kasus <span class=""></span> {{ $pengaduan->judul_pengaduan }} </p>
+                                @if (isset($pengaduan->catatan))
+                                    <div class="alert alert-warning" role="alert">
+                                        {{ $pengaduan->catatan}}
+                                    </div>
+                                @endif
 
                                 <div class="">
                                     @if (!Auth::user()->hasRole('pelapor|kepalabidang'))

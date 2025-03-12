@@ -30,7 +30,23 @@ class PengaduanController extends Controller
                     }
                 }]
             ])->orderBy('id', 'desc')->paginate(10);
-        }else{
+        }elseif(Auth::user()->hasRole('pendampingdinas'))
+        {
+            $datas = Pengaduan::where('status','Diterima')->where([
+                ['judul_pengaduan', '!=', Null],
+                [function ($query) use ($request) {
+                    if (($s = $request->s)) {
+                        $query->orWhere('nama_pelapor', 'LIKE', '%' . $s . '%')
+                            ->orWhere('nama_lengkap_korban', 'LIKE', '%' . $s . '%')
+                            ->orWhere('nama_lengkap_pelaku', 'LIKE', '%' . $s . '%')
+                            ->orWhere('created_at', 'LIKE', '%' . $s . '%')
+                            ->orWhere('keterangan', 'LIKE', '%' . $s . '%')
+                            ->get();
+                    }
+                }]
+            ])->orderBy('id', 'desc')->paginate(10);
+        }
+        else{
 
             $datas = Pengaduan::where([
                 ['judul_pengaduan', '!=', Null],
@@ -99,7 +115,7 @@ class PengaduanController extends Controller
     public function update_status(Request $request, string $id)
     {
         $data =  Pengaduan::find($id);
-        $data->status   = $request->status;
+        $data->status   = $request->status ?? 'Dalam proses';
         $data->catatan   = $request->catatan ?? '-';
         // $data->id_penerima   = Auth::user()->id;
         $data->update();

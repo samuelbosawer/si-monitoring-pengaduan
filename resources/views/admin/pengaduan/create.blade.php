@@ -1346,6 +1346,9 @@
                                                             <select class="form-control" name="status"
                                                                 @if (Auth::user()->hasRole('pendampingdinas|pelapor|kepaladinas')) disabled @endif>
                                                                 <option value="" hidden>Pilih Status</option>
+                                                                <option value="Dalam proses"
+                                                                {{ (old('status') ?? ($data->status ?? '')) == 'Dalam proses' ? 'selected' : '' }}>
+                                                                Dalam proses</option>
                                                                 <option value="Diterima"
                                                                     {{ (old('status') ?? ($data->status ?? '')) == 'Diterima' ? 'selected' : '' }}>
                                                                     Diterima</option>
