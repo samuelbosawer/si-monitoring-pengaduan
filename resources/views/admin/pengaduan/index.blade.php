@@ -57,7 +57,7 @@
                                                 <th class="text-center" width="1%">No</th>
                                                 <th class="text-center" width="20%">Tanggal</th>
                                                 <th class="text-center">Pengaduan</th>
-                                                <th>Status</th>
+                                                <th>Status Pengaduan</th>
                                                 <th>Catatan</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -73,35 +73,36 @@
                                                     {{-- <td> {{$data->penerima->name ?? ''}} </td> --}}
                                                     <td class="text-center">
                                                         @if ($data->status == 'Dalam proses')
-                                                            <span
+                                                            <div
                                                                 class="bg-secondary text-white col-6 rounded text-center mx-auto">
                                                                 Dalam proses
-                                                            </span>
+                                                            </div>
                                                         @endif
 
                                                         @if ($data->status == 'Diterima')
-                                                            <span
+                                                            <div
                                                                 class="bg-success text-white col-6 rounded text-center mx-auto">
                                                                 Sudah diterima
-                                                            </span>
+                                                            </div>
                                                         @endif
 
                                                         @if ($data->status == 'Tidak diterima')
-                                                            <span
+                                                            <div
                                                                 class="bg-danger text-white col-6 rounded text-center mx-auto">
                                                                 Tidak diterima
-                                                            </span>
+                                                            </div>
                                                         @endif
 
                                                         @if ($data->status == 'Selesai')
-                                                            <span
+                                                            <div
                                                                 class="bg-success text-white col-6 rounded text-center mx-auto">
                                                                 Selesai
-                                                            </span>
+                                                            </div>
                                                         @endif
 
 
                                                     </td>
+
                                                     <td>{{ $data->catatan ?? '-' }}</td>
 
                                                     <td class="text-center">
@@ -143,7 +144,7 @@
                                                             href="{{ route('dashboard.pendampingan.detail', $data->id) }}"
                                                             class="btn btn-sm m-1 btn-success border-0 waves-effect waves-light fs-4">
                                                             <i class="fas fa-user-alt"></i>
-                                                            {{ $data->pendampingan->count() }}
+                                                            {{ $data->pendampingan->count() }} {{ $data->latestPendampingan->status_pendampingan ?? 'Belum ada pendampingan' }}
                                                         </a>
 
                                                     </td>

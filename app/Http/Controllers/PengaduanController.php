@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pendampingan;
 use App\Models\Pengaduan;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
@@ -15,54 +16,57 @@ class PengaduanController extends Controller
     {
 
         $datas = null;
-        if(Auth::user()->hasRole('pelapor'))
-        {
-            $datas = Pengaduan::where('user_id',Auth::user()->id)->where([
-                ['judul_pengaduan', '!=', Null],
-                [function ($query) use ($request) {
-                    if (($s = $request->s)) {
-                        $query->orWhere('nama_pelapor', 'LIKE', '%' . $s . '%')
-                            ->orWhere('nama_lengkap_korban', 'LIKE', '%' . $s . '%')
-                            ->orWhere('nama_lengkap_pelaku', 'LIKE', '%' . $s . '%')
-                            ->orWhere('created_at', 'LIKE', '%' . $s . '%')
-                            ->orWhere('keterangan', 'LIKE', '%' . $s . '%')
-                            ->get();
-                    }
-                }]
-            ])->orderBy('id', 'desc')->paginate(10);
-        }elseif(Auth::user()->hasRole('pendampingdinas'))
-        {
-            $datas = Pengaduan::where('status','Diterima')->where([
-                ['judul_pengaduan', '!=', Null],
-                [function ($query) use ($request) {
-                    if (($s = $request->s)) {
-                        $query->orWhere('nama_pelapor', 'LIKE', '%' . $s . '%')
-                            ->orWhere('nama_lengkap_korban', 'LIKE', '%' . $s . '%')
-                            ->orWhere('nama_lengkap_pelaku', 'LIKE', '%' . $s . '%')
-                            ->orWhere('created_at', 'LIKE', '%' . $s . '%')
-                            ->orWhere('keterangan', 'LIKE', '%' . $s . '%')
-                            ->get();
-                    }
-                }]
-            ])->orderBy('id', 'desc')->paginate(10);
+        if (Auth::user()->hasRole('pelapor')) {
+            $datas = Pengaduan::with('latestPendampingan')
+                ->where('user_id', Auth::user()->id)
+                ->whereNotNull('judul_pengaduan')
+                ->when($request->s, function ($query, $s) {
+                    $query->where(function ($q) use ($s) {
+                        $q->where('nama_pelapor', 'LIKE', "%$s%")
+                          ->orWhere('nama_lengkap_korban', 'LIKE', "%$s%")
+                          ->orWhere('nama_lengkap_pelaku', 'LIKE', "%$s%")
+                          ->orWhere('created_at', 'LIKE', "%$s%")
+                          ->orWhere('keterangan', 'LIKE', "%$s%");
+                    });
+                })
+                ->orderBy('id', 'desc')
+                ->paginate(10);
+        } elseif (Auth::user()->hasRole('pendampingdinas')) {
+            $datas = Pengaduan::with('latestPendampingan')
+                ->where('status', 'Diterima')
+                ->whereNotNull('judul_pengaduan')
+                ->when($request->s, function ($query, $s) {
+                    $query->where(function ($q) use ($s) {
+                        $q->where('nama_pelapor', 'LIKE', "%$s%")
+                          ->orWhere('nama_lengkap_korban', 'LIKE', "%$s%")
+                          ->orWhere('nama_lengkap_pelaku', 'LIKE', "%$s%")
+                          ->orWhere('created_at', 'LIKE', "%$s%")
+                          ->orWhere('keterangan', 'LIKE', "%$s%");
+                    });
+                })
+                ->orderBy('id', 'desc')
+                ->paginate(10);
+        } else {
+            $datas = Pengaduan::with('latestPendampingan')
+                ->whereNotNull('judul_pengaduan')
+                ->when($request->s, function ($query, $s) {
+                    $query->where(function ($q) use ($s) {
+                        $q->where('nama_pelapor', 'LIKE', "%$s%")
+                          ->orWhere('nama_lengkap_korban', 'LIKE', "%$s%")
+                          ->orWhere('nama_lengkap_pelaku', 'LIKE', "%$s%")
+                          ->orWhere('created_at', 'LIKE', "%$s%")
+                          ->orWhere('keterangan', 'LIKE', "%$s%");
+                    });
+                })
+                ->orderBy('id', 'desc')
+                ->paginate(10);
         }
-        else{
 
-            $datas = Pengaduan::where([
-                ['judul_pengaduan', '!=', Null],
-                [function ($query) use ($request) {
-                    if (($s = $request->s)) {
-                        $query->orWhere('nama_pelapor', 'LIKE', '%' . $s . '%')
-                            ->orWhere('nama_lengkap_korban', 'LIKE', '%' . $s . '%')
-                            ->orWhere('nama_lengkap_pelaku', 'LIKE', '%' . $s . '%')
-                            ->orWhere('created_at', 'LIKE', '%' . $s . '%')
-                            ->orWhere('keterangan', 'LIKE', '%' . $s . '%')
-                            ->get();
-                    }
-                }]
-            ])->orderBy('id', 'desc')->paginate(10);
 
-        }
+
+
+
+
         return view('admin.pengaduan.index',compact('datas'))->with('i',(request()->input('page', 1) - 1) * 10);
 
     }

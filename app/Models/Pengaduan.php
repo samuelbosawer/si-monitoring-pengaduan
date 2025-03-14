@@ -25,5 +25,10 @@ class Pengaduan extends Model
          return $this->hasMany(Pendampingan::class,'pengaduan_id', 'id');
      }
 
+     public function latestPendampingan()
+    {
+        return $this->hasOne(Pendampingan::class)->latestOfMany();
+    }
+
 
 }
