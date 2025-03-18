@@ -15,9 +15,9 @@ class Pengaduan extends Model
         return $this->belongsTo(User::class,'user_id', 'id');
     }
 
-    public function penerima()
+    public function pendampingans()
     {
-        return $this->belongsTo(User::class,'penerima_id', 'id');
+        return $this->belongsTo(User::class,'pendamping_id', 'id');
     }
 
      public function pendampingan()

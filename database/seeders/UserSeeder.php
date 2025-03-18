@@ -64,6 +64,14 @@ class UserSeeder extends Seeder
         ]);
         $admin->assignRole('pendampingdinas');
 
+        $admin = User::create([
+            // 'user' => 'Admin',
+            'name' => 'Pendamping 3',
+            'email' => 'pendamping3@gmail.com',
+            'password' =>  bcrypt('pendamping3@gmail.com')
+        ]);
+        $admin->assignRole('pendampingdinas');
+
 
     }
 }

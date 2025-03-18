@@ -27,7 +27,7 @@
 
                                     <div class="">
 
-                                        @if (Auth::user()->hasRole('kepaladinas|pendampingdinas'))
+                                        @if (Auth::user()->hasRole('kepaladinas|pendampingdinas|kepalabidang'))
                                         <a class="btn btn-danger" target="_blank" href="{{ route('dashboard.pendampingan.pdf_index') }}">
                                             Cetak PDF <i data-feather="file-text"></i></a>
                                         @endif

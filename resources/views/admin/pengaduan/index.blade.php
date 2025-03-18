@@ -33,7 +33,7 @@
                                                     Tambah Data <i data-feather="plus"></i></a>
                                             @endif
 
-                                            @if (Auth::user()->hasRole('kepaladinas|pendampingdinas'))
+                                            @if (Auth::user()->hasRole('kepaladinas|pendampingdinas|kepalabidang'))
                                                 <a class="btn m-1 btn-danger" target="_blank"
                                                     href="{{ route('dashboard.pengaduan.pdf_index') }}">
                                                     Cetak PDF <i data-feather="file-text"></i></a>
@@ -57,6 +57,8 @@
                                                 <th class="text-center" width="1%">No</th>
                                                 <th class="text-center" width="20%">Tanggal</th>
                                                 <th class="text-center">Pengaduan</th>
+                                                <th class="text-center">Pendamping</th>
+
                                                 <th>Status Pengaduan</th>
                                                 <th>Catatan</th>
                                                 <th>Aksi</th>
@@ -69,33 +71,32 @@
                                                     <td>{{ \Carbon\Carbon::parse($data->created_at)->locale('id')->translatedFormat('l, d F Y H:i') }}
                                                     </td>
                                                     <td>{{ $data->judul_pengaduan }}</td>
-                                                    {{-- <td> {{$data->user->name ?? ''}} </td> --}}
-                                                    {{-- <td> {{$data->penerima->name ?? ''}} </td> --}}
+                                                    <td>{{$data->pendampingans->name ?? 'Belum ada'}}</td>
                                                     <td class="text-center">
                                                         @if ($data->status == 'Dalam proses')
                                                             <div
-                                                                class="bg-secondary text-white col-6 rounded text-center mx-auto">
+                                                                class="bg-secondary text-white rounded text-center mx-auto">
                                                                 Dalam proses
                                                             </div>
                                                         @endif
 
                                                         @if ($data->status == 'Diterima')
                                                             <div
-                                                                class="bg-success text-white col-6 rounded text-center mx-auto">
+                                                                class="bg-success text-white rounded text-center mx-auto">
                                                                 Sudah diterima
                                                             </div>
                                                         @endif
 
                                                         @if ($data->status == 'Tidak diterima')
                                                             <div
-                                                                class="bg-danger text-white col-6 rounded text-center mx-auto">
+                                                                class="bg-danger text-white rounded text-center mx-auto">
                                                                 Tidak diterima
                                                             </div>
                                                         @endif
 
                                                         @if ($data->status == 'Selesai')
                                                             <div
-                                                                class="bg-success text-white col-6 rounded text-center mx-auto">
+                                                                class="bg-success text-white rounded text-center mx-auto">
                                                                 Selesai
                                                             </div>
                                                         @endif

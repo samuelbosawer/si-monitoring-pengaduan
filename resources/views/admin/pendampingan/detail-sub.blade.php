@@ -21,7 +21,7 @@
                             <div class="card-body">
                                 <h4 class="header-title"> {{ $caption ?? 'Detail Data Pendampingan' }} </h4>
                                 <div class=" ">
-                                    @if (Auth::user()->hasRole('kepaladinas|pendampingdinas') && Request::segment(3) == 'detail')
+                                    @if (Auth::user()->hasRole('kepaladinas|pendampingdinas|kepalabidang') && Request::segment(3) == 'detail')
                                         <a class="btn btn-danger" target="_blank"
                                             href="{{ route('dashboard.pendampingan.pdf_detail_sub', $data->id) }}">
                                             Cetak PDF <i data-feather="file-text"></i></a>
@@ -44,6 +44,18 @@
 
 
                                 <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <label for=""> Judul Pengaduan <span class="text-danger"> *
+                                                </span></label>
+                                            <input type="text" id=""
+                                                 disabled
+                                                value="{{$pengaduan->judul_pengaduan ?? '-'}}"
+                                                name="judul pendampingan" placeholder="" class="form-control">
+
+                                        </div>
+                                    </div>
+
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
                                             <label for="judul_pendampingan"> Judul Pendampingan <span class="text-danger"> *

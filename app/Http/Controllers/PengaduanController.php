@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pendampingan;
 use App\Models\Pengaduan;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,7 @@ class PengaduanController extends Controller
 
         $datas = null;
         if (Auth::user()->hasRole('pelapor')) {
-            $datas = Pengaduan::with('latestPendampingan')
+            $datas = Pengaduan::with('latestPendampingan','pendampingans')
                 ->where('user_id', Auth::user()->id)
                 ->whereNotNull('judul_pengaduan')
                 ->when($request->s, function ($query, $s) {
@@ -32,8 +33,9 @@ class PengaduanController extends Controller
                 ->orderBy('id', 'desc')
                 ->paginate(10);
         } elseif (Auth::user()->hasRole('pendampingdinas')) {
-            $datas = Pengaduan::with('latestPendampingan')
+            $datas = Pengaduan::with('latestPendampingan','pendampingans')
                 ->where('status', 'Diterima')
+                ->where('pendamping_id', Auth::user()->id)
                 ->whereNotNull('judul_pengaduan')
                 ->when($request->s, function ($query, $s) {
                     $query->where(function ($q) use ($s) {
@@ -47,7 +49,7 @@ class PengaduanController extends Controller
                 ->orderBy('id', 'desc')
                 ->paginate(10);
         } else {
-            $datas = Pengaduan::with('latestPendampingan')
+            $datas = Pengaduan::with('latestPendampingan','pendampingans')
                 ->whereNotNull('judul_pengaduan')
                 ->when($request->s, function ($query, $s) {
                     $query->where(function ($q) use ($s) {
@@ -121,6 +123,7 @@ class PengaduanController extends Controller
         $data =  Pengaduan::find($id);
         $data->status   = $request->status ?? 'Dalam proses';
         $data->catatan   = $request->catatan ?? '-';
+        $data->pendamping_id   = $request->pendamping_id ?? '-';
         // $data->id_penerima   = Auth::user()->id;
         $data->update();
 
@@ -409,7 +412,8 @@ Terimakasih 🙏🏽😊',
     {
         $data = Pengaduan::where('id',$id)->first();
         $caption = 'Detail Pengaduan';
-        return view('admin.pengaduan.create',compact('data','caption'));
+        $pendamping = User::role('pendampingdinas')->get();
+        return view('admin.pengaduan.create',compact('data','caption','pendamping'));
     }
 
     /**

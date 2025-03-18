@@ -88,6 +88,7 @@ return new class extends Migration
             $table->mediumText('catatan')->nullable();
 
             $table->bigInteger('user_id')->nullable();
+            $table->bigInteger('pendamping_id')->nullable();
 
             $table->timestamps();
         });

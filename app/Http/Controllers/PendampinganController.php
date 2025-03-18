@@ -137,7 +137,9 @@ class PendampinganController extends Controller
     {
         $data = null;
         $caption = 'Tambah Data Pendampingan';
-        return view('admin.pendampingan.detail-sub',compact('data','caption'));
+        $pengaduan = Pengaduan::where('id',$id)->first();
+        // $id_pengaduan = $id;
+        return view('admin.pendampingan.detail-sub',compact('data','caption','pengaduan'));
     }
 
     /**

@@ -55,7 +55,7 @@
                                          <h3 class="header-title"> {{ $caption ?? 'Buat Pengaduan' }} </h3>
                                     </div>
                                     <div class="col-md-2 m-2">
-                                        @if (Auth::user()->hasRole('kepaladinas|pendampingdinas') && Request::segment(3) == 'detail')
+                                        @if (Auth::user()->hasRole('kepaladinas|pendampingdinas|kepalabidang') && Request::segment(3) == 'detail')
                                         <a class="btn btn-danger" target="_blank" href="{{ route('dashboard.pengaduan.pdf_detail',$data->id) }}">
                                             Cetak PDF <i data-feather="file-text"></i></a>
                                         @endif
@@ -1370,6 +1370,33 @@
 
 
                                                     </div>
+
+
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group mb-3">
+                                                            <label for="pendamping_id"> Pendamping <span class="text-danger">
+                                                                </span></label>
+                                                            <select class="form-control" name="pendamping_id"
+                                                                @if (Auth::user()->hasRole('pendampingdinas|pelapor|kepaladinas')) disabled @endif>
+                                                                <option value="" hidden>Pilih Pendamping</option>
+                                                                @foreach ($pendamping as $p )
+                                                                <option value="{{$p->id}}" @if($p->id == $data->pendamping_id) selected @endif >{{$p->name}}</option>
+
+
+                                                                @endforeach
+
+                                                            </select>
+                                                            @error('status')
+                                                                <label class="text-danger">
+                                                                    {{ $errors->first('status') }}</label>
+                                                            @enderror
+                                                        </div>
+
+
+
+                                                    </div>
+
 
 
                                                     <div class="col-md-12">
