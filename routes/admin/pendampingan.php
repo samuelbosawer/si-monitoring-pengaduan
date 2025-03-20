@@ -18,9 +18,9 @@ Route::group(['middleware' => ['auth']], function () {
 
 
         Route::get('pendampingan/excel', [PendampinganController::class, 'excel'])->name('pendampingan.excel');
-        Route::get('pendampingan/pdf-index', [PendampinganController::class, 'pdf_index'])->name('pendampingan.pdf_index')->middleware(['role:kepaladinas|pendampingdinas']);
-        Route::get('pendampingan/pdf-detail/{id}', [PendampinganController::class, 'pdf_detail'])->name('pendampingan.pdf_detail')->middleware(['role:kepaladinas|pendampingdinas']);
-        Route::get('pendampingan/pdf-detail/sub/{id}', [PendampinganController::class, 'pdf_detail_sub'])->name('pendampingan.pdf_detail_sub')->middleware(['role:kepaladinas|pendampingdinas']);
+        Route::get('pendampingan/pdf-index', [PendampinganController::class, 'pdf_index'])->name('pendampingan.pdf_index')->middleware(['role:kepalabidang|kepaladinas|pendampingdinas']);
+        Route::get('pendampingan/pdf-detail/{id}', [PendampinganController::class, 'pdf_detail'])->name('pendampingan.pdf_detail')->middleware(['role:kepalabidang|kepaladinas|pendampingdinas']);
+        Route::get('pendampingan/pdf-detail/sub/{id}', [PendampinganController::class, 'pdf_detail_sub'])->name('pendampingan.pdf_detail_sub')->middleware(['role:kepalabidang|kepaladinas|pendampingdinas']);
         Route::post('pendampingan/csv', [PendampinganController::class, 'csv'])->name('pendampingan.csv');
     });
 });

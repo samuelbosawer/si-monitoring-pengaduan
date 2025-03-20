@@ -69,13 +69,13 @@
                         </tr>
 
                         <tr>
-                        <td> Status Pangaduan </td>
+                            <td> Status Pangaduan </td>
                             <td>:</td>
                             <td> {{ $data->status }} </td>
                         </tr>
 
                         <tr>
-                            <td> Catatan Tambahan Dari Kepala Bidang  </td>
+                            <td> Catatan Tambahan Dari Kepala Bidang </td>
                             <td>:</td>
                             <td> {{ $data->catatan }} </td>
                         </tr>
@@ -127,6 +127,12 @@
 
                         <tr>
                             <td class="title-col" colspan="3"> IDENTITAS KORBAN</td>
+                        </tr>
+
+                        <tr>
+                            <td>Jenis Kelamin Korban </td>
+                            <td>:</td>
+                            <td> {{ $data->jenis_kelamin_korban }} </td>
                         </tr>
 
                         <tr>
@@ -389,51 +395,47 @@
                         <tr>
                             <td>Surat Nikah Gereja </td>
                             <td>:</td>
-                            <td>  @if (!empty($data->surat_nikah_gereja))
-                                    <img src="{{ public_path($data->surat_nikah_gereja) }}"
-                                        alt="Surat Nikah Gereja" class="img-fluid mt-2"
-                                        style="max-height: 200px;">
+                            <td>
+                                @if (!empty($data->surat_nikah_gereja))
+                                    <img src="{{ public_path($data->surat_nikah_gereja) }}" alt="Surat Nikah Gereja"
+                                        class="img-fluid mt-2" style="max-height: 200px;">
                                 @endif
                             </td>
 
-                            <tr>
-                                <td>Akte Nikah Catatan Sipil </td>
-                                <td>:</td>
-                                <td>  @if (!empty($data->aktet_nikah_sipil))
-                                        <img src="{{ public_path($data->aktet_nikah_sipil) }}"
-                                            alt="Surat aktet_nikah_sipil" class="img-fluid mt-2"
-                                            style="max-height: 200px;">
-                                    @endif
-                                </td>
-                            </tr>
-
-                            <tr>
-
-                                <td> Akte Cerai Catatan Sipil </td>
-                                <td>:</td>
-                                <td>  @if (!empty($data->akte_cerai_sipil))
-                                        <img src="{{ public_path($data->akte_cerai_sipil) }}"
-                                            alt="Surat akte_cerai_sipil" class="img-fluid mt-2"
-                                            style="max-height: 200px;">
-                                    @endif
-                                </td>
-                            </tr>
-
-
-
+                        <tr>
+                            <td>Akte Nikah Catatan Sipil </td>
+                            <td>:</td>
+                            <td>
+                                @if (!empty($data->aktet_nikah_sipil))
+                                    <img src="{{ public_path($data->aktet_nikah_sipil) }}"
+                                        alt="Surat aktet_nikah_sipil" class="img-fluid mt-2" style="max-height: 200px;">
+                                @endif
+                            </td>
                         </tr>
 
+                        <tr>
+
+                            <td> Akte Cerai Catatan Sipil </td>
+                            <td>:</td>
+                            <td>
+                                @if (!empty($data->akte_cerai_sipil))
+                                    <img src="{{ public_path($data->akte_cerai_sipil) }}" alt="Surat akte_cerai_sipil"
+                                        class="img-fluid mt-2" style="max-height: 200px;">
+                                @endif
+                            </td>
                         </tr>
 
 
+                        <tr>
+                            <td class="title-col" colspan="3">PENDAMPING</td>
+                        </tr>
 
+                        <tr>
 
-
-
-
-
-
-
+                            <td>Nama Pendamping</td>
+                            <td>:</td>
+                            <td>{{$data->pendampingans->name ?? 'Belum ada'}}</td>
+                        </tr>
 
 
 

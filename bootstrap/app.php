@@ -18,6 +18,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'Excel' => Maatwebsite\Excel\Facades\Excel::class,
             'PDF' => Barryvdh\DomPDF\Facade::class,
             'Image' => Intervention\Image\Facades\Image::class,
+//             'SnappyPdf' => Barryvdh\Snappy\Facades\SnappyPdf::class,
+// '           SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

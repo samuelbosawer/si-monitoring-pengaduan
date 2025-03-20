@@ -114,19 +114,19 @@ class PendampinganController extends Controller
           ];
 
         // Buat PDF
+    //  return   view('admin.pendampingan.pdf_detail_sub', $data);
         $pdf = Pdf::loadView('admin.pendampingan.pdf_detail_sub', $data);
         $doc = 'informasi-data-pengaduan'.'.pdf';
+        return $pdf->stream($doc);
 
-        // return $pdf->download($doc);
-        return $pdf->stream($doc); // Jika ingin menampilkan langsung di browser
-    }
-
-
+        }
     /**
      * Show the form for creating a new resource.
      */
     public function pendampinganDetail($id)
     {
+
+        // dd(public_path());
         $data = Pendampingan::where('id',$id)->first();
         $caption = 'Detail Data Pendampingan';
         $pengaduan = Pengaduan::where('id',$data->pengaduan_id)->first();

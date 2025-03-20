@@ -83,7 +83,27 @@ class PengaduanController extends Controller
           $data = [
             'title' => 'LAPORAN PENGADUAN',
             'datas' => Pengaduan::orderBy('id', 'desc')->get(),
+
         ];
+
+
+
+        if (Auth::user()->hasRole('pendampingdinas')) {
+
+            $query = Pengaduan::with('latestPendampingan','pendampingans')
+                ->where('status', 'Diterima')
+                ->where('pendamping_id', Auth::user()->id)
+                ->whereNotNull('judul_pengaduan')
+                ->orderBy('id', 'desc')
+                ->get();
+
+
+                $data = [
+                    'title' => 'LAPORAN PENGADUAN',
+                    'datas' => $query,
+
+                ];
+        }
 
         // Buat PDF
         $pdf = Pdf::loadView('admin.pengaduan.pdf_index', $data);

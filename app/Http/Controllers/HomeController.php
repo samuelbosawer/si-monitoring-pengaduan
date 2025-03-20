@@ -47,7 +47,7 @@ class HomeController extends Controller
                 'email.required' => 'Tidak boleh kosong',
                 'email.unique' => 'Email sudah terdaftar',
                 'no_hp.required' => 'Tidak boleh kosong',
-                'email.unique' => 'No Hp sudah terdaftar',
+                'no_hp.unique' => 'No Hp sudah terdaftar',
 
                 'no_hp.min' => 'Minimal 12 nomor ',
                 'no_hp.numeric' => 'Harus nomor/angka ',
