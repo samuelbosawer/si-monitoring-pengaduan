@@ -75,7 +75,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
                                             <label for="alamat"> Catatan Pendampingan </label>
-                                            <textarea id="catatan" @if (Auth::user()->hasRole('kepalabidang|pelapor|kepaladinas')) readonly @endif name="catatan_pendampingan"
+                                            <textarea id="" @if (Auth::user()->hasRole('kepalabidang|pelapor|kepaladinas')) readonly @endif name="catatan_pendampingan"
                                                 placeholder="Masukan catatan pendampingan" rows="5" class="form-control">{{ old('catatan_pendampingan') ?? ($data->catatan_pendampingan ?? '') }} </textarea>
                                             @if ($errors->has('catatan_pendampingan'))
                                                 <label class="text-danger">
@@ -114,23 +114,48 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <label for="foto"> Lampiran Foto</label>
+                                            <input type="file" id="foto"
+                                                name="foto" class="form-control"
+                                                @if (Auth::user()->hasRole('kepalabidang|pelapor|kepaladinas')) disabled @endif>
+
+                                            @if (!empty($data->foto))
+                                                <img src="{{ asset($data->foto) }}"
+                                                    alt="Foto Pendampingan" class="img-fluid mt-2"
+                                                    style="max-height: 200px;">
+                                            @endif
+
+                                            @if ($errors->has('foto'))
+                                                <label class="text-danger">
+                                                    {{ $errors->first('foto') }}
+                                                </label>
+                                            @endif
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <label for="catatan"> Catatan Tambahan (Jika Ada) <span>
+                                                </span> </label>
+                                            <textarea @if (Auth::user()->hasRole('kepalabidang|pelapor|kepaladinas')) disabled @endif id="summernote" name="catatan"
+                                                placeholder="Masukan catatan" rows="7" class="form-control">{{ old('catatan') ?? ($pengaduan->catatan ?? '') }} </textarea>
+                                            @if ($errors->has('catatan'))
+                                                <label class="text-danger">
+                                                    {{ $errors->first('catatan') }}
+                                                </label>
+                                            @endif
+                                        </div>
+                                    </div>
+
                                 </div>
 
                                 {{-- <div id="summernote"></div> --}}
 
-                                <div class="col-md-12">
-                                    <div class="form-group mb-3">
-                                        <label for="catatan"> Catatan Tambahan (Jika Ada) <span>
-                                            </span> </label>
-                                        <textarea @if (Auth::user()->hasRole('kepalabidang|pelapor|kepaladinas')) disabled @endif id="summernote" name="catatan"
-                                            placeholder="Masukan catatan" rows="7" class="form-control">{{ old('catatan') ?? ($pengaduan->catatan ?? '') }} </textarea>
-                                        @if ($errors->has('catatan'))
-                                            <label class="text-danger">
-                                                {{ $errors->first('catatan') }}
-                                            </label>
-                                        @endif
-                                    </div>
-                                </div>
+
 
 
 

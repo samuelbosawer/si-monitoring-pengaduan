@@ -58,31 +58,50 @@
         <div class="row">
             <div class="">
                 <div class="">
-                    <table class="data" width="100%">
+                    <table class="" width="100%">
                      @php
                         $i = 0;
                     @endphp
 
+
                         <tr>
-                            <th class="data text-center">No</th>
-                            <th class="data text-center">Tanggal</th>
-                            <th class="data text-center">Judul Pendampingan</th>
-                            <th class="data text-center">Catatan Pendampingan</th>
-                            <th class="data text-center">Status</th>
+                            <td>Tanggal</td>
+                            <td>:</td>
+                            <td>   {{ \Carbon\Carbon::parse($data->created_at)->locale('id')->translatedFormat('l, d F Y H:i') }}</td>
                         </tr>
-                        <tr class="data">
-                            <td width="2%" class=" data text-center">{{ ++$i }}</td>
-                            <td width="10%" class="data">
-                                {{ \Carbon\Carbon::parse($data->created_at)->locale('id')->translatedFormat('l, d F Y H:i') }}
-                            </td>
-                            <td class="data" width="30%">{{ $data->judul_pendampingan}}</td>
-                            <td class="data" width="30%">{!! $data->catatan_pendampingan!!}</td>
-                            <td class="data" width="10%" class="text-center">
-                                {{$data->status_pendampingan}}
-                            </td>
 
-
+                        <tr>
+                            <td>Judul Pendampingan<</td>
+                            <td>:</td>
+                            <td>{{ $data->judul_pendampingan}}</td>
                         </tr>
+
+                        <tr>
+                            <td>Catatan Pendampingan</td>
+                            <td>:</td>
+                            <td>{{ $data->catatan_pendampingan}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Lampiran Foto</td>
+                            <td>:</td>
+
+                            <td>
+                                @if (!empty($data->foto))
+                                <img src="{{ public_path($data->foto) }}" alt="Lampiran Foto Pendampingan"
+                                    class="img-fluid mt-2" style="max-height: 200px;">
+                                  @endif
+                            </td>
+                        </tr>
+
+                    <tr>
+                        <td>Status</td>
+                        <td>:</td>
+                        <td>
+                            {{$data->status_pendampingan}}
+                        </td>
+                    </tr>
+
 
 
 
