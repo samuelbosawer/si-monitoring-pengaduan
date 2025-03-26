@@ -30,7 +30,7 @@ class PendampinganSeeder extends Seeder
 
         $pendampingan = Pendampingan::create([
                     'judul_pendampingan' => 'Konsultasi Awal',
-                    'catatan_pendampingan' => 'Korban melakukan konsultasi awal pada tanggal '.Carbon::now(),
+                    'catatan_pendampingan' => 'Korban melakukan konsultasi awal pada tanggal 25 Maret 2025, jam 10:00 WIT',
                     'status_pendampingan' => 'Selesai',
                     'pengaduan_id' =>1,
                     'created_at' =>Carbon::now(),
@@ -41,7 +41,7 @@ class PendampinganSeeder extends Seeder
 
             $pendampingan = Pendampingan::create([
                 'judul_pendampingan' => 'Konsultasi Awal',
-                'catatan_pendampingan' => 'Korban melakukan konsultasi awal pada tanggal '.Carbon::now(),
+                'catatan_pendampingan' => 'Korban melakukan konsultasi awal pada tanggal 25 Maret 2025, jam 10:00 WIT',
                 'status_pendampingan' => 'Selesai',
                 'pengaduan_id' =>2,
                 'created_at' =>Carbon::now(),
@@ -51,7 +51,7 @@ class PendampinganSeeder extends Seeder
 
         $pendampingan = Pendampingan::create([
             'judul_pendampingan' => 'Konsultasi Awal',
-            'catatan_pendampingan' => 'Korban melakukan konsultasi awal pada tanggal '.Carbon::now(),
+            'catatan_pendampingan' => 'Korban melakukan konsultasi awal pada tanggal 25 Maret 2025, jam 10:00 WIT',
             'status_pendampingan' => 'Selesai',
             'pengaduan_id' =>3,
             'created_at' =>Carbon::now(),
