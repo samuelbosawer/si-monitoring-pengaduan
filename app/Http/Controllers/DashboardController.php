@@ -57,7 +57,7 @@ class DashboardController extends Controller
 
 
             // Pengaduaan Status
-            $pengaduan = Pengaduan::where('user_id',Auth::user()->id)->where('status',null)->get()->count();
+            // $pengaduan = Pengaduan::where('user_id',Auth::user()->id)->where('status',null)->get()->count();
 
              // Status
             $pengaduanBlmTerima = Pengaduan::where('user_id',Auth::user()->id)->where('status',null)->get()->count();

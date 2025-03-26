@@ -15,16 +15,48 @@ class PendampinganSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
-        for ($i = 0; $i < 20; $i++) {
-            Pendampingan::create([
-                'judul_pendampingan' => 'Pendampingan dari Pengaduan',
-                'catatan_pendampingan' => 'Telah selesai Pengaduan',
+        // $faker = Faker::create();
+        // for ($i = 0; $i < 20; $i++) {
+        //     Pendampingan::create([
+        //         'judul_pendampingan' => 'Pendampingan dari Pengaduan',
+        //         'catatan_pendampingan' => 'Telah selesai Pengaduan',
+        //         'status_pendampingan' => 'Selesai',
+        //         'pengaduan_id' => rand(1, 10),
+        //         'created_at' =>Carbon::now(),
+        //         'updated_at' =>Carbon::now(),
+        //     ]);
+        // }
+
+
+        $pendampingan = Pendampingan::create([
+                    'judul_pendampingan' => 'Konsultasi Awal',
+                    'catatan_pendampingan' => 'Korban melakukan konsultasi awal pada tanggal '.Carbon::now(),
+                    'status_pendampingan' => 'Selesai',
+                    'pengaduan_id' =>1,
+                    'created_at' =>Carbon::now(),
+                    'updated_at' =>Carbon::now(),
+            ]);
+
+
+
+            $pendampingan = Pendampingan::create([
+                'judul_pendampingan' => 'Konsultasi Awal',
+                'catatan_pendampingan' => 'Korban melakukan konsultasi awal pada tanggal '.Carbon::now(),
                 'status_pendampingan' => 'Selesai',
-                'pengaduan_id' => rand(1, 10),
+                'pengaduan_id' =>2,
                 'created_at' =>Carbon::now(),
                 'updated_at' =>Carbon::now(),
-            ]);
-        }
+        ]);
+
+
+        $pendampingan = Pendampingan::create([
+            'judul_pendampingan' => 'Konsultasi Awal',
+            'catatan_pendampingan' => 'Korban melakukan konsultasi awal pada tanggal '.Carbon::now(),
+            'status_pendampingan' => 'Selesai',
+            'pengaduan_id' =>3,
+            'created_at' =>Carbon::now(),
+            'updated_at' =>Carbon::now(),
+    ]);
+
     }
 }

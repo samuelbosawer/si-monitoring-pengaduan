@@ -108,9 +108,11 @@ class PendampinganController extends Controller
 
     public function pdf_detail_sub($id)
     {
+        $datap =  Pendampingan::where('id',$id)->first();
         $data = [
             'title' => 'LAPORAN PENDAMPINGAN YANG DILAKUKAN',
-            'data' =>  Pendampingan::where('id',$id)->first(),
+            'data' => $datap,
+            'pengaduan' => Pengaduan::where('id',$datap->pengaduan_id)->first()
           ];
 
         // Buat PDF
@@ -150,7 +152,6 @@ class PendampinganController extends Controller
 
         $this->validate($request, [
             'judul_pendampingan' => 'required',
-            'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ],
         [
             'judul_pendampingan.required' => 'Wajib diisi !',
@@ -166,15 +167,15 @@ class PendampinganController extends Controller
     $data->pengaduan_id = $request->id_p;
 
           // picture creation
-          if (isset($request->foto)) {
-            $fileName = $request->foto->getClientOriginalName();
-            $path = public_path('gambar/pendampingan/'.Auth::User()->id.'/'. $data->foto);
+          if (isset($request->lampiran)) {
+            $fileName = $request->lampiran->getClientOriginalName();
+            $path = public_path('lampiran/pendampingan/'.Auth::User()->id.'/'. $data->lampiran);
             if (file_exists($path)) {
                 File::delete($path);
             }
             $timestamp = now()->timestamp;
-            $data->foto = 'gambar/pendampingan/'.Auth::User()->id.'/'.$timestamp.'-'.$fileName;
-            $request->foto->move(public_path('gambar/pendampingan/').Auth::User()->id. '/', $timestamp.'-'.$fileName);
+            $data->lampiran = 'lampiran/pendampingan/'.Auth::User()->id.'/'.$timestamp.'-'.$fileName;
+            $request->lampiran->move(public_path('lampiran/pendampingan/').Auth::User()->id. '/', $timestamp.'-'.$fileName);
         }
 
 
@@ -244,7 +245,6 @@ curl_close($curl);
     {
         $this->validate($request, [
                 'judul_pendampingan' => 'required',
-                'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ],
             [
                 'judul_pendampingan.required' => 'Wajib diisi !',
@@ -260,15 +260,15 @@ curl_close($curl);
     // $data->pengaduan_id = $request->id_p;
 
        // picture creation
-       if (isset($request->foto)) {
-        $fileName = $request->foto->getClientOriginalName();
-        $path = public_path('gambar/pendampingan/'.Auth::User()->id.'/'. $data->foto);
+       if (isset($request->lampiran)) {
+        $fileName = $request->lampiran->getClientOriginalName();
+        $path = public_path('gambar/pendampingan/'.Auth::User()->id.'/'. $data->lampiran);
         if (file_exists($path)) {
             File::delete($path);
         }
         $timestamp = now()->timestamp;
-        $data->foto = 'gambar/pendampingan/'.Auth::User()->id.'/'.$timestamp.'-'.$fileName;
-        $request->foto->move(public_path('gambar/pendampingan/').Auth::User()->id. '/', $timestamp.'-'.$fileName);
+        $data->lampiran = 'gambar/pendampingan/'.Auth::User()->id.'/'.$timestamp.'-'.$fileName;
+        $request->lampiran->move(public_path('gambar/pendampingan/').Auth::User()->id. '/', $timestamp.'-'.$fileName);
     }
 
 

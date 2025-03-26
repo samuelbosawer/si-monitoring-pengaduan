@@ -116,20 +116,23 @@
 
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
-                                            <label for="foto"> Lampiran Foto</label>
-                                            <input type="file" id="foto"
-                                                name="foto" class="form-control"
-                                                @if (Auth::user()->hasRole('kepalabidang|pelapor|kepaladinas')) disabled @endif>
+                                            <label for="lampiran"> Lampiran Dokumen</label>
 
-                                            @if (!empty($data->foto))
-                                                <img src="{{ asset($data->foto) }}"
-                                                    alt="Foto Pendampingan" class="img-fluid mt-2"
-                                                    style="max-height: 200px;">
+
+                                            @if (!empty($data->lampiran))
+                                            <br>
+                                                <a href="{{asset($data->lampiran)}}" class="mb-2 btn btn-primary" target="_blank"> Lihat Lampiran</a>
+                                            <br>
                                             @endif
 
-                                            @if ($errors->has('foto'))
+                                            <input type="file" id="lampiran"
+                                                name="lampiran" class="form-control"
+                                                @if (Auth::user()->hasRole('kepalabidang|pelapor|kepaladinas')) disabled @endif>
+
+
+                                            @if ($errors->has('lampiran'))
                                                 <label class="text-danger">
-                                                    {{ $errors->first('foto') }}
+                                                    {{ $errors->first('lampiran') }}
                                                 </label>
                                             @endif
                                         </div>

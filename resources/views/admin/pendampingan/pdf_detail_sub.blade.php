@@ -62,10 +62,16 @@
                      @php
                         $i = 0;
                     @endphp
-
+                        <tr>
+                            <td>Judul Pengaduan</td>
+                            <td>:</td>
+                            <td>
+                                {{$pengaduan->judul_pengaduan}}
+                            </td>
+                        </tr>
 
                         <tr>
-                            <td>Tanggal</td>
+                            <td>Tanggal dan Jam Pendampingan</td>
                             <td>:</td>
                             <td>   {{ \Carbon\Carbon::parse($data->created_at)->locale('id')->translatedFormat('l, d F Y H:i') }}</td>
                         </tr>
@@ -83,13 +89,12 @@
                         </tr>
 
                         <tr>
-                            <td>Lampiran Foto</td>
+                            <td>Lampiran Dokumen</td>
                             <td>:</td>
 
                             <td>
-                                @if (!empty($data->foto))
-                                <img src="{{ public_path($data->foto) }}" alt="Lampiran Foto Pendampingan"
-                                    class="img-fluid mt-2" style="max-height: 200px;">
+                                @if (!empty($data->lampiran))
+                                  <a href="{{asset($data->lampiran)}}">{{asset($data->lampiran)}}</a>
                                   @endif
                             </td>
                         </tr>

@@ -69,7 +69,7 @@
                             <th class="data text-center">Tanggal</th>
                             <th class="data text-center">Judul Pendampingan</th>
                             <th class="data text-center">Catatan Pendampingan</th>
-                            <th class="data text-center">Foto</th>
+                            <th class="data text-center">Lampiran Dokumen</th>
                             <th class="data text-center">Status</th>
                         </tr>
                     @foreach ($datas as $data)
@@ -81,10 +81,9 @@
                             <td class="data" width="30%">{{ $data->judul_pendampingan}}</td>
                             <td class="data" width="30%">{{ $data->catatan_pendampingan}}</td>
                             <td class="data" width="30%">
-                                @if (!empty($data->foto))
-                                <img src="{{ public_path($data->foto) }}" alt="Lampiran Foto Pendampingan"
-                                    class="" style="max-height: 100px; margin: 5px">
-                                  @endif
+                                @if (!empty($data->lampiran))
+                                <a href="{{asset($data->lampiran)}}">{{asset($data->lampiran)}}</a>
+                                @endif
                             </td>
                             <td class="data" width="30%" class="text-center">
                                 {{$data->status_pendampingan}}
