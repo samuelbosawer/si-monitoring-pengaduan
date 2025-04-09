@@ -171,7 +171,7 @@ class PengaduanSeeder extends Seeder
                 'uraian_kejadian' => "Kejadian terjadi pada tanggal 26 Maret 2025 jam 09:00 ketika korban baru saja pulang berbelanja kebutuhan rumah tangga.",
                 'user_id' => rand(1, 2),
                 'status' => 'Diterima',
-                'pendamping_id' => 6,
+                'pendamping_id' => 7,
                 'created_at' =>Carbon::now(),
                 'updated_at' =>Carbon::now(),
         ]);
