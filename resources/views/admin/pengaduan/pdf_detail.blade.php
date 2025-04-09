@@ -406,9 +406,9 @@
                             <td>Akte Nikah Catatan Sipil </td>
                             <td>:</td>
                             <td>
-                                @if (!empty($data->aktet_nikah_sipil))
-                                    <img src="{{ public_path($data->aktet_nikah_sipil) }}"
-                                        alt="Surat aktet_nikah_sipil" class="img-fluid mt-2" style="max-height: 200px;">
+                                @if (!empty($data->akte_nikah_sipil))
+                                    <img src="{{ public_path($data->akte_nikah_sipil) }}"
+                                        alt="Surat akte_nikah_sipil" class="img-fluid mt-2" style="max-height: 200px;">
                                 @endif
                             </td>
                         </tr>
