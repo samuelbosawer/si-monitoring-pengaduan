@@ -62,6 +62,7 @@ class PendampinganController extends Controller
                         $query->orWhere('judul_pendampingan', 'LIKE', '%' . $s . '%')
                             ->orWhere('catatan_pendampingan', 'LIKE', '%' . $s . '%')
                             ->orWhere('status_pendampingan', 'LIKE', '%' . $s . '%')
+                            ->orWhere('jenis_pelayanan', 'LIKE', '%' . $s . '%')
                             ->orWhere('created_at', 'LIKE', '%' . $s . '%')
                             ->get();
                     }
@@ -165,6 +166,7 @@ class PendampinganController extends Controller
     $data->judul_pendampingan   = $request->judul_pendampingan;
     $data->catatan_pendampingan = $request->catatan_pendampingan;
     $data->status_pendampingan = $request->status_pendampingan;
+    $data->jenis_pelayanan = $request->jenis_pelayanan;
     $data->pengaduan_id = $request->id_p;
 
           // picture creation
@@ -182,7 +184,11 @@ class PendampinganController extends Controller
 
     $pelapor = Pengaduan::where('id',$request->id_p)->first();
     $no_hp = $pelapor->no_hp_pelapor;
-    $message = "Judul Pendampingan :*".$data->judul_pendampingan."*\n"."Status pendampingan : *". $data->status_pendampingan."*\n \n _Sistem Monitoring Dan Evaluasi Pengaduan Tindak Kekerasan Terhadap Perempuan & Anak_ \n Terimakasih 🙏🏽😊";
+    $message = "Judul Pendampingan : *" . $data->judul_pendampingan . "*\n" .
+    "Status Pendampingan : *" . $data->status_pendampingan . "*\n" .
+    "Jenis Pelayanan : *" . $data->jenis_pelayanan . "*\n\n" .
+    "_Sistem Monitoring Dan Evaluasi Pengaduan Tindak Kekerasan Terhadap Perempuan & Anak_ \n" .
+    "Terimakasih 🙏🏽😊";
 
 
     $data->save();
@@ -258,6 +264,8 @@ curl_close($curl);
     $data->judul_pendampingan   = $request->judul_pendampingan;
     $data->catatan_pendampingan = $request->catatan_pendampingan;
     $data->status_pendampingan = $request->status_pendampingan;
+    $data->jenis_pelayanan = $request->jenis_pelayanan;
+
     // $data->pengaduan_id = $request->id_p;
 
        // picture creation
@@ -281,7 +289,11 @@ curl_close($curl);
 
     $pelapor = Pengaduan::where('id',$request->id_p)->first();
     $no_hp = $pelapor->no_hp_pelapor;
-    $message = "Judul Pendampingan :*".$data->judul_pendampingan."*\n"."Status pendampingan : *". $data->status_pendampingan."*\n \n _Sistem Monitoring Dan Evaluasi Pengaduan Tindak Kekerasan Terhadap Perempuan & Anak_ \n Terimakasih 🙏🏽😊";
+    $message = "Judul Pendampingan : *" . $data->judul_pendampingan . "*\n" .
+    "Status Pendampingan : *" . $data->status_pendampingan . "*\n" .
+    "Jenis Pelayanan : *" . $data->jenis_pelayanan . "*\n\n" .
+    "_Sistem Monitoring Dan Evaluasi Pengaduan Tindak Kekerasan Terhadap Perempuan & Anak_ \n" .
+    "Terimakasih 🙏🏽😊";
 
 
 
@@ -311,7 +323,7 @@ curl_close($curl);
 
     $response = curl_exec($curl);
 
-curl_close($curl);
+    curl_close($curl);
 
 
     return redirect()->route('dashboard.pendampingan.detail',$request->id_p);

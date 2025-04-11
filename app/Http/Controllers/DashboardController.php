@@ -12,6 +12,14 @@ class DashboardController extends Controller
 {
     public function index()
     {
+
+        if(Auth::user()->hasRole('pelapor'))
+        {
+
+          return redirect()->route('dashboard.pengaduan');
+
+        };
+
         $pengaduan = Pengaduan::get()->count();
         $pendampingan = Pendampingan::get()->count();
 
@@ -50,48 +58,60 @@ class DashboardController extends Controller
 
         if(Auth::user()->hasRole('pelapor'))
         {
-            $pengaduan = Pengaduan::where('user_id',Auth::user()->id)->get()->count();
-            $pendampingan = Pendampingan::whereHas('pengaduan', function ($query) {
-                $query->where('user_id', Auth::user()->id);
-            })->with('pengaduan')->count();
+
+            redirect()->route('dashboard.pengaduan');
+            // $pengaduan = Pengaduan::where('user_id',Auth::user()->id)->get()->count();
+            // $pendampingan = Pendampingan::whereHas('pengaduan', function ($query) {
+            //     $query->where('user_id', Auth::user()->id);
+            // })->with('pengaduan')->count();
 
 
             // Pengaduaan Status
             // $pengaduan = Pengaduan::where('user_id',Auth::user()->id)->where('status',null)->get()->count();
 
              // Status
-            $pengaduanBlmTerima = Pengaduan::where('user_id',Auth::user()->id)->where('status',null)->get()->count();
-            $pengaduanSdhTerima = Pengaduan::where('user_id',Auth::user()->id)->where('status','Diterima')->get()->count();
-            $pengaduanSelesai = Pengaduan::where('user_id',Auth::user()->id)->where('status','Selesai')->get()->count();
-            $pengaduanTdkTerima = Pengaduan::where('user_id',Auth::user()->id)->where('status','Tidak diterima')->get()->count();
+            // $pengaduanBlmTerima = Pengaduan::where('user_id',Auth::user()->id)->where('status',null)->get()->count();
+            // $pengaduanSdhTerima = Pengaduan::where('user_id',Auth::user()->id)->where('status','Diterima')->get()->count();
+            // $pengaduanSelesai = Pengaduan::where('user_id',Auth::user()->id)->where('status','Selesai')->get()->count();
+            // $pengaduanTdkTerima = Pengaduan::where('user_id',Auth::user()->id)->where('status','Tidak diterima')->get()->count();
 
             // Pendampingan
-            $pendampinganDalamProses = Pendampingan::where('status_pendampingan','Dalam Proses')->whereHas('pengaduan', function ($query) {
-                $query->where('user_id', Auth::user()->id);
-            })->with('pengaduan')->count();
-            $pendampinganSelesai = Pendampingan::where('status_pendampingan','Selesai')->whereHas('pengaduan', function ($query) {
-                $query->where('user_id', Auth::user()->id);
-            })->with('pengaduan')->count();
+            // $pendampinganDalamProses = Pendampingan::where('status_pendampingan','Dalam Proses')->whereHas('pengaduan', function ($query) {
+            //     $query->where('user_id', Auth::user()->id);
+            // })->with('pengaduan')->count();
+            // $pendampinganSelesai = Pendampingan::where('status_pendampingan','Selesai')->whereHas('pengaduan', function ($query) {
+            //     $query->where('user_id', Auth::user()->id);
+            // })->with('pengaduan')->count();
 
 
 
-                // Query jumlah pengaduan per bulan dan tahun
-                $pengaduanTanggal = Pengaduan::where('user_id',Auth::user()->id)->selectRaw('MONTH(created_at) as bulan, YEAR(created_at) as tahun, COUNT(*) as jumlah')
-                ->groupBy('bulan', 'tahun')
-                ->orderBy('tahun', 'asc')
-                ->orderBy('bulan', 'asc')
-                ->get();
+            //     // Query jumlah pengaduan per bulan dan tahun
+            //     $pengaduanTanggal = Pengaduan::where('user_id',Auth::user()->id)->selectRaw('MONTH(created_at) as bulan, YEAR(created_at) as tahun, COUNT(*) as jumlah')
+            //     ->groupBy('bulan', 'tahun')
+            //     ->orderBy('tahun', 'asc')
+            //     ->orderBy('bulan', 'asc')
+            //     ->get();
 
-                // Query jumlah pendampingan per bulan dan tahun
-                $pendampinganTanggal = Pendampingan::whereHas('pengaduan', function ($query) {
-                    $query->where('user_id', Auth::user()->id);
-                })->with('pengaduan')->selectRaw('MONTH(created_at) as bulan, YEAR(created_at) as tahun, COUNT(*) as jumlah')
-                ->groupBy('bulan', 'tahun')
-                ->orderBy('tahun', 'asc')
-                ->orderBy('bulan', 'asc')
-                ->get();
+            //     // Query jumlah pendampingan per bulan dan tahun
+            //     $pendampinganTanggal = Pendampingan::whereHas('pengaduan', function ($query) {
+            //         $query->where('user_id', Auth::user()->id);
+            //     })->with('pengaduan')->selectRaw('MONTH(created_at) as bulan, YEAR(created_at) as tahun, COUNT(*) as jumlah')
+            //     ->groupBy('bulan', 'tahun')
+            //     ->orderBy('tahun', 'asc')
+            //     ->orderBy('bulan', 'asc')
+            //     ->get();
 
         }
+
+
+
+
+
+        // if(Auth::user()->hasRole('pendampingdinas'))
+        // {
+
+        // }
+
 
 
         $labels = [];

@@ -62,11 +62,26 @@
                      @php
                         $i = 0;
                     @endphp
+                    <tr>
+                        <td>ID Pengaduan</td>
+                        <td>:</td>
+                        <td>
+                            {{$pengaduan->id}}
+                        </td>
+                    </tr>
                         <tr>
                             <td>Judul Pengaduan</td>
                             <td>:</td>
                             <td>
                                 {{$pengaduan->judul_pengaduan}}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Jenis Pelayanan</td>
+                            <td>:</td>
+                            <td>
+                                {{$data->jenis_pelayanan}}
                             </td>
                         </tr>
 

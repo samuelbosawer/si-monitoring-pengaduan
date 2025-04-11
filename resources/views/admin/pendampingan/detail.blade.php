@@ -20,7 +20,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="header-title"> Detail Data Pendampingan</h4>
-                                <p> Pengaduan Kasus <span class=""></span> {{ $pengaduan->judul_pengaduan }} </p>
+                                <p> ID :  {{ $pengaduan->id }} <br>  Pengaduan Kasus <span class=""></span> {{ $pengaduan->judul_pengaduan }} </p>
                                 @if (isset($pengaduan->catatan))
                                     <div class="alert alert-warning" role="alert">
                                         {{ $pengaduan->catatan}}
@@ -63,7 +63,10 @@
                                                 <div class="card-body">
                                                     <h4 class="header-title "> {{ $data->judul_pendampingan }} </h4>
                                                     <p> {{ \Carbon\Carbon::parse($data->created_at)->locale('id')->translatedFormat('l, d F Y H:i') }}
+                                                        <br>
+                                                        Jenis Pelayanan : <b> {{$data->jenis_pelayanan}} </b>
                                                     </p>
+                                                    {{-- <p class=""></p> --}}
                                                     <p class="bg-warning p-2 text-white rounded">Status : <b> {{$data->status_pendampingan}} </b></p>
                                                     <a href="{{ route('dashboard.pendampingan.detail.sub', $data->id) }}"
                                                         class="btn btn-sm btn-primary border-0  waves-effect waves-light fs-4">

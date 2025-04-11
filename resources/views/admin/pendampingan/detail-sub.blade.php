@@ -44,6 +44,21 @@
 
 
                                 <div class="row mt-3">
+
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <label for=""> ID Pengaduan <span class="text-danger"> *
+                                                </span></label>
+                                            <input type="text" id=""
+                                                 disabled
+                                                value="{{$pengaduan->id ?? '-'}}"
+                                                name="judul pendampingan" placeholder="" class="form-control">
+
+                                        </div>
+                                    </div>
+
+
+
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
                                             <label for=""> Judul Pengaduan <span class="text-danger"> *
@@ -55,6 +70,8 @@
 
                                         </div>
                                     </div>
+
+
 
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
@@ -69,6 +86,48 @@
                                                     {{ $errors->first('judul_pendampingan') }}
                                                 </label>
                                             @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <label for="jenis_pelayanan"> Status Pelayanan <span class="text-danger"> *
+                                                </span></label>
+                                            <select class="form-control" name="jenis_pelayanan" @if (Auth::user()->hasRole('kepalabidang|pelapor|kepaladinas')) readonly @endif>
+
+                                                <option value="Pengaduan Masyarakat"
+                                                    {{ (old('jenis_pelayanan') ?? ($data->jenis_pelayanan ?? '')) == 'Pengaduan Masyarakat' ? 'selected' : '' }}>
+                                                    Pengaduan Masyarakat</option>
+                                                <option value="Penjangkuan Korban"
+                                                    {{ (old('jenis_pelayanan') ?? ($data->jenis_pelayanan ?? '')) == 'Penjangkuan Korban' ? 'selected' : '' }}>
+                                                    Penjangkuan Korban</option>
+                                                <option value="Konseling Dengan Psikolog"
+                                                    {{ (old('jenis_pelayanan') ?? ($data->jenis_pelayanan ?? '')) == 'Konseling Dengan Psikolog' ? 'selected' : '' }}>
+                                                    Konseling Dengan Psikolog</option>
+
+                                                    <option value="Rujukan Konsultasi Bidang Hukum"
+                                                    {{ (old('jenis_pelayanan') ?? ($data->jenis_pelayanan ?? '')) == 'Rujukan Konsultasi Bidang Hukum' ? 'selected' : '' }}>
+                                                    Rujukan Konsultasi Bidang Hukum</option>
+
+                                                    <option value="Rujukan Kesehatan"
+                                                    {{ (old('jenis_pelayanan') ?? ($data->jenis_pelayanan ?? '')) == 'Rujukan Kesehatan' ? 'selected' : '' }}>
+                                                    Rujukan Kesehatan</option>
+
+                                                    <option value="Penampungan Sementara (Rumah Aman)"
+                                                    {{ (old('jenis_pelayanan') ?? ($data->jenis_pelayanan ?? '')) == 'Penampungan Sementara (Rumah Aman) ' ? 'selected' : '' }}>
+                                                    Penampungan Sementara (Rumah Aman) </option>
+
+                                                    <option value="Mediasi"
+                                                    {{ (old('jenis_pelayanan') ?? ($data->jenis_pelayanan ?? '')) == 'Mediasi ' ? 'selected' : '' }}>
+                                                    Mediasi </option>
+
+                                                    <option value="Pendampingan Korban"
+                                                    {{ (old('jenis_pelayanan') ?? ($data->jenis_pelayanan ?? '')) == 'Pendampingan Korban ' ? 'selected' : '' }}>
+                                                    Pendampingan Korban </option>
+                                            </select>
+                                            @error('jenis_pelayanan')
+                                                <label class="text-danger">{{ $message }}</label>
+                                            @enderror
                                         </div>
                                     </div>
 

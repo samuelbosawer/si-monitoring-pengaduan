@@ -63,6 +63,11 @@
                             <td class="title-col" colspan="3"> PELAPOR</td>
                         </tr>
                         <tr>
+                            <td> ID Pangaduan </td>
+                            <td>:</td>
+                            <td> {{ $data->id }} </td>
+                        </tr>
+                        <tr>
                             <td> Judul Pangaduan </td>
                             <td>:</td>
                             <td> {{ $data->judul_pengaduan }} </td>

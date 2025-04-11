@@ -8,12 +8,14 @@
 
                  <ul id="side-menu">
 
+                    @if(!Auth::user()->hasRole('pelapor'))
                      <li>
                          <a href="{{ route('dashboard.home') }}">
                              <i data-feather="airplay"></i>
                              <span> Dashboard </span>
                          </a>
                      </li>
+                    @endif
 
 
                      @if(Auth::user()->hasRole('pelapor|kepalabidang|pendampingdinas'))

@@ -33,6 +33,7 @@ class PendampinganSeeder extends Seeder
                     'catatan_pendampingan' => 'Korban melakukan konsultasi awal pada tanggal 25 Maret 2025, jam 10:00 WIT',
                     'status_pendampingan' => 'Selesai',
                     'pengaduan_id' =>1,
+                    'jenis_pelayanan' =>"Pengaduan Masyarakat",
                     'created_at' =>Carbon::now(),
                     'updated_at' =>Carbon::now(),
             ]);
@@ -44,6 +45,7 @@ class PendampinganSeeder extends Seeder
                 'catatan_pendampingan' => 'Korban melakukan konsultasi awal pada tanggal 25 Maret 2025, jam 10:00 WIT',
                 'status_pendampingan' => 'Selesai',
                 'pengaduan_id' =>2,
+                'jenis_pelayanan' =>"Pengaduan Masyarakat",
                 'created_at' =>Carbon::now(),
                 'updated_at' =>Carbon::now(),
         ]);
@@ -54,6 +56,7 @@ class PendampinganSeeder extends Seeder
             'catatan_pendampingan' => 'Korban melakukan konsultasi awal pada tanggal 25 Maret 2025, jam 10:00 WIT',
             'status_pendampingan' => 'Selesai',
             'pengaduan_id' =>3,
+            'jenis_pelayanan' =>"Pengaduan Masyarakat",
             'created_at' =>Carbon::now(),
             'updated_at' =>Carbon::now(),
     ]);

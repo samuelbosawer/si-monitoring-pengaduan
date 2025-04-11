@@ -51,7 +51,7 @@
             @include('admin.layout.pdf.kop')
             <div class="text-center" style="text-transform: uppercase ;">
                 <h3 style="text-transform: uppercase;">{!! $title !!} <br>
-                   DARI {{ $judul->judul_pengaduan}}<br>
+                   DARI ID {{$judul->id}} - {{ $judul->judul_pengaduan}}<br>
                     {{ \Carbon\Carbon::now()->locale('id')->translatedFormat('l, d F Y ') }}  </h3>
             </div>
         </div>
@@ -68,6 +68,7 @@
                             <th class="data text-center">No</th>
                             <th class="data text-center">Tanggal</th>
                             <th class="data text-center">Judul Pendampingan</th>
+                            <th class="data text-center">Jenis Pelayanan</th>
                             <th class="data text-center">Catatan Pendampingan</th>
                             <th class="data text-center">Lampiran Dokumen</th>
                             <th class="data text-center">Status</th>
@@ -79,6 +80,7 @@
                                 {{ \Carbon\Carbon::parse($data->created_at)->locale('id')->translatedFormat('l, d F Y H:i') }}
                             </td>
                             <td class="data" width="30%">{{ $data->judul_pendampingan}}</td>
+                            <td class="data" width="30%">{{ $data->jenis_pelayanan}}</td>
                             <td class="data" width="30%">{{ $data->catatan_pendampingan}}</td>
                             <td class="data" width="30%">
                                 @if (!empty($data->lampiran))

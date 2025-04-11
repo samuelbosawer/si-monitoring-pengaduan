@@ -55,6 +55,7 @@
                                         <thead>
                                             <tr class="bg-warning text-white text-center">
                                                 <th class="text-center" width="1%">No</th>
+                                                <th class="text-center" width="1%">ID</th>
                                                 <th class="text-center" width="20%">Tanggal</th>
                                                 <th class="text-center">Pengaduan</th>
                                                 <th class="text-center">Pendamping</th>
@@ -68,6 +69,7 @@
                                             @foreach ($datas as $data)
                                                 <tr>
                                                     <td scope="row">{{ ++$i }}</td>
+                                                    <td>{{$data->id}}</td>
                                                     <td>{{ \Carbon\Carbon::parse($data->created_at)->locale('id')->translatedFormat('l, d F Y H:i') }}
                                                     </td>
                                                     <td>{{ $data->judul_pengaduan }}</td>

@@ -53,6 +53,7 @@
                     <table class="data" border="1" width="100%">
                         <tr class="data">
                             <th class="text-center">No</th>
+                            <th class="text-center">ID</th>
                             <th class="text-center">Tanggal</th>
                             <th class="text-center">Pengaduan</th>
                             <th>Status</th>
@@ -60,10 +61,11 @@
                         @php
                             $i = 0;
                         @endphp
-                    
+
                         @foreach ($datas as $data)
                             <tr class="data">
                                 <td width="2%" class="text-center">{{ ++$i }}</td>
+                                <td width="2%" class="text-center">{{ $data->id }}</td>
                                 <td width="30%">
                                     {{ \Carbon\Carbon::parse($data->created_at)->locale('id')->translatedFormat('l, d F Y H:i') }}
                                 </td>
