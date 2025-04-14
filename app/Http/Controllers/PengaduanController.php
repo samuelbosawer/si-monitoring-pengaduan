@@ -23,12 +23,7 @@ class PengaduanController extends Controller
                 ->whereNotNull('judul_pengaduan')
                 ->when($request->s, function ($query, $s) {
                     $query->where(function ($q) use ($s) {
-                        $q->where('nama_pelapor', 'LIKE', "%$s%")
-                          ->orWhere('nama_lengkap_korban', 'LIKE', "%$s%")
-                          ->orWhere('nama_lengkap_pelaku', 'LIKE', "%$s%")
-                          ->orWhere('created_at', 'LIKE', "%$s%")
-                        //   ->orWhere('keterangan', 'LIKE', "%$s%")
-                          ->orWhere('id', 'LIKE', "%$s%");
+                        $q->Where('id', 'LIKE', "%$s%");
                     });
                 })
                 ->orderBy('id', 'desc')
@@ -40,12 +35,7 @@ class PengaduanController extends Controller
                 ->whereNotNull('judul_pengaduan')
                 ->when($request->s, function ($query, $s) {
                     $query->where(function ($q) use ($s) {
-                        $q->where('nama_pelapor', 'LIKE', "%$s%")
-                          ->orWhere('nama_lengkap_korban', 'LIKE', "%$s%")
-                          ->orWhere('nama_lengkap_pelaku', 'LIKE', "%$s%")
-                          ->orWhere('created_at', 'LIKE', "%$s%")
-                        //   ->orWhere('keterangan', 'LIKE', "%$s%")
-                          ->orWhere('id', 'LIKE', "%$s%");
+                        $q->Where('id', 'LIKE', "%$s%");
                     });
                 })
                 ->orderBy('id', 'desc')
@@ -55,12 +45,7 @@ class PengaduanController extends Controller
                 ->whereNotNull('judul_pengaduan')
                 ->when($request->s, function ($query, $s) {
                     $query->where(function ($q) use ($s) {
-                        $q->where('nama_pelapor', 'LIKE', "%$s%")
-                          ->orWhere('nama_lengkap_korban', 'LIKE', "%$s%")
-                          ->orWhere('nama_lengkap_pelaku', 'LIKE', "%$s%")
-                          ->orWhere('created_at', 'LIKE', "%$s%")
-                        //   ->orWhere('keterangan', 'LIKE', "%$s%")
-                          ->orWhere('id', 'LIKE', "%$s%");
+                        $q->Where('id', 'LIKE', "%$s%");
                     });
                 })
                 ->orderBy('id', 'desc')
