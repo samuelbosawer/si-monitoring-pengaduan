@@ -232,6 +232,58 @@ Pada Oktober 20234, UPTD PPA Kota Jayapura menerima laporan dari warga mengenai 
 
 
 
+        $pengaduan = Pengaduan::create([
+            'judul_pengaduan' => "Kasus Penelantaran Anak di Kota Jayapura",
+            'melapor' => "Famili",
+            'nama_pelapor' => "Aldi Lawer",
+            'jk_pelapor' => 'Wanita',
+            'no_hp_pelapor' => '082198213221',
+                'informasi_dari' => "Teman/Saudara",
+                'alamat_pelapor' => "Entrop",
+                'nama_pelapor' => "Helen Watori",
+                'jenis_kelamin_korban' => 'Wanita',
+                'tempat_lahir_korban' => "Jayapura",
+                'tanggal_lahir_korban' => date('Y-m-d', strtotime("2000" ."11" . "01")),
+                'pekerjaan_korban' => "Siswa",
+                'alamat_korban' => "Entrop",
+                'agama_korban' => "Kristen Protestan",
+                'pendidikan_korban' => "SMP",
+                'nik_korban' => "9972198213493",
+                'hubungan' => "Suami",
+                'jumlah_anak_pria' => 0,
+                'jumlah_anak_wanita' => 0,
+                'status_pernikahan' => "Belum Menikah",
+                'nama_lengkap_pelaku' => "Harry Aris",
+                'jenis_kelamin_pelaku' => "Pria",
+                'tempat_lahir_pelaku' => "Jayapura",
+                'tanggal_lahir_pelaku' => date('Y-m-d', strtotime("1981" ."10" . "01")),
+                'agama_pelaku' => "Kristen Protestan",
+                'pendidikan_pelaku' => "S1",
+                'nik_pelaku' =>"9972198213423",
+                'no_hp_pelaku' => '08123456722',
+                'pekerjaan_pelaku' => "Pengawai Negeri Sipil pada Dinas Pekerjaan Umum Kota Jayapura",
+                'kondisi_fisik' => "Luka-Luka",
+                'kondisi_psikis' => "Ketakutan",
+                'kondisi_sexual' => "Lain-lain",
+                'dampak_fisik' => "Memar-Memar",
+                'dampak_psikis' => "Trauma",
+                'dampak_sex' => "Lain-lain",
+                'dampak_ekonomi' => "Lain-lain",
+                'dampak_kesehatan' =>"Lain-lain",
+                'dampak_lainnya' => "",
+                'kasus_domestik' => 'Kekerasan Fisik',
+                'kasus_publik' => 'Penganiyaan',
+                'kasus_lainnya' => false,
+                'uraian_kejadian' => "Pada Oktober 2003, UPTD PPA Kota Jayapura menerima laporan dari warga mengenai dua anak bersaudara yang ditelantarkan oleh orang tua mereka di Kelurahan koya barat. Tim UPTD PPA bekerja sama dengan pemerintah setempat untuk menangani kasus tersebut.",
+                'user_id' => rand(1, 2),
+                'status' => 'Diterima',
+                'pendamping_id' => 7,
+                'catatan' => 'Pendampingan yang dilakukan oleh UPTD PPA bertujuan untuk memastikan bahwa hak-hak anak terlindungi dan mereka mendapatkan perawatan serta perhatian yang layak setelah mengalami penelantaran.',
+                'created_at' => Carbon::create(2003, 11, 07, 14, 30, 0),
+                'updated_at' => Carbon::create(2003, 11, 07, 14, 30, 0),
+        ]);
+
+
 
     }
 }
