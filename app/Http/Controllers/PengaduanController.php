@@ -16,41 +16,46 @@ class PengaduanController extends Controller
     public function index(Request $request)
     {
 
-        $datas = null;
-        if (Auth::user()->hasRole('pelapor')) {
-            $datas = Pengaduan::with('latestPendampingan','pendampingans')
-                ->where('user_id', Auth::user()->id)
-                ->whereNotNull('judul_pengaduan')
-                ->when($request->s, function ($query, $s) {
-                    $query->where(function ($q) use ($s) {
-                        $q->Where('id', 'LIKE', "%$s%");
+        $query = Pengaduan::with('latestPendampingan', 'pendampingans')
+        ->whereNotNull('judul_pengaduan');
+
+    // Filter role user
+    if (Auth::user()->hasRole('pelapor')) {
+        $query->where('user_id', Auth::id());
+    } elseif (Auth::user()->hasRole('pendampingdinas')) {
+        $query->where('pendamping_id', Auth::id());
+    }
+
+    // Filter berdasarkan pilihan user
+    if ($request->filled('filter_by')) {
+        switch ($request->filter_by) {
+            case 'id':
+                if ($request->filled('search')) {
+                    $query->where('id', 'LIKE', "%{$request->search}%");
+                }
+                break;
+            case 'judul_pengaduan':
+                if ($request->filled('search')) {
+                    $query->where('judul_pengaduan', 'LIKE', "%{$request->search}%");
+                }
+                break;
+            case 'latest_pendampingan':
+                if ($request->filled('search')) {
+                    $query->whereHas('latestPendampingan', function ($q) use ($request) {
+                        $q->where('keterangan', 'LIKE', "%{$request->search}%"); // sesuaikan field di latestPendampingan
                     });
-                })
-                ->orderBy('id', 'desc')
-                ->paginate(10);
-        } elseif (Auth::user()->hasRole('pendampingdinas')) {
-            $datas = Pengaduan::with('latestPendampingan','pendampingans')
-                ->where('status', 'Diterima')
-                ->where('pendamping_id', Auth::user()->id)
-                ->whereNotNull('judul_pengaduan')
-                ->when($request->s, function ($query, $s) {
-                    $query->where(function ($q) use ($s) {
-                        $q->Where('id', 'LIKE', "%$s%");
-                    });
-                })
-                ->orderBy('id', 'desc')
-                ->paginate(10);
-        } else {
-            $datas = Pengaduan::with('latestPendampingan','pendampingans')
-                ->whereNotNull('judul_pengaduan')
-                ->when($request->s, function ($query, $s) {
-                    $query->where(function ($q) use ($s) {
-                        $q->Where('id', 'LIKE', "%$s%");
-                    });
-                })
-                ->orderBy('id', 'desc')
-                ->paginate(10);
+                }
+                break;
+            case 'tahun':
+                if ($request->filled('year')) {
+                    $query->whereYear('created_at', $request->year);
+                }
+                break;
         }
+    }
+
+    $datas = $query->orderBy('id', 'desc')->paginate(10);
+
 
 
 
@@ -65,33 +70,56 @@ class PengaduanController extends Controller
      * Show the form for creating a new resource.
      */
 
-    public function pdf_index()
+    public function pdf_index(Request $request)
     {
-          // Data yang akan diteruskan ke view
-          $data = [
-            'title' => 'LAPORAN PENGADUAN',
-            'datas' => Pengaduan::orderBy('id', 'desc')->get(),
+        // Base Query
+        $query = Pengaduan::with('latestPendampingan', 'pendampingans')
+        ->whereNotNull('judul_pengaduan');
 
+        // Filter berdasarkan Role
+        if (Auth::user()->hasRole('pelapor')) {
+        $query->where('user_id', Auth::id());
+        } elseif (Auth::user()->hasRole('pendampingdinas')) {
+        $query->where('pendamping_id', Auth::id());
+        }
+
+        // Filter berdasarkan input pencarian
+        if ($request->filled('filter_by')) {
+        switch ($request->filter_by) {
+            case 'id':
+                if ($request->filled('search')) {
+                    $query->where('id', 'LIKE', "%{$request->search}%");
+                }
+                break;
+            case 'judul_pengaduan':
+                if ($request->filled('search')) {
+                    $query->where('judul_pengaduan', 'LIKE', "%{$request->search}%");
+                }
+                break;
+            case 'latest_pendampingan':
+                if ($request->filled('search')) {
+                    $query->whereHas('latestPendampingan', function ($q) use ($request) {
+                        $q->where('keterangan', 'LIKE', "%{$request->search}%");
+                    });
+                }
+                break;
+            case 'tahun':
+                if ($request->filled('year')) {
+                    $query->whereYear('created_at', $request->year);
+                }
+                break;
+        }
+        }
+
+        // Eksekusi query (tanpa paginate karena mau semua untuk PDF)
+        $datas = $query->orderBy('id', 'desc')->get();
+
+        // Data dikirim ke view
+        $data = [
+        'title' => 'LAPORAN PENGADUAN',
+        'datas' => $datas,
         ];
 
-
-
-        if (Auth::user()->hasRole('pendampingdinas')) {
-
-            $query = Pengaduan::with('latestPendampingan','pendampingans')
-                ->where('status', 'Diterima')
-                ->where('pendamping_id', Auth::user()->id)
-                ->whereNotNull('judul_pengaduan')
-                ->orderBy('id', 'desc')
-                ->get();
-
-
-                $data = [
-                    'title' => 'LAPORAN PENGADUAN',
-                    'datas' => $query,
-
-                ];
-        }
 
         // Buat PDF
         $pdf = Pdf::loadView('admin.pengaduan.pdf_index', $data);

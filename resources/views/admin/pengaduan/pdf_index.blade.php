@@ -73,21 +73,7 @@
                                 {{-- <td width="20"> {{$data->user->name ?? ''}} </td> --}}
                                 {{-- <td width="20"> {{$data->penerima->name ?? ''}} </td> --}}
                                 <td width="30%" class="text-center">
-                                    @if ($data->status == null)
-                                        Belum diterima
-                                    @endif
-
-                                    @if ($data->status == 'Diterima')
-                                        Sudah diterima
-                                    @endif
-
-                                    @if ($data->status == 'Tidak diterima')
-                                        Tidak diterima
-                                    @endif
-
-                                    @if ($data->status == 'Selesai')
-                                        Selesai
-                                    @endif
+                                 {{$data->latestPendampingan->status_pendampingan ?? '-'}}
 
 
                                 </td>

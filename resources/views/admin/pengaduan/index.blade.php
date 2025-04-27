@@ -21,7 +21,7 @@
                             <div class="card-body">
                                 <h4 class="header-title"> Data Pendampingan</h4>
                                 <div class="row mt-3 d-flex justify-content-between">
-                                    <div class="col-8">
+                                    <div class="col-10">
                                         @include('admin.layout.search')
                                     </div>
 
@@ -60,7 +60,7 @@
                                                 <th class="text-center">Pengaduan</th>
                                                 <th class="text-center">Pendamping</th>
 
-                                                <th>Status Pengaduan</th>
+                                                {{-- <th>Status Pengaduan</th> --}}
                                                 <th>Catatan</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -74,7 +74,7 @@
                                                     </td>
                                                     <td>{{ $data->judul_pengaduan }}</td>
                                                     <td>{{$data->pendampingans->name ?? 'Belum ada'}}</td>
-                                                    <td class="text-center">
+                                                    {{-- <td class="text-center">
                                                         @if ($data->status == 'Dalam proses')
                                                             <div
                                                                 class="bg-secondary text-white rounded text-center mx-auto">
@@ -104,7 +104,7 @@
                                                         @endif
 
 
-                                                    </td>
+                                                    </td> --}}
 
                                                     <td>{{ $data->catatan ?? '-' }}</td>
 

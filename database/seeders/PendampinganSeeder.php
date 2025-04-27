@@ -240,5 +240,59 @@ Pendampingan ini bertujuan untuk memastikan korban mendapatkan keadilan dan duku
             'updated_at'              => Carbon::create(2003, 11, 15, 14, 30, 0),
         ]);
 
+
+
+         // Kasus 5
+         $pendampingan = Pendampingan::create([
+            'judul_pendampingan'      => 'Identifikasi dan Asesmen Awal',
+            'catatan_pendampingan'    => 'Tim UPTD PPA bersama pemerintah kelurahan melakukan identifikasi terhadap kondisi anak-anak tersebut, termasuk kebutuhan dasar seperti pangan, pakaian, dan tempat tinggal.',
+            'status_pendampingan'     => 'Selesai',
+            'pengaduan_id'            => 6,
+            'jenis_pelayanan'         => 'Pengaduan Masyarakat',
+            'created_at'              => Carbon::create(2003, 11, 07, 14, 30, 0),
+            'updated_at'              => Carbon::create(2003, 11, 07, 14, 30, 0),
+        ]);
+
+
+        // Seeder Pendampingan
+for ($pengaduanId = 6; $pengaduanId <= 20; $pengaduanId++) {
+    // Set tanggal awal berdasarkan urutan pengaduan
+    $startDate = Carbon::create(2004, 1, 1)->addDays(($pengaduanId - 6) * 10);
+
+    // Pendampingan 1
+    Pendampingan::create([
+        'judul_pendampingan'      => 'Identifikasi Awal Kasus',
+        'catatan_pendampingan'    => 'Tim melakukan identifikasi awal terkait laporan yang masuk.',
+        'status_pendampingan'     => 'Selesai',
+        'pengaduan_id'            => $pengaduanId,
+        'jenis_pelayanan'         => 'Konsultasi Awal',
+        'created_at'              => $startDate,
+        'updated_at'              => $startDate,
+    ]);
+
+    // Pendampingan 2
+    Pendampingan::create([
+        'judul_pendampingan'      => 'Asesmen Lanjutan',
+        'catatan_pendampingan'    => 'Melakukan asesmen psikologis dan medis terhadap korban.',
+        'status_pendampingan'     => 'Proses',
+        'pengaduan_id'            => $pengaduanId,
+        'jenis_pelayanan'         => 'Pendampingan Psikologis',
+        'created_at'              => $startDate->copy()->addDays(3),
+        'updated_at'              => $startDate->copy()->addDays(3),
+    ]);
+
+    // Pendampingan 3
+    Pendampingan::create([
+        'judul_pendampingan'      => 'Rekomendasi Tindak Lanjut',
+        'catatan_pendampingan'    => 'Merekomendasikan langkah hukum dan perlindungan lanjutan.',
+        'status_pendampingan'     => 'Selesai',
+        'pengaduan_id'            => $pengaduanId,
+        'jenis_pelayanan'         => 'Pendampingan Hukum',
+        'created_at'              => $startDate->copy()->addDays(7),
+        'updated_at'              => $startDate->copy()->addDays(7),
+    ]);
+
+
     }
+}
 }
