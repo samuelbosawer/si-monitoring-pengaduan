@@ -506,7 +506,7 @@ foreach ($kasusList as $kasus) {
         'user_id' => rand(1, 2),
         'status' => 'Diterima',
         'catatan' => 'Pendampingan diberikan untuk pemulihan korban.',
-        'pendamping_id' => 6,
+        'pendamping_id' => collect([5, 6, 7])->random(),
         'created_at' => $kasus['created_at'],
         'updated_at' => $kasus['created_at'],
     ]);
