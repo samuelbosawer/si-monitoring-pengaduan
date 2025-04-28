@@ -39,10 +39,15 @@ class PengaduanController extends Controller
                     $query->where('judul_pengaduan', 'LIKE', "%{$request->search}%");
                 }
                 break;
+                case 'pendamping_id':
+                    if ($request->filled('pendamping_id')) {
+                        $query->where('pendamping_id', $request->pendamping_id);
+                    }
+                    break;
             case 'latest_pendampingan':
                 if ($request->filled('search')) {
                     $query->whereHas('latestPendampingan', function ($q) use ($request) {
-                        $q->where('keterangan', 'LIKE', "%{$request->search}%"); // sesuaikan field di latestPendampingan
+                        // $q->where('keterangan', 'LIKE', "%{$request->search}%"); // sesuaikan field di latestPendampingan
                     });
                 }
                 break;
