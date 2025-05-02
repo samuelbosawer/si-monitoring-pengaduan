@@ -351,7 +351,7 @@ $kasusList = [
         'nama_korban' => "Melisa Wambrauw",
         'tanggal_lahir_korban' => "2015-06-12",
         'tanggal_lahir_pelaku' => "1985-03-20",
-        'created_at' => Carbon::create(2024, 6, 5, 14, 30, 0),
+        'created_at' => Carbon::create(2004, 6, 5, 14, 30, 0),
     ],
     [
         'judul_pengaduan' => "Kekerasan Psikis terhadap Ibu oleh Suami",
@@ -359,7 +359,7 @@ $kasusList = [
         'nama_korban' => "Rita Mambrasar",
         'tanggal_lahir_korban' => "1990-09-10",
         'tanggal_lahir_pelaku' => "1982-01-15",
-        'created_at' => Carbon::create(2024, 6, 20, 10, 45, 0),
+        'created_at' => Carbon::create(2004, 6, 20, 10, 45, 0),
     ],
     [
         'judul_pengaduan' => "Pemukulan Anak oleh Tetangga",
@@ -367,7 +367,7 @@ $kasusList = [
         'nama_korban' => "Adrian Douw",
         'tanggal_lahir_korban' => "2012-04-01",
         'tanggal_lahir_pelaku' => "1978-11-22",
-        'created_at' => Carbon::create(2024, 7, 2, 9, 15, 0),
+        'created_at' => Carbon::create(2004, 7, 2, 9, 15, 0),
     ],
     [
         'judul_pengaduan' => "Pengabaian dan Kekerasan Emosional terhadap Anak oleh Ibu Kandung",
@@ -375,7 +375,7 @@ $kasusList = [
         'nama_korban' => "Dina Yoku",
         'tanggal_lahir_korban' => "2016-08-30",
         'tanggal_lahir_pelaku' => "1995-07-07",
-        'created_at' => Carbon::create(2024, 7, 18, 16, 50, 0),
+        'created_at' => Carbon::create(2004, 7, 18, 16, 50, 0),
     ],
     [
         'judul_pengaduan' => "Kasus Kekerasan Seksual oleh Oknum Pejabat di Jayapura",
