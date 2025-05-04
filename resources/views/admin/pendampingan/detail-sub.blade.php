@@ -201,7 +201,7 @@
 
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
-                                            <label for="catatan"> Catatan Tambahan (Jika Ada) <span>
+                                            <label for="catatan"> Catatan Perkembangan Dari Pengaduan <span>
                                                 </span> </label>
                                             <textarea @if (Auth::user()->hasRole('kepalabidang|pelapor|kepaladinas')) disabled @endif id="summernote" name="catatan"
                                                 placeholder="Masukan catatan" rows="7" class="form-control">{{ old('catatan') ?? ($pengaduan->catatan ?? '') }} </textarea>
