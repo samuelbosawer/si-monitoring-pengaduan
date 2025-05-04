@@ -27,7 +27,7 @@ class PendampinganController extends Controller
                             ->orWhere('nama_panggilan_korban', 'LIKE', '%' . $s . '%')
                             ->orWhere('nama_lengkap_pelaku', 'LIKE', '%' . $s . '%')
                             ->orWhere('created_at', 'LIKE', '%' . $s . '%')
-                            ->orWhere('keterangan', 'LIKE', '%' . $s . '%')
+                            // ->orWhere('keterangan', 'LIKE', '%' . $s . '%')
                             ->get();
                     }
                 }]
@@ -43,7 +43,7 @@ class PendampinganController extends Controller
                             ->orWhere('nama_panggilan_korban', 'LIKE', '%' . $s . '%')
                             ->orWhere('nama_lengkap_pelaku', 'LIKE', '%' . $s . '%')
                             ->orWhere('created_at', 'LIKE', '%' . $s . '%')
-                            ->orWhere('keterangan', 'LIKE', '%' . $s . '%')
+                            // ->orWhere('keterangan', 'LIKE', '%' . $s . '%')
                             ->get();
                     }
                 }]
