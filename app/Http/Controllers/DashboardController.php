@@ -7,6 +7,7 @@ use App\Models\Pengaduan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -49,8 +50,8 @@ class DashboardController extends Controller
         ->get();
 
 
-
-
+        $wanita = Pengaduan::where('jenis_kelamin_korban','Wanita')->get()->count();
+        $pria = Pengaduan::where('jenis_kelamin_korban','Pria')->get()->count();
 
 
 
@@ -123,9 +124,24 @@ class DashboardController extends Controller
             $dataPengaduan[] = $item->jumlah;
         }
 
-        foreach ($pendampinganTanggal as $item) {
-            $dataPendampingan[] = $item->jumlah;
-        }
+
+        // Data baru: Grafik per tahun
+$labelsTahun = [];
+$dataPengaduanTahun = [];
+
+$pengaduanPerTahun = DB::table('pengaduans')
+    ->selectRaw('YEAR(created_at) as tahun, COUNT(*) as jumlah')
+    ->groupBy('tahun')
+    ->orderBy('tahun')
+    ->get();
+
+foreach ($pengaduanPerTahun as $item) {
+    $labelsTahun[] = $item->tahun;
+    $dataPengaduanTahun[] = $item->jumlah;
+}
+
+
+
 
         return view('admin.dashboard.index',compact('pengaduan','pendampingan',
         // Status Pengaduan
@@ -140,8 +156,13 @@ class DashboardController extends Controller
        'pendampinganSelesai',
 
        'dataPengaduan',
-       'dataPendampingan',
        'labels',
+
+       'labelsTahun',
+       'dataPengaduanTahun',
+
+       'pria',
+       'wanita',
     ));
     }
 

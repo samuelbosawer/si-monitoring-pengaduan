@@ -65,8 +65,63 @@
                         </div> <!-- end card-box-->
                     </div> <!-- end col -->
 
+                    <div class="col-md-6">
+                        <div class="card-box">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="avatar-sm bg-warning  rounded">
+                                        <i data-feather="user" class=" avatar-title font-22 text-white"></i>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-right">
+                                        <h4 class="text-dark mb-1">Korban Pria</h4>
+                                        <h3 class="text-dark my-1"> <span data-plugin="counterup">
+                                            {{$pria}} </span></h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div> <!-- end card-box-->
+                    </div> <!-- end col -->
 
                     <div class="col-md-6">
+                        <div class="card-box">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="avatar-sm bg-warning  rounded">
+                                        <i data-feather="user" class=" avatar-title font-22 text-white"></i>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-right">
+                                        <h4 class="text-dark mb-1">Korban Wanita</h4>
+                                        <h3 class="text-dark my-1"> <span data-plugin="counterup">
+                                            {{$wanita}} </span></h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div> <!-- end card-box-->
+                    </div> <!-- end col -->
+
+
+                    <div class="col-md-12">
+                        <div class="card-box">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="text-center">
+                                        <h4 class="text-dark mb-1">Jumlah Pengaduan Per - Tahun</h4>
+                                        <canvas id="grafikTahun"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-4">
                         <div class="card-box">
                             <div class="row">
                                 <div class="col-12">
@@ -80,13 +135,28 @@
                         </div> <!-- end card-box-->
                     </div> <!-- end col -->
 
-                    <div class="col-md-6">
+
+                    <div class="col-md-4">
+                        <div class="card-box">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class=" text-center">
+                                        <h4 class="text-dark mb-1">Jumlah Pengaduan Berdasarkan Jenis Kelamin</h4>
+                                        <canvas id="JenisKelamin"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div> <!-- end card-box-->
+                    </div> <!-- end col -->
+
+                    <div class="col-md-4">
                         <div class="card-box">
                             <div class="row">
                                 <div class="col-12">
                                     <div class=" text-center">
                                         <h4 class="text-dark mb-1">Jumlah Pendampingan Berdasarkan Status</h4>
-                                        <canvas id="PendampinganStatus"></canvas>
+                                        <canvas width="200" height="200" id="PendampinganStatus"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -97,19 +167,20 @@
 
 
 
-                    <div class="col-md-12">
+
+                    {{-- <div class="col-md-12">
                         <div class="card-box">
                             <div class="row">
                                 <div class="col-12">
                                     <div class=" text-center">
-                                        <h4 class="text-dark mb-1">Jumlah Data Berdasarkan Bulan</h4>
+                                        <h4 class="text-dark mb-1">Jumlah Data Berdasarkan Per - Bulan</h4>
                                         <canvas id="tanggal"></canvas>
                                     </div>
                                 </div>
                             </div>
 
                         </div> <!-- end card-box-->
-                    </div> <!-- end col -->
+                    </div> <!-- end col --> --}}
 
 
                     {{-- <div class="col-md-4">
@@ -186,6 +257,26 @@
             });
 
 
+
+            const JenisKelamin = document.getElementById('JenisKelamin');
+
+new Chart(JenisKelamin, {
+  type: 'pie',
+  data: {
+    labels: ['Pria', 'Wanita'],
+    datasets: [{
+      label: 'Jumlah',
+      data: [ {{$pria.', '. $wanita}}],
+    //   data: :  [ 14, 1, 1, 1],
+      borderWidth: 1
+    }]
+  },
+  options: {
+
+  }
+});
+
+
             const PendampinganStatus = document.getElementById('PendampinganStatus');
 
             new Chart(PendampinganStatus, {
@@ -205,7 +296,6 @@
 
             const labels = @json($labels);
 const dataPengaduan = @json($dataPengaduan);
-const dataPendampingan = @json($dataPendampingan);
 
 const tanggal = document.getElementById('tanggal');
 
@@ -221,12 +311,34 @@ new Chart(tanggal, {
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
                 borderColor: 'rgba(255, 99, 132, 1)'
             },
+
+        ]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+const labelsTahun = @json($labelsTahun);
+const dataPengaduanTahun = @json($dataPengaduanTahun);
+
+const grafikTahun = document.getElementById('grafikTahun');
+
+new Chart(grafikTahun, {
+    type: 'bar',
+    data: {
+        labels: labelsTahun,
+        datasets: [
             {
-                label: 'Pendampingan',
-                data: dataPendampingan,
+                label: 'Pengaduan per Tahun',
+                data: dataPengaduanTahun,
                 borderWidth: 1,
-                backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                borderColor: 'rgba(54, 162, 235, 1)'
+                backgroundColor: 'rgba(54, 162, 235, 0.5)', // Biru muda
+                borderColor: 'rgba(54, 162, 235, 1)' // Biru tua
             }
         ]
     },
