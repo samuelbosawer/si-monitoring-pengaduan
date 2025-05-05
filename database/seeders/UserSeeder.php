@@ -13,6 +13,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        // 1
         $admin = User::create([
             // 'user' => 'Admin',
             'name' => 'Pelapor 1',
@@ -22,6 +23,7 @@ class UserSeeder extends Seeder
         ]);
         $admin->assignRole('pelapor');
 
+        // 2
         $admin = User::create([
             // 'user' => 'Admin',
             'name' => 'Pelapor 2',
@@ -31,7 +33,7 @@ class UserSeeder extends Seeder
         ]);
         $admin->assignRole('pelapor');
 
-
+        // 3
         $admin = User::create([
             // 'user' => 'Admin',
             'name' => 'Kepala Bidang',
@@ -40,6 +42,7 @@ class UserSeeder extends Seeder
         ]);
         $admin->assignRole('kepalabidang');
 
+        // 4
         $admin = User::create([
             // 'user' => 'Admin',
             'name' => 'Kepala Dinas',
@@ -48,6 +51,7 @@ class UserSeeder extends Seeder
         ]);
         $admin->assignRole('kepaladinas');
 
+        // 5
         $admin = User::create([
             // 'user' => 'Admin',
             'name' => 'Pendamping 1',
@@ -56,6 +60,7 @@ class UserSeeder extends Seeder
         ]);
         $admin->assignRole('pendampingdinas');
 
+        // 6
         $admin = User::create([
             // 'user' => 'Admin',
             'name' => 'Pendamping 2',
@@ -64,6 +69,7 @@ class UserSeeder extends Seeder
         ]);
         $admin->assignRole('pendampingdinas');
 
+        // 7
         $admin = User::create([
             // 'user' => 'Admin',
             'name' => 'Pendamping 3',
@@ -73,5 +79,51 @@ class UserSeeder extends Seeder
         $admin->assignRole('pendampingdinas');
 
 
+        // ===== Real Users (ID 8 and onward) =====
+
+        // User ID: 8
+        $admin = User::create([
+            'name' => 'Jesika',
+            'email' => 'jesika@gmail.com',
+            'no_hp' => '0821981234',
+            'password' => bcrypt('jesika@gmail.com')
+        ]);
+        $admin->assignRole('pelapor');
+
+        // User ID: 9
+        $admin = User::create([
+            'name' => 'Welem',
+            'email' => 'welem@gmail.com',
+            'no_hp' => '0821981235',
+            'password' => bcrypt('welem@gmail.com')
+        ]);
+        $admin->assignRole('pelapor');
+
+        // User ID: 10
+        $admin = User::create([
+            'name' => 'Yakop',
+            'email' => 'yakop@gmail.com',
+            'no_hp' => '0821981236',
+            'password' => bcrypt('yakop@gmail.com')
+        ]);
+        $admin->assignRole('pelapor');
+
+        // User ID: 11
+        $admin = User::create([
+            'name' => 'Obed',
+            'email' => 'obed@gmail.com',
+            'no_hp' => '0821981237',
+            'password' => bcrypt('obed@gmail.com')
+        ]);
+        $admin->assignRole('pelapor');
+
+        // User ID: 12
+        $admin = User::create([
+            'name' => 'Angel',
+            'email' => 'angel@gmail.com',
+            'no_hp' => '0821981238',
+            'password' => bcrypt('angel@gmail.com')
+        ]);
+        $admin->assignRole('pelapor');
     }
 }

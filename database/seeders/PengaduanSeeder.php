@@ -591,7 +591,7 @@ foreach ($kasusList as $kasus) {
         'kasus_publik' => 'Penganiayaan',
         'kasus_lainnya' => false,
         'uraian_kejadian' => "Kronologi singkat kejadian kekerasan seksual atau fisik terhadap korban.",
-        'user_id' => rand(1, 2),
+  'user_id' => \App\Models\User::whereIn('id', [1, 2, 8, 9, 10, 11, 12])->inRandomOrder()->first()->id,
         'status' => 'Diterima',
         'catatan' => 'Pendampingan diberikan untuk pemulihan korban.',
         'pendamping_id' => collect([5, 6, 7])->random(),
