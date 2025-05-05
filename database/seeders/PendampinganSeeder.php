@@ -274,7 +274,7 @@ for ($pengaduanId = 6; $pengaduanId <= 31; $pengaduanId++) {
     Pendampingan::create([
         'judul_pendampingan'      => 'Asesmen Lanjutan',
         'catatan_pendampingan'    => 'Melakukan asesmen psikologis dan medis terhadap korban.',
-        'status_pendampingan'     => 'Proses',
+        'status_pendampingan'     => 'Dalam Proses',
         'pengaduan_id'            => $pengaduanId,
         'jenis_pelayanan'         => 'Pendampingan Psikologis',
         'created_at'              => $startDate->copy()->addDays(3),

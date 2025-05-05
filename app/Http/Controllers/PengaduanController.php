@@ -47,7 +47,7 @@ class PengaduanController extends Controller
             case 'latest_pendampingan':
                 if ($request->filled('search')) {
                     $query->whereHas('latestPendampingan', function ($q) use ($request) {
-                        // $q->where('keterangan', 'LIKE', "%{$request->search}%"); // sesuaikan field di latestPendampingan
+                        $q->where('status_pendampingan', 'LIKE', "%{$request->search}%"); // sesuaikan field di latestPendampingan
                     });
                 }
                 break;
@@ -104,7 +104,7 @@ class PengaduanController extends Controller
             case 'latest_pendampingan':
                 if ($request->filled('search')) {
                     $query->whereHas('latestPendampingan', function ($q) use ($request) {
-                        $q->where('keterangan', 'LIKE', "%{$request->search}%");
+                        $q->where('status_pendampingan', 'LIKE', "%{$request->search}%");
                     });
                 }
                 break;
