@@ -81,6 +81,7 @@ class DashboardController extends Controller
             $dataPengaduanTahun[] = $item->jumlah;
         }
 
+
         return view('admin.dashboard.index', compact(
             'pengaduan',
             'pendampingan',
