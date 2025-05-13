@@ -125,5 +125,68 @@ class UserSeeder extends Seeder
             'password' => bcrypt('angel@gmail.com')
         ]);
         $admin->assignRole('pelapor');
+
+        // User ID: 13
+        $admin = User::create([
+            'name' => 'Samuel',
+            'email' => 'samuel@gmail.com',
+            'no_hp' => '0821900001',
+            'password' => bcrypt('samuel@gmail.com')
+        ]);
+        $admin->assignRole('pelapor');
+
+        // User ID: 14
+        $admin = User::create([
+            'name' => 'Daniel',
+            'email' => 'daniel@gmail.com',
+            'no_hp' => '0821900002',
+            'password' => bcrypt('daniel@gmail.com')
+        ]);
+        $admin->assignRole('pelapor');
+
+        // User ID: 15
+        $admin = User::create([
+            'name' => 'Maria',
+            'email' => 'maria@gmail.com',
+            'no_hp' => '0821900003',
+            'password' => bcrypt('maria@gmail.com')
+        ]);
+        $admin->assignRole('pelapor');
+
+        // User ID: 16
+        $admin = User::create([
+            'name' => 'Yoseph',
+            'email' => 'yoseph@gmail.com',
+            'no_hp' => '0821900004',
+            'password' => bcrypt('yoseph@gmail.com')
+        ]);
+        $admin->assignRole('pelapor');
+
+        // User ID: 17
+        $admin = User::create([
+            'name' => 'Lidia',
+            'email' => 'lidia@gmail.com',
+            'no_hp' => '0821900005',
+            'password' => bcrypt('lidia@gmail.com')
+        ]);
+        $admin->assignRole('pelapor');
+
+        // User ID: 18
+        $admin = User::create([
+            'name' => 'Mikael',
+            'email' => 'mikael@gmail.com',
+            'no_hp' => '0821900006',
+            'password' => bcrypt('mikael@gmail.com')
+        ]);
+        $admin->assignRole('pelapor');
+
+        // User ID: 19
+        $admin = User::create([
+            'name' => 'Ester',
+            'email' => 'ester@gmail.com',
+            'no_hp' => '0821900007',
+            'password' => bcrypt('ester@gmail.com')
+        ]);
+        $admin->assignRole('pelapor');
     }
 }

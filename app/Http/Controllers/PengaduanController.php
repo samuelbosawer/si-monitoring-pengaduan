@@ -15,17 +15,14 @@ class PengaduanController extends Controller
 {
     public function index(Request $request)
     {
-
         $query = Pengaduan::with('latestPendampingan', 'pendampingans')
         ->whereNotNull('judul_pengaduan');
-
     // Filter role user
     if (Auth::user()->hasRole('pelapor')) {
         $query->where('user_id', Auth::id());
     } elseif (Auth::user()->hasRole('pendampingdinas')) {
         $query->where('pendamping_id', Auth::id());
     }
-
     // Filter berdasarkan pilihan user
     if ($request->filled('filter_by')) {
         switch ($request->filter_by) {
@@ -60,15 +57,7 @@ class PengaduanController extends Controller
     }
 
     $datas = $query->orderBy('id', 'desc')->paginate(10);
-
-
-
-
-
-
-
-        return view('admin.pengaduan.index',compact('datas'))->with('i',(request()->input('page', 1) - 1) * 10);
-
+    return view('admin.pengaduan.index',compact('datas'))->with('i',(request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -156,7 +145,6 @@ class PengaduanController extends Controller
     {
         $caption = 'Tambah Pengaduan';
         return view('admin.pengaduan.create', compact('caption'));
-
     }
 
     public function update_status(Request $request, string $id)

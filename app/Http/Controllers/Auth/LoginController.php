@@ -43,9 +43,5 @@ class LoginController extends Controller
         if($user->HasRole('pelapor') || $user->HasRole('kepaladinas') || $user->HasRole('kepalabidang') || $user->HasRole('pendampingdinas') ){
             return redirect('/dashboard');
         };
-
-
-
-
     }
 }
