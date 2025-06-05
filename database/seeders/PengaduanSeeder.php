@@ -222,13 +222,13 @@ class PengaduanSeeder extends Seeder
         //                 'kasus_domestik' => 'Kekerasan Fisik',
         //                 'kasus_publik' => 'Penganiyaan',
         //                 'kasus_lainnya' => false,
-        //                 'uraian_kejadian' => "Pada Maret 2004, seorang wanita bernama Selviana Kawaitouw mengalami KDRT berat dari suaminya, GRY, yang merupakan pejabat di Dinas Kominfo Papua. Korban mengalami kekerasan fisik dan verbal selama lebih dari 10 tahun, termasuk ancaman dengan senjata api. Puncak kekerasan terjadi saat korban sedang menjalani perawatan pasca operasi kanker payudara di RSUD Dok II Jayapura. Korban dipukul, ditendang, dan diancam dibunuh oleh pelaku, yang bahkan melakukan video call dengan selingkuhannya sambil menunjukkan aksi kekerasan tersebut . ",
+        //                 'uraian_kejadian' => "Pada Maret 2003, seorang wanita bernama Selviana Kawaitouw mengalami KDRT berat dari suaminya, GRY, yang merupakan pejabat di Dinas Kominfo Papua. Korban mengalami kekerasan fisik dan verbal selama lebih dari 10 tahun, termasuk ancaman dengan senjata api. Puncak kekerasan terjadi saat korban sedang menjalani perawatan pasca operasi kanker payudara di RSUD Dok II Jayapura. Korban dipukul, ditendang, dan diancam dibunuh oleh pelaku, yang bahkan melakukan video call dengan selingkuhannya sambil menunjukkan aksi kekerasan tersebut . ",
         //                 'user_id' => rand(1, 2),
         //                 'status' => 'Diterima',
         //                 'catatan' => 'Kasus ini menunjukkan pentingnya peran pendamping dalam membantu korban KDRT mendapatkan keadilan dan perlindungan yang layak. Pendampingan yang komprehensif, mulai dari aspek hukum hingga psikologis, sangat krusial dalam proses pemulihan korban dan penegakan hukum terhadap pelaku.',
         //                 'pendamping_id' => 7,
-        //                 'created_at' => Carbon::create(2004, 5, 12, 14, 30, 0),
-        //                 'updated_at' => Carbon::create(2004, 5, 12, 14, 30, 0),
+        //                 'created_at' => Carbon::create(2003, 5, 12, 14, 30, 0),
+        //                 'updated_at' => Carbon::create(2003, 5, 12, 14, 30, 0),
         //         ]);
 
 
@@ -277,13 +277,13 @@ class PengaduanSeeder extends Seeder
         //                 'kasus_domestik' => 'Kekerasan Fisik',
         //                 'kasus_publik' => 'Penganiyaan',
         //                 'kasus_lainnya' => false,
-        //                 'uraian_kejadian' => "Pada Maret 2004, seorang wanita bernama Selviana Kawaitouw mengalami KDRT berat dari suaminya, GRY, yang merupakan pejabat di Dinas Kominfo Papua. Korban mengalami kekerasan fisik dan verbal selama lebih dari 10 tahun, termasuk ancaman dengan senjata api. Puncak kekerasan terjadi saat korban sedang menjalani perawatan pasca operasi kanker payudara di RSUD Dok II Jayapura. Korban dipukul, ditendang, dan diancam dibunuh oleh pelaku, yang bahkan melakukan video call dengan selingkuhannya sambil menunjukkan aksi kekerasan tersebut . ",
+        //                 'uraian_kejadian' => "Pada Maret 2003, seorang wanita bernama Selviana Kawaitouw mengalami KDRT berat dari suaminya, GRY, yang merupakan pejabat di Dinas Kominfo Papua. Korban mengalami kekerasan fisik dan verbal selama lebih dari 10 tahun, termasuk ancaman dengan senjata api. Puncak kekerasan terjadi saat korban sedang menjalani perawatan pasca operasi kanker payudara di RSUD Dok II Jayapura. Korban dipukul, ditendang, dan diancam dibunuh oleh pelaku, yang bahkan melakukan video call dengan selingkuhannya sambil menunjukkan aksi kekerasan tersebut . ",
         //                 'user_id' => rand(1, 2),
         //                 'status' => 'Diterima',
         //                 'catatan' => 'Kasus ini menunjukkan pentingnya peran pendamping dalam membantu korban KDRT mendapatkan keadilan dan perlindungan yang layak. Pendampingan yang komprehensif, mulai dari aspek hukum hingga psikologis, sangat krusial dalam proses pemulihan korban dan penegakan hukum terhadap pelaku.',
         //                 'pendamping_id' => 7,
-        //                 'created_at' => Carbon::create(2004, 5, 12, 14, 30, 0),
-        //                 'updated_at' => Carbon::create(2004, 5, 12, 14, 30, 0),
+        //                 'created_at' => Carbon::create(2003, 5, 12, 14, 30, 0),
+        //                 'updated_at' => Carbon::create(2003, 5, 12, 14, 30, 0),
         //         ]);
 
 
@@ -332,13 +332,13 @@ class PengaduanSeeder extends Seeder
         //                 'kasus_domestik' => 'Kekerasan Fisik',
         //                 'kasus_publik' => 'Penganiyaan',
         //                 'kasus_lainnya' => false,
-        //                 'uraian_kejadian' => "Pada November 2004, seorang oknum pejabat berinisial HAN di Jayapura diduga melakukan kekerasan seksual terhadap anak di bawah umur. Korban mengalami kekerasan fisik dan seksual, disertai ancaman pembunuhan oleh pelaku. Pihak kepolisian telah memeriksa tujuh saksi dan melakukan visum serta asesmen psikologis terhadap korban, yang menunjukkan adanya trauma akibat kejadian tersebut. ",
+        //                 'uraian_kejadian' => "Pada November 2003, seorang oknum pejabat berinisial HAN di Jayapura diduga melakukan kekerasan seksual terhadap anak di bawah umur. Korban mengalami kekerasan fisik dan seksual, disertai ancaman pembunuhan oleh pelaku. Pihak kepolisian telah memeriksa tujuh saksi dan melakukan visum serta asesmen psikologis terhadap korban, yang menunjukkan adanya trauma akibat kejadian tersebut. ",
         //                 'user_id' => rand(1, 2),
         //                 'status' => 'Diterima',
         //                 'catatan' => 'Pendampingan ini bertujuan untuk memastikan korban mendapatkan keadilan dan dukungan yang diperlukan dalam proses pemulihan.',
         //                 'pendamping_id' => 6,
-        //                 'created_at' => Carbon::create(2004, 11, 07, 14, 30, 0),
-        //                 'updated_at' => Carbon::create(2004, 11, 07, 14, 30, 0),
+        //                 'created_at' => Carbon::create(2003, 11, 07, 14, 30, 0),
+        //                 'updated_at' => Carbon::create(2003, 11, 07, 14, 30, 0),
         //         ]);
 
 
@@ -352,7 +352,7 @@ class PengaduanSeeder extends Seeder
                 'jenis_kelamin_korban' => "Wanita",
                 'tanggal_lahir_korban' => "2015-06-12",
                 'tanggal_lahir_pelaku' => "1985-03-20",
-                'created_at' => Carbon::create(2004, 6, 5, 14, 30, 0),
+                'created_at' => Carbon::create(2003, 6, 5, 14, 30, 0),
             ],
             [
                 'judul_pengaduan' => "Kekerasan Psikis terhadap Ibu oleh Suami",
@@ -361,7 +361,7 @@ class PengaduanSeeder extends Seeder
                 'jenis_kelamin_korban' => "Wanita",
                 'tanggal_lahir_korban' => "1990-09-10",
                 'tanggal_lahir_pelaku' => "1982-01-15",
-                'created_at' => Carbon::create(2004, 6, 20, 10, 45, 0),
+                'created_at' => Carbon::create(2003, 6, 20, 10, 45, 0),
             ],
             [
                 'judul_pengaduan' => "Pemukulan Anak oleh Tetangga",
@@ -370,7 +370,7 @@ class PengaduanSeeder extends Seeder
                 'jenis_kelamin_korban' => "Pria",
                 'tanggal_lahir_korban' => "2012-04-01",
                 'tanggal_lahir_pelaku' => "1978-11-22",
-                'created_at' => Carbon::create(2004, 7, 2, 9, 15, 0),
+                'created_at' => Carbon::create(2003, 7, 2, 9, 15, 0),
             ],
             [
                 'judul_pengaduan' => "Pengabaian dan Kekerasan Emosional terhadap Anak oleh Ibu Kandung",
@@ -379,7 +379,7 @@ class PengaduanSeeder extends Seeder
                 'jenis_kelamin_korban' => "Wanita",
                 'tanggal_lahir_korban' => "2016-08-30",
                 'tanggal_lahir_pelaku' => "1995-07-07",
-                'created_at' => Carbon::create(2004, 7, 18, 16, 50, 0),
+                'created_at' => Carbon::create(2003, 7, 18, 16, 50, 0),
             ],
             [
                 'judul_pengaduan' => "Kasus Kekerasan Seksual oleh Oknum Pejabat di Jayapura",
@@ -388,7 +388,7 @@ class PengaduanSeeder extends Seeder
                 'jenis_kelamin_korban' => "Wanita",
                 'tanggal_lahir_korban' => "1997-10-01",
                 'tanggal_lahir_pelaku' => "1989-10-01",
-                'created_at' => Carbon::create(2004, 11, 7, 14, 30, 0),
+                'created_at' => Carbon::create(2003, 11, 7, 14, 30, 0),
             ],
             [
                 'judul_pengaduan' => "Kasus Penganiayaan Anak di Abepura",
@@ -397,7 +397,7 @@ class PengaduanSeeder extends Seeder
                 'jenis_kelamin_korban' => "Wanita",
                 'tanggal_lahir_korban' => "1998-04-20",
                 'tanggal_lahir_pelaku' => "1985-06-15",
-                'created_at' => Carbon::create(2004, 12, 1, 10, 15, 0),
+                'created_at' => Carbon::create(2003, 12, 1, 10, 15, 0),
             ],
             [
                 'judul_pengaduan' => "Kekerasan Dalam Rumah Tangga di Entrop",
@@ -406,7 +406,7 @@ class PengaduanSeeder extends Seeder
                 'jenis_kelamin_korban' => "Wanita",
                 'tanggal_lahir_korban' => "1996-03-10",
                 'tanggal_lahir_pelaku' => "1987-07-25",
-                'created_at' => Carbon::create(2005, 1, 5, 8, 45, 0),
+                'created_at' => Carbon::create(2004, 1, 5, 8, 45, 0),
             ],
             [
                 'judul_pengaduan' => "Kasus Pemerkosaan di Waena",
@@ -415,7 +415,7 @@ class PengaduanSeeder extends Seeder
                 'jenis_kelamin_korban' => "Wanita",
                 'tanggal_lahir_korban' => "1999-01-17",
                 'tanggal_lahir_pelaku' => "1984-02-13",
-                'created_at' => Carbon::create(2005, 2, 11, 9, 20, 0),
+                'created_at' => Carbon::create(2004, 2, 11, 9, 20, 0),
             ],
             [
                 'judul_pengaduan' => "Kekerasan Psikis Anak di Skyline",
@@ -424,7 +424,7 @@ class PengaduanSeeder extends Seeder
                 'jenis_kelamin_korban' => "Wanita",
                 'tanggal_lahir_korban' => "1995-07-14",
                 'tanggal_lahir_pelaku' => "1986-05-30",
-                'created_at' => Carbon::create(2005, 3, 7, 11, 00, 0),
+                'created_at' => Carbon::create(2004, 3, 7, 11, 00, 0),
             ],
             [
                 'judul_pengaduan' => "Penganiayaan Berat terhadap Anak di Hamadi",
@@ -433,7 +433,7 @@ class PengaduanSeeder extends Seeder
                 'jenis_kelamin_korban' => "Wanita",
                 'tanggal_lahir_korban' => "1994-05-08",
                 'tanggal_lahir_pelaku' => "1982-09-12",
-                'created_at' => Carbon::create(2005, 4, 2, 13, 45, 0),
+                'created_at' => Carbon::create(2004, 4, 2, 13, 45, 0),
             ],
             [
                 'judul_pengaduan' => "Eksploitasi Anak untuk Pekerjaan di Pasar Youtefa",
@@ -442,7 +442,7 @@ class PengaduanSeeder extends Seeder
                 'jenis_kelamin_korban' => "Wanita",
                 'tanggal_lahir_korban' => "1993-02-22",
                 'tanggal_lahir_pelaku' => "1983-03-10",
-                'created_at' => Carbon::create(2005, 5, 16, 14, 10, 0),
+                'created_at' => Carbon::create(2004, 5, 16, 14, 10, 0),
             ],
             [
                 'judul_pengaduan' => "KDRT Berat di Kotaraja",
@@ -451,7 +451,7 @@ class PengaduanSeeder extends Seeder
                 'jenis_kelamin_korban' => "Wanita",
                 'tanggal_lahir_korban' => "1992-12-12",
                 'tanggal_lahir_pelaku' => "1980-08-22",
-                'created_at' => Carbon::create(2005, 6, 9, 16, 25, 0),
+                'created_at' => Carbon::create(2004, 6, 9, 16, 25, 0),
             ],
             [
                 'judul_pengaduan' => "Kasus Pengancaman di Distrik Heram",
@@ -460,7 +460,7 @@ class PengaduanSeeder extends Seeder
                 'jenis_kelamin_korban' => "Wanita",
                 'tanggal_lahir_korban' => "1995-06-19",
                 'tanggal_lahir_pelaku' => "1987-11-01",
-                'created_at' => Carbon::create(2005, 7, 13, 15, 00, 0),
+                'created_at' => Carbon::create(2004, 7, 13, 15, 00, 0),
             ],
             [
                 'judul_pengaduan' => "Kasus Kekerasan Seksual di Asrama Mahasiswa",
@@ -469,7 +469,7 @@ class PengaduanSeeder extends Seeder
                 'jenis_kelamin_korban' => "Wanita",
                 'tanggal_lahir_korban' => "1997-11-03",
                 'tanggal_lahir_pelaku' => "1988-04-18",
-                'created_at' => Carbon::create(2005, 8, 5, 17, 30, 0),
+                'created_at' => Carbon::create(2004, 8, 5, 17, 30, 0),
             ],
             [
                 'judul_pengaduan' => "KDRT dan Penelantaran Anak di Jayapura Utara",
@@ -478,7 +478,7 @@ class PengaduanSeeder extends Seeder
                 'jenis_kelamin_korban' => "Wanita",
                 'tanggal_lahir_korban' => "1996-09-29",
                 'tanggal_lahir_pelaku' => "1985-01-05",
-                'created_at' => Carbon::create(2005, 9, 20, 18, 45, 0),
+                'created_at' => Carbon::create(2004, 9, 20, 18, 45, 0),
             ],
             [
                 'judul_pengaduan' => "Kekerasan Anak oleh Tenaga Pendidik",
@@ -487,7 +487,7 @@ class PengaduanSeeder extends Seeder
                 'jenis_kelamin_korban' => "Pria",
                 'tanggal_lahir_korban' => "1994-08-17",
                 'tanggal_lahir_pelaku' => "1981-12-25",
-                'created_at' => Carbon::create(2005, 10, 11, 8, 00, 0),
+                'created_at' => Carbon::create(2004, 10, 11, 8, 00, 0),
             ],
             [
                 'judul_pengaduan' => "Eksploitasi Seksual Anak di Jayapura Selatan",
@@ -496,7 +496,7 @@ class PengaduanSeeder extends Seeder
                 'jenis_kelamin_korban' => "Pria",
                 'tanggal_lahir_korban' => "1993-11-11",
                 'tanggal_lahir_pelaku' => "1986-07-01",
-                'created_at' => Carbon::create(2005, 11, 6, 9, 15, 0),
+                'created_at' => Carbon::create(2004, 11, 6, 9, 15, 0),
             ],
             [
                 'judul_pengaduan' => "Kekerasan Seksual dan Psikis oleh Tetangga",
@@ -505,7 +505,7 @@ class PengaduanSeeder extends Seeder
                 'jenis_kelamin_korban' => "Pria",
                 'tanggal_lahir_korban' => "1992-02-02",
                 'tanggal_lahir_pelaku' => "1980-10-10",
-                'created_at' => Carbon::create(2005, 12, 2, 10, 20, 0),
+                'created_at' => Carbon::create(2004, 12, 2, 10, 20, 0),
             ],
             [
                 'judul_pengaduan' => "Kekerasan Fisik terhadap Anak oleh Ayah Tiri",
@@ -514,7 +514,7 @@ class PengaduanSeeder extends Seeder
                 'tanggal_lahir_korban' => "1998-03-14",
                 'jenis_kelamin_korban' => "Wanita",
                 'tanggal_lahir_pelaku' => "1970-09-09",
-                'created_at' => Carbon::create(2006, 1, 5, 10, 15, 0),
+                'created_at' => Carbon::create(2005, 1, 5, 10, 15, 0),
             ],
             [
                 'judul_pengaduan' => "Penelantaran Anak oleh Ibu Kandung",
@@ -523,7 +523,7 @@ class PengaduanSeeder extends Seeder
                 'jenis_kelamin_korban' => "Pria",
                 'tanggal_lahir_korban' => "2001-12-02",
                 'tanggal_lahir_pelaku' => "1983-06-20",
-                'created_at' => Carbon::create(2006, 3, 5, 10, 15, 0),
+                'created_at' => Carbon::create(2005, 3, 5, 10, 15, 0),
             ],
             [
                 'judul_pengaduan' => "Kekerasan Psikis terhadap Ibu oleh Anak Dewasa",
@@ -532,7 +532,7 @@ class PengaduanSeeder extends Seeder
                 'jenis_kelamin_korban' => "Pria",
                 'tanggal_lahir_korban' => "1955-11-30",
                 'tanggal_lahir_pelaku' => "1980-08-17",
-                'created_at' => Carbon::create(2006, 4, 22, 17, 45, 0),
+                'created_at' => Carbon::create(2005, 4, 22, 17, 45, 0),
             ],
             [
                 'judul_pengaduan' => "Pemaksaan Kerja terhadap Anak oleh Orang Tua",
@@ -541,7 +541,7 @@ class PengaduanSeeder extends Seeder
                 'jenis_kelamin_korban' => "Wanita",
                 'tanggal_lahir_korban' => "1999-07-25",
                 'tanggal_lahir_pelaku' => "1976-12-12",
-                'created_at' => Carbon::create(2006, 5, 10, 13, 00, 0),
+                'created_at' => Carbon::create(2005, 5, 10, 13, 00, 0),
             ],
             [
                 'judul_pengaduan' => "Kekerasan Fisik terhadap Ibu oleh Suami",
@@ -550,7 +550,7 @@ class PengaduanSeeder extends Seeder
                 'jenis_kelamin_korban' => "Wanita",
                 'tanggal_lahir_korban' => "1978-02-15",
                 'tanggal_lahir_pelaku' => "1974-05-05",
-                'created_at' => Carbon::create(2006, 6, 19, 07, 40, 0),
+                'created_at' => Carbon::create(2005, 6, 19, 07, 40, 0),
             ],
             [
                 'judul_pengaduan' => "Pemukulan Anak oleh Paman",
@@ -559,7 +559,7 @@ class PengaduanSeeder extends Seeder
                 'jenis_kelamin_korban' => "Pria",
                 'tanggal_lahir_korban' => "1997-10-10",
                 'tanggal_lahir_pelaku' => "1968-04-04",
-                'created_at' => Carbon::create(2006, 8, 7, 15, 10, 0),
+                'created_at' => Carbon::create(2005, 8, 7, 15, 10, 0),
             ],
             [
                 'judul_pengaduan' => "Kekerasan Emosional terhadap Anak oleh Guru Les Privat",
@@ -568,7 +568,7 @@ class PengaduanSeeder extends Seeder
                 'jenis_kelamin_korban' => "Pria",
                 'tanggal_lahir_korban' => "1995-06-21",
                 'tanggal_lahir_pelaku' => "1972-02-25",
-                'created_at' => Carbon::create(2006, 9, 14, 11, 25, 0),
+                'created_at' => Carbon::create(2005, 9, 14, 11, 25, 0),
             ],
             [
                 'judul_pengaduan' => "Kekerasan terhadap Anak oleh Orang Tua",
@@ -577,7 +577,7 @@ class PengaduanSeeder extends Seeder
                 'jenis_kelamin_korban' => "Pria",
                 'tanggal_lahir_korban' => "1995-06-21",
                 'tanggal_lahir_pelaku' => "1972-02-25",
-                'created_at' => Carbon::create(2006, 9, 14, 11, 25, 0),
+                'created_at' => Carbon::create(2005, 9, 14, 11, 25, 0),
             ],
         ];
 
