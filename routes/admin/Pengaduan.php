@@ -20,7 +20,8 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('pengaduan/pdf/cetak', [PengaduanController::class, 'pdf'])->name('pengaduan.pdf')->middleware(['role:kepalabidang|kepaladinas|pendampingdinas']);
 
-        Route::get('pengaduan/pdf-detail/{id}', [PengaduanController::class, 'pdf_detail'])->name('pengaduan.pdf_detail')->middleware(['role:kepalabidang|kepaladinas|pendampingdinas']);
+        Route::get('pengaduan/pdfdetail/{id}', [PengaduanController::class, 'pdfdetail'])->name('pengaduan.pdfdetail')->middleware(['role:kepalabidang|kepaladinas|pendampingdinas']);
+
         Route::post('pengaduan/csv', [PengaduanController::class, 'csv'])->name('pendampingan.csv');
     });
 });

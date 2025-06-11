@@ -123,7 +123,7 @@ class PengaduanController extends Controller
         return $pdf->stream($doc); // Jika ingin menampilkan langsung di browser
     }
 
-    public function pdf_detail($id)
+    public function pdfdetail($id)
     {
          $title = Pengaduan::where('id',$id)->first();
           $data = [
