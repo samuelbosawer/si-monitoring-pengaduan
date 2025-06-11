@@ -64,7 +64,7 @@ class PengaduanController extends Controller
      * Show the form for creating a new resource.
      */
 
-    public function pdf_index(Request $request)
+    public function pdf(Request $request)
     {
         // Base Query
         $query = Pengaduan::with('latestPendampingan', 'pendampingans')
