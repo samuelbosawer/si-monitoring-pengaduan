@@ -249,14 +249,14 @@
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
                         <div class="contact text-center">
                             <h3 class="text-warning font-weight-bold">Email</h3>
-                            <span> sipengaduam@jayapura.go.id</span>
+                            <span> dp3akbpapua1@gmail.com</span>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
                         <div class="contact text-center">
                             <h3 class="text-warning font-weight-bold">Alamat</h3>
-                            <span> Jalan Raya Kota Jayapura</span>
+                            <span> Jln.Berdikari Nomor 01, Jayapura Utara Kota Jayapura</span>
                         </div>
                     </div>
 
