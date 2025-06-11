@@ -56,8 +56,10 @@
                                     </div>
                                     <div class="col-md-2 m-2">
                                         @if (Auth::user()->hasRole('kepaladinas|pendampingdinas|kepalabidang') && Request::segment(3) == 'detail')
-                                        <a class="btn btn-danger" target="_blank" href="{{ route('dashboard.pengaduan.pdfdetail.cetak',$data->id) }}">
+
+                                        <a class="btn btn-danger" target="_blank" href="{{ route('dashboard.pengaduan.pdf.detail',$data->id) }}">
                                             Cetak PDF <i data-feather="file-text"></i></a>
+
                                         @endif
                                     </div>
                                 </div>
