@@ -496,12 +496,15 @@
                                                             <option value="Tanta"
                                                                 {{ (old('hubungan') ?? ($data->hubungan ?? '')) == 'Tanta' ? 'selected' : '' }}>
                                                                 Tanta</option>
-                                                            {{-- <option value="Paman"
-                                                                {{ (old('hubungan') ?? ($data->hubungan ?? '')) == 'Paman' ? 'selected' : '' }}>
-                                                                Paman</option>
-                                                            <option value="Bibi"
-                                                                {{ (old('hubungan') ?? ($data->hubungan ?? '')) == 'Bibi' ? 'selected' : '' }}>
-                                                                Bibi</option> --}}
+                                                            <option value="Ayah"
+                                                                {{ (old('hubungan') ?? ($data->hubungan ?? '')) == 'Ayah' ? 'selected' : '' }}>
+                                                                Ayah</option>
+                                                            <option value="Ibu"
+                                                                {{ (old('hubungan') ?? ($data->hubungan ?? '')) == 'Ibu' ? 'selected' : '' }}>
+                                                                Ibu</option>
+                                                                <option value="Anak"
+                                                                {{ (old('hubungan') ?? ($data->hubungan ?? '')) == 'Anak' ? 'selected' : '' }}>
+                                                                Anak</option>
                                                         </select>
                                                         @if ($errors->has('hubungan'))
                                                             <label class="text-danger">
