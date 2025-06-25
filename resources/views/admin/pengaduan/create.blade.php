@@ -367,7 +367,7 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-3">
-                                                        <label for="pekerjaan_korban"> Pekerjaan Korban (Dijelaskan)
+                                                        <label for="pekerjaan_korban"> Pekerjaan Korban (Dijelaskan) <span class="text-danger" >*</span>
                                                         </label>
                                                         <textarea id="summernote" @if (Request::segment(3) == 'detail') disabled @endif name="pekerjaan_korban"
                                                             placeholder="Masukan pekerjaan korban" rows="5" class="form-control">{{ old('pekerjaan_korban') ?? ($data->pekerjaan_korban ?? '') }} </textarea>
@@ -799,7 +799,7 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-3">
-                                                        <label for="pekerjaan_pelaku"> Pekerjaan Pelaku (Dijelaskan)
+                                                        <label for="pekerjaan_pelaku"> Pekerjaan Pelaku (Dijelaskan) <span class="text-danger">*</span>
                                                         </label>
                                                         <textarea id="summernote" @if (Request::segment(3) == 'detail') disabled @endif name="pekerjaan_pelaku"
                                                             placeholder="Masukan pekerjaan pelaku" rows="5" class="form-control">{{ old('pekerjaan_pelaku') ?? ($data->pekerjaan_pelaku ?? '') }} </textarea>
@@ -1194,7 +1194,7 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-3">
-                                                        <label for="kasus_lainnya"> Kasus Lainnya <span> </span> </label>
+                                                        <label for="kasus_lainnya"> Kasus Lainnya <span class="text-danger"> *</span> </label>
                                                         <textarea id="summernote" @if (Request::segment(3) == 'detail') disabled @endif name="kasus_lainnya"
                                                             placeholder="Masukan kasus_lainnya" rows="5" class="form-control">{{ old('kasus_lainnya') ?? ($data->kasus_lainnya ?? '') }} </textarea>
                                                         @if ($errors->has('kasus_lainnya'))

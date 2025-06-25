@@ -204,7 +204,7 @@ curl_close($curl);
             'jk_pelapor' => 'required',
             'no_hp_pelapor' => 'required|min:12|numeric',
             'informasi_dari' => 'required',
-            'alamat_pelapor' => 'required',
+
 
             'nama_lengkap_korban' => 'required',
             'jenis_kelamin_korban' => 'required',
@@ -214,7 +214,7 @@ curl_close($curl);
             'alamat_korban' => 'required',
             'agama_korban' => 'required',
             'pendidikan_korban' => 'required',
-            'nik_korban' => 'required',
+            'nik_korban' => 'required|numeric',
             'hubungan' => 'required',
 
             'nama_lengkap_pelaku' => 'required',
@@ -223,7 +223,7 @@ curl_close($curl);
             'tanggal_lahir_pelaku' => 'required',
             'agama_pelaku' => 'required',
             'pendidikan_pelaku' => 'required',
-            'nik_pelaku' => 'required',
+            'nik_pelaku' => 'required|numeric',
             'no_hp_pelaku' => 'required',
             'pekerjaan_pelaku' => 'required',
 
@@ -465,7 +465,7 @@ Terimakasih 🙏🏽😊',
             'melapor' => 'required',
             'nama_pelapor' => 'required',
             'no_hp_pelapor' => 'required',
-            'alamat_pelapor' => 'required',
+
             'jk_pelapor' => 'required',
             'informasi_dari' => 'required',
 
