@@ -255,7 +255,7 @@ Pendampingan ini bertujuan untuk memastikan korban mendapatkan keadilan dan duku
 
 
         // Seeder Pendampingan
-for ($pengaduanId = 6; $pengaduanId <= 31; $pengaduanId++) {
+for ($pengaduanId = 6; $pengaduanId <= 26; $pengaduanId++) {
     // Set tanggal awal berdasarkan urutan pengaduan
     $startDate = Carbon::create(2004, 1, 1)->addDays(($pengaduanId - 6) * 10);
 
